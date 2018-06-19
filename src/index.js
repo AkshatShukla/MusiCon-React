@@ -1,7 +1,14 @@
-import React from 'react';
+import React from 'react'
 import ReactDOM from 'react-dom';
+import { createStore } from 'redux'
+import { Provider, connect } from 'react-redux'
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import Search from './components/Search'
+import {Reducer} from './reducers/Reducer'
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import '../node_modules/font-awesome/css/font-awesome.min.css'
+
+let store = createStore(Reducer);
 
 class MernClient
     extends React.Component {
@@ -13,9 +20,8 @@ class MernClient
 }
 
 ReactDOM.render(
-    <div>
-        <MernClient/>
+    <Provider store={store}>
         <Search/>
-    </div>,
+    </Provider>,
     document.getElementById('root'));
 
