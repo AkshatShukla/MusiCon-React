@@ -2,12 +2,33 @@ import * as constants from "../constants/index"
 import SearchServiceClient from "../services/search.service.client";
 
 export const Reducer = (state = {
+    username:'',
+    password:'',
+    userType: '',
+    widgets: [],
+    clientId: constants.clientid
     query: '',
     queryType: 'Album'
 }, action) => {
     let newState;
     let searchServiceClient = SearchServiceClient.instance;
     switch (action.type) {
+
+        case constants.USERNAME_TEXT_CHANGED:
+            newState = Object.assign({}, state);
+            newState.username = action.text;
+            return newState;
+
+        case constants.PASSWORD_TEXT_CHANGED:
+            newState = Object.assign({}, state);
+            newState.password = action.text;
+            return newState;
+
+        case constants.SAVE_USERNAME_AND_USERTYPE:
+            newState = Object.assign({}, state);
+            newState.username = action.username;
+            newState.userType = action.userType;
+            return newState;
 
         case constants.REFRESH_TOKEN:
             newState = Object.assign({}, state);
