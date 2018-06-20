@@ -3,9 +3,9 @@ import React from 'react'
 const Login = ({
     // first state then props check if order of them matters
                }) => {
-    let selectElem
-    let inputElem
-    let inputElem1
+    let selectElem;
+    let inputElem;
+    let inputElem1;
     return (
         <div>
             {/*Sample code for using input element*/}
