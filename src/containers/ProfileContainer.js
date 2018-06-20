@@ -4,9 +4,12 @@ import Profile from '../components/Profile'
 import * as actions from "../actions";
 
 const dispathToPropsMapper = dispatch => ({
-    // headingTextChanged: (widgetId, newText) =>
-    //     actions.headingTextChanged(dispatch, widgetId, newText)
-})
+    TextChanged: (type,newText) =>
+        actions.textChanged(dispatch, type, newText),
+    update: () =>
+        actions.updateUser(dispatch)
+
+    })
 const stateToPropsMapper = state => ({
     // preview: state.preview
 })
