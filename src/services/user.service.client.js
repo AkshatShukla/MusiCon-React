@@ -1,5 +1,5 @@
 let _singleton = Symbol();
-const USER_API_URL = 'http://localhost:8080/api/course';//later change this to heroku url
+const BASE_URL = 'http://localhost:4000/api/';//later change this to heroku url
 class UserServiceClient {
     constructor(singletonToken) {
         if (_singleton !== singletonToken)
@@ -16,6 +16,21 @@ class UserServiceClient {
     //             return response.json();
     //         });
     // }
+
+    login(username, password) {
+        var user = {
+            username: username,
+            password: password
+        };
+        return fetch(BASE_URL+'/login/',{
+            method: 'post',
+            credentials: "include",
+            body: JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
 
 
 }
