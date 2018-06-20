@@ -6,6 +6,7 @@ import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
 import Login from "../components/Login";
 import LoginContainer from "./LoginContainer";
 import ProfileContainer from "./ProfileContainer";
+import SearchContainer from "./SearchContainer";
 
 export  default class HomeContainer
     extends React.Component {
@@ -16,8 +17,8 @@ export  default class HomeContainer
                     <Route path="/"
                            component={NavigationBar}>
                     </Route>
-                    <Route path="/search"
-                           component={Search}>
+                    <Route path="/"
+                           component={SearchContainer}>
                     </Route>
                     <Route path='/login'
                     component={LoginContainer}/>

@@ -6,7 +6,7 @@ export const Reducer = (state = {
     password:'',
     userType: '',
     widgets: [],
-    clientId: constants.clientid
+    clientId: constants.clientid,
     query: '',
     queryType: 'Album'
 }, action) => {
