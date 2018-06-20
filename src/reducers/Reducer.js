@@ -1,11 +1,30 @@
 import * as constants from "../constants/index"
 
 export const Reducer = (state = {
+    username:'',
+    password:'',
+    userType: '',
     widgets: [],
     clientId: constants.clientid
 }, action) => {
     let newState;
     switch (action.type) {
+
+        case constants.USERNAME_TEXT_CHANGED:
+            newState = Object.assign({}, state);
+            newState.username = action.text;
+            return newState;
+
+        case constants.PASSWORD_TEXT_CHANGED:
+            newState = Object.assign({}, state);
+            newState.password = action.text;
+            return newState;
+
+        case constants.SAVE_USERNAME_AND_USERTYPE:
+            newState = Object.assign({}, state);
+            newState.username = action.username;
+            newState.userType = action.userType;
+            return newState;
 
         // case constants.REFRESH_TOKEN:
         //     newState = Object.assign({}, state);
