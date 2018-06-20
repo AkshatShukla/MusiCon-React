@@ -1,12 +1,36 @@
 import * as constants from "../constants/index"
+import SearchServiceClient from "../services/search.service.client";
 
 export const Reducer = (state = {
-    widgets: [],
-    clientId: constants.clientid
+    query: '',
+    queryType: 'Album'
 }, action) => {
     let newState;
+    let searchServiceClient = SearchServiceClient.instance;
     switch (action.type) {
 
+        case constants.REFRESH_TOKEN:
+            newState = Object.assign({}, state);
+            return newState;
+        // check if token has been updated?
+
+        case constants.QUERY_CHANGED:
+            newState = Object.assign({}, state);
+            newState.query = action.query;
+            return newState;
+
+
+        case constants.TYPE_CHANGED:
+            newState = Object.assign({}, state);
+            newState.queryType = action.searchType;
+            return newState;
+
+        case constants.SEARCH:
+            searchServiceClient
+                .searchQuery(action.query.value, action.searchType.value)
+                .then((r)=>console.log(r));
+            console.log(state);
+            return state;
         // case constants.REFRESH_TOKEN:
         //     newState = Object.assign({}, state);
         //     if (newState.token === undefined || newState.token === null) {

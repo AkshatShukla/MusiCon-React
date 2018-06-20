@@ -7,6 +7,7 @@ import Search from './components/Search'
 import {Reducer} from './reducers/Reducer'
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css'
+import SearchBarContainer from "./containers/SearchContainer";
 
 let store = createStore(Reducer);
 
@@ -21,7 +22,7 @@ class MernClient
 
 ReactDOM.render(
     <Provider store={store}>
-        <Search/>
+        <SearchBarContainer/>
     </Provider>,
     document.getElementById('root'));
 

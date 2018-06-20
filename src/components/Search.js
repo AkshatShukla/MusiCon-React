@@ -15,11 +15,11 @@ class Search extends React.Component {
         this.setState({keyword: event.target.value});
     }
     handleSubmit(event) {
-        // console.log(this.state.keyword);
-        // let url = 'http://ws.audioscrobbler.com/2.0/?method=album.search&album=ALBUMNAME&api_key=936c99c515a1eeafd21e0ca253de20d8&format=json&limit=5&page=1';
-        // let newURL = 'https://api.spotify.com/v1/search?q=1989&type=album';
-        // url += '?apikey=YOURKEY';
-        // url += '&s=' + this.state.keyword;
+        console.log(this.state.keyword);
+        let url = 'http://ws.audioscrobbler.com/2.0/?method=album.search&album=ALBUMNAME&api_key=936c99c515a1eeafd21e0ca253de20d8&format=json&limit=5&page=1';
+        let newURL = 'https://api.spotify.com/v1/search?q=1989&type=album';
+        url += '?apikey=YOURKEY';
+        url += '&s=' + this.state.keyword;
         // fetch(url.replace('ALBUMNAME', this.state.keyword))
         //     .then(res => res.json())
         //     .then(result => {
@@ -27,18 +27,18 @@ class Search extends React.Component {
         //         console.log(result.results.albummatches.album);
         //         this.setState({albums: result.results.albummatches.album})
         //     });
-        // fetch(newURL, {
-        //     headers:{
-        //         'Content-Type': 'application/json',
-        //         'Accept': 'application/json',
-        //         'Authorization': 'Bearer BQB2Ly4MuYszBP1VjrNYu1DHvCrrUWONjwqY51oTFA-ipvV1qp8JVHZfvXTxUz6ffsG4MEZDwmDxcJ7DAIg'
-        //     }
-        // })
-        //     .then((response)=> {
-        //         response.json().then((r)=>console.log(r));
-        //     });
-        fetch("http://localhost:4000/api/get-token")
-            .then(response => response.json().then((r)=>console.log(r)))
+        fetch(newURL, {
+            headers:{
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': 'Bearer BQB2Ly4MuYszBP1VjrNYu1DHvCrrUWONjwqY51oTFA-ipvV1qp8JVHZfvXTxUz6ffsG4MEZDwmDxcJ7DAIg'
+            }
+        })
+            .then((response)=> {
+                response.json().then((r)=>console.log(r));
+            });
+        // fetch("http://localhost:4000/api/get-token")
+        //     .then(response => response.json().then((r)=>console.log(r)))
 
     }
     printResult() {
