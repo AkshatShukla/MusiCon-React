@@ -12,3 +12,4 @@ export const QUERY_CHANGED = 'QUERY_CHANGED';
 export const TYPE_CHANGED = 'TYPE_CHANGED';
 export const SEARCH = 'SEARCH';
 export const SAVE_USERTYPE = 'SAVE_USERTYPE';
+export const SAVE ='SAVE';

@@ -16,6 +16,10 @@ export const Reducer = (state = {
     let searchServiceClient = SearchServiceClient.instance;
     switch (action.type) {
 
+        case constants.SAVE:
+            newState = Object.assign({},state);
+            console.log(newState);
+            return newState;
         case constants.TEXT_CHANGED:
             newState = Object.assign({}, state);
             if(action.fieldType === 'username'){
@@ -23,6 +27,16 @@ export const Reducer = (state = {
             }
             else if(action.fieldType === 'password'){
                 newState.password = action.text;
+            }else if(action.feildType === 'firstName'){
+                newState.firstName = action.text;
+            }else if(action.feildType === 'lastName'){
+                newState.lastName = action.text;
+            }else if(action.feildType === 'email'){
+                newState.email = action.text;
+            }else if(action.feildType === 'dob'){
+                newState.dob = action.text;
+            }else if(action.feildType === 'address'){
+                newState.address = action.text;
             }
             else if(action.fieldType === 'verifyPassword'){
                 newState.verifyPassword = action.text

@@ -1,14 +1,6 @@
 import * as constants from "../constants/index"
 import UserServiceClient from "../services/user.service.client"
 
-// Example of actions
-// export const headingTextChanged = (dispatch, widgetId, newText) => (
-//   dispatch({
-//     type: constants.HEADING_TEXT_CHANGED,
-//     id: widgetId,
-//     text: newText})
-// )
-
 export const queryChanged = (dispatch, newQuery) => (
     dispatch({
         type: constants.QUERY_CHANGED,
@@ -94,6 +86,11 @@ export const registerUser = (dispatch, username, password, verifyPassword, userT
     }
 }
 
+export const updateUser = (dispatch) =>(
+    dispatch({
+        type:constants.SAVE
+    })
+)
 export const login = (dispatch, username, password) => (
 
     UserServiceClient.instance
