@@ -1,10 +1,29 @@
 import * as constants from "../constants/index"
 
-export const Reducer = (state = {widgets: [], preview: false}, action) => {
+export const Reducer = (state = {
+    widgets: [],
+    clientid: 'OTlmMDIxMjk4MjBlNGM0YjlmNDk4OWQ5OGM1Y2JlODU6MGJhODViNzZjOGY0NDFlNTgwZGI1OTIwMGViYzJjMDA ='
+}, action) => {
     let newState
-
+    let Spotify_Authorization_URL = 'https://accounts.spotify.com/api/token';
     switch (action.type) {
 
+        case constants.REFRESH_TOKEN:
+            newState = Object.assign({}, state);
+            if (newState.token === undefined || newState.token === null) {
+                fetch("https://accounts.spotify.com/api/token", {
+                    body: "grant_type=client_credentials",
+                    headers: {
+                        Authorization: "Basic ZjM4ZjAw...WY0MzE=",
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    method: "POST"
+                }).then(response => console.log(response.json()))
+            }
+            else {
+
+            }
+            return newState;
         // Some example of reducer
         // case constants.SAVE:
         //     console.log(state.widgets)

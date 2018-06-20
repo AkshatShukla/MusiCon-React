@@ -37,9 +37,7 @@ class Search extends React.Component {
         //     .then((response)=> {
         //         response.json().then((r)=>console.log(r));
         //     });
-        fetch("http://localhost:4000/api/get-token", {
-            mode: 'cors'
-        })
+        fetch("http://localhost:4000/api/get-token")
             .then(response => response.json().then((r)=>console.log(r)))
 
     }
