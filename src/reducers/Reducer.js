@@ -4,7 +4,9 @@ import SearchServiceClient from "../services/search.service.client";
 export const Reducer = (state = {
     username:'',
     password:'',
+    verifyPassword: '',
     userType: '',
+    eventLocation: '',
     widgets: [],
     clientId: constants.clientid,
     query: '',
@@ -16,13 +18,24 @@ export const Reducer = (state = {
 
         case constants.TEXT_CHANGED:
             newState = Object.assign({}, state);
-            if(action.feildType === 'username'){
+            if(action.fieldType === 'username'){
                 newState.username = action.text;
             }
-            else if(action.feildType === 'password'){
+            else if(action.fieldType === 'password'){
                 newState.password = action.text;
             }
+            else if(action.fieldType === 'verifyPassword'){
+                newState.verifyPassword = action.text
+            }
+            else if(action.fieldType === 'eventLocation'){
+                newState.eventLocation = action.text
+            }
 
+            return newState;
+
+        case constants.SAVE_USERTYPE:
+            newState = Object.assign({}, state);
+            newState.userType = action.userType;
             return newState;
 
         case constants.PASSWORD_TEXT_CHANGED:

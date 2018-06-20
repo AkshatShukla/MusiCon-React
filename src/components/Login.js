@@ -17,7 +17,7 @@ const Login = ({textChanged, login}) => {
             <br/>
 
             <form className="form-inline">
-                <label htmlFor="password">Enter username:</label>
+                <label htmlFor="password">Enter Password:</label>
                 &nbsp;
                 <input className="col-8"
                        id="password"

@@ -40,10 +40,59 @@ export const refreshToken = (dispatch, newToken) => (
 export const textChanged = (dispatch, type, newText) => (
     dispatch({
         type: constants.TEXT_CHANGED,
-        feildType: type,
+        fieldType: type,
         text: newText
     })
 );
+
+export const selectUserType = (dispatch, type) => (
+    dispatch({
+        type: constants.SAVE_USERTYPE,
+        userType: type
+    })
+);
+
+export const registerManager = (dispatch, username, password, verifyPassword, userType, eventLocation) => {
+    if(password !== verifyPassword)
+        alert("Password doesn't match")
+    else {
+        UserServiceClient.instance
+            .register(username, password, userType, eventLocation)
+            .then(response => {
+                if(response.status === 500){
+                    alert('username already exist')
+                }
+                else{
+                    dispatch({
+                        type: constants.SAVE_USERNAME_AND_USERTYPE,
+                        username: username,
+                        userType: userType
+                    })
+                }
+            })
+    }
+}
+
+export const registerUser = (dispatch, username, password, verifyPassword, userType) => {
+    if(password !== verifyPassword)
+        alert("Password doesn't match")
+    else {
+        UserServiceClient.instance
+            .register2(username, password, userType)
+            .then(response => {
+                if(response.status === 500){
+                    alert('username already exist')
+                }
+                else{
+                    dispatch({
+                        type: constants.SAVE_USERNAME_AND_USERTYPE,
+                        username: username,
+                        userType: userType
+                    })
+                }
+            })
+    }
+}
 
 export const login = (dispatch, username, password) => (
 

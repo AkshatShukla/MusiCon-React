@@ -7,6 +7,7 @@ import Login from "../components/Login";
 import LoginContainer from "./LoginContainer";
 import ProfileContainer from "./ProfileContainer";
 import SearchContainer from "./SearchContainer";
+import RegistrationContainer from "./RegistrationContainer";
 
 export  default class HomeContainer
     extends React.Component {
@@ -22,6 +23,8 @@ export  default class HomeContainer
                     </Route>
                     <Route path='/login'
                     component={LoginContainer}/>
+                    <Route path='/registration'
+                           component={RegistrationContainer}/>
                     <Route path='/profile'
                            component={ProfileContainer}/>
                 </div>

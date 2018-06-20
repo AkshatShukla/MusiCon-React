@@ -22,7 +22,40 @@ class UserServiceClient {
             username: username,
             password: password
         };
-        return fetch(BASE_URL+'login/',{
+        return fetch(BASE_URL+'login',{
+            method: 'post',
+            credentials: "include",
+            body: JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+
+    register(username, password, type, location){
+        var user = {
+            username: username,
+            password: password,
+            type: type,
+            eventLocation: location
+        };
+        return fetch(BASE_URL+'register',{
+            method: 'post',
+            credentials: "include",
+            body: JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+
+    register2(username, password, type){
+        var user = {
+            username: username,
+            password: password,
+            type: type
+        };
+        return fetch(BASE_URL+'register',{
             method: 'post',
             credentials: "include",
             body: JSON.stringify(user),
