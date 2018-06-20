@@ -22,7 +22,7 @@ class UserServiceClient {
             username: username,
             password: password
         };
-        return fetch(BASE_URL+'/login/',{
+        return fetch(BASE_URL+'login/',{
             method: 'post',
             credentials: "include",
             body: JSON.stringify(user),
