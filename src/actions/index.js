@@ -37,16 +37,10 @@ export const refreshToken = (dispatch, newToken) => (
         token: newToken
     })
 );
-export const usernameChanged = (dispatch, newText) => (
+export const textChanged = (dispatch, type, newText) => (
     dispatch({
-        type: constants.USERNAME_TEXT_CHANGED,
-        text: newText
-    })
-);
-
-export const passwordChanged = (dispatch, newText) => (
-    dispatch({
-        type: constants.PASSWORD_TEXT_CHANGED,
+        type: constants.TEXT_CHANGED,
+        feildType: type,
         text: newText
     })
 );

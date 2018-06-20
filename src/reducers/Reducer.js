@@ -14,9 +14,15 @@ export const Reducer = (state = {
     let searchServiceClient = SearchServiceClient.instance;
     switch (action.type) {
 
-        case constants.USERNAME_TEXT_CHANGED:
+        case constants.TEXT_CHANGED:
             newState = Object.assign({}, state);
-            newState.username = action.text;
+            if(action.feildType === 'username'){
+                newState.username = action.text;
+            }
+            else if(action.feildType === 'password'){
+                newState.password = action.text;
+            }
+
             return newState;
 
         case constants.PASSWORD_TEXT_CHANGED:

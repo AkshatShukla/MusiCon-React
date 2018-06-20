@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Login = ({usernameChanged, passwordChanged, login}) => {
+const Login = ({textChanged, login}) => {
     let inputElem;
     let inputElem1;
     return (
@@ -11,7 +11,7 @@ const Login = ({usernameChanged, passwordChanged, login}) => {
                 &nbsp;
                 <input className="col-8"
                        id="username"
-                       onChange={() => usernameChanged(inputElem.value)}
+                       onChange={() => textChanged('username', inputElem.value)}
                        ref={node => inputElem = node}/>
             </form>
             <br/>
@@ -21,7 +21,7 @@ const Login = ({usernameChanged, passwordChanged, login}) => {
                 &nbsp;
                 <input className="col-8"
                        id="password"
-                       onChange={() => passwordChanged(inputElem1.value)}
+                       onChange={() => textChanged('password', inputElem1.value)}
                        ref={node => inputElem1 = node}/>
             </form>
 
