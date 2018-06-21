@@ -4,7 +4,7 @@ import TrackResultItem from './TrackResultItem'
 import ArtistResultItem from './ArtistResultItem'
 //import EventResultItem from './EventResultItem';
 
-const ResultList = ({albumResults, trackResults, artistResults,eventResults, flag, selectedTrack}) => {
+const ResultList = ({albumResults, trackResults, artistResults, eventResults, details, flag, selectedTrack}) => {
     const renderListOfResults = (results, f) => {
         if (results !== undefined) {
             console.log(results);
@@ -21,7 +21,8 @@ const ResultList = ({albumResults, trackResults, artistResults,eventResults, fla
                     <div className="col-sm-3"
                          key={result.id}>
                         <TrackResultItem result={result}
-                                         selectedTrack={selectedTrack}/>
+                                         selectedTrack={selectedTrack}
+                                         details={details}/>
                     </div>
                 ))
             }

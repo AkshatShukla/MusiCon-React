@@ -47,15 +47,20 @@ export const searchQuery = (dispatch, query, queryType) => {
                     rootKey = ele;
                 }
                 if (rootKey === 'albums') {
-                    albumServiceClient
-                        .insertIntoDatabase(results.albums.items)
-                        .then(() => {
-                            dispatch({
-                                type: constants.SEARCH,
-                                flag: 'album',
-                                results: results.albums.items
-                            })
-                        })
+                    // albumServiceClient
+                    //     .insertIntoDatabase(results.albums.items)
+                    //     .then(() => {
+                    //         dispatch({
+                    //             type: constants.SEARCH,
+                    //             flag: 'album',
+                    //             results: results.albums.items
+                    //         })
+                    //     })
+                    dispatch({
+                        type: constants.SEARCH,
+                        flag: 'album',
+                        results: results.albums.items
+                    })
                 } else if (rootKey === 'tracks') {
                     // trackServiceClient
                     //     .insertIntoDatabase(results.tracks.items)
@@ -166,13 +171,18 @@ export const login = (dispatch, username, password) => (
 );
 
 export const selectedTrack = (dispatch, artist, track) => {
-    console.log(artist);
-    console.log(track);
     let getDetailsServiceClient = GetDetailsServiceClient.instance;
     getDetailsServiceClient
         .getTrackInfo(artist, track)
         .then(response => {
-            response.json().then((r) => console.log(r))
+            response.json().then((res) => {
+                console.log(res);
+                dispatch({
+                    type: constants.SET_DETAILS,
+                    flag: 'track',
+                    result: res
+                })
+            })
         })
 
 };

@@ -11,7 +11,16 @@ export const Reducer = (state = {
     albumResults: [],
     trackResults: [],
     artistResults: [],
-    searchFlag: ''
+    searchFlag: '',
+    details: {
+        name: '',
+        duration: '',
+        listeners: '',
+        lastFmUrl: '',
+        album: '',
+        artist: '',
+        wiki: ''
+    }
 }, action) => {
     let newState;
     switch (action.type) {
@@ -108,6 +117,27 @@ export const Reducer = (state = {
                     newState.eventResults = action.results._embedded.events;
                     newState.searchFlag = action.flag;
                 default:
+                    return newState;
+            }
+
+        case constants.SET_DETAILS:
+            newState = Object.assign({}, state);
+            switch (action.flag) {
+                case 'album':
+                    // to be done
+                    return newState;
+                case 'track':
+                    newState.details.name = action.result.track.name;
+                    newState.details.duration = action.result.track.duration;
+                    newState.details.listeners = action.result.track.listeners;
+                    newState.details.lastFmUrl = action.result.track.url;
+                    newState.details.album = action.result.track.album;
+                    newState.details.artist = action.result.track.artist;
+                    newState.details.wiki = action.result.track.wiki;
+                    console.log(newState);
+                    return newState;
+                case 'artist':
+                    // to be done
                     return newState;
             }
         default:

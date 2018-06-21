@@ -10,7 +10,8 @@ const stateToPropsMapper = state => ({
     albumResults: state.albumResults,
     trackResults: state.trackResults,
     artistResults: state.artistResults,
-    eventResults:state.eventResults,
+    eventResults: state.eventResults,
+    details: state.details,
     flag: state.searchFlag
 });
 const ResultListContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(ResultList);
