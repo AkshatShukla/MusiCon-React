@@ -103,6 +103,10 @@ export const Reducer = (state = {
                     newState.artistResults = action.results;
                     newState.searchFlag = action.flag;
                     return newState;
+                case 'events':
+                    // console.log('events',action.results._embedded.events);
+                    newState.eventResults = action.results._embedded.events;
+                    newState.searchFlag = action.flag;
                 default:
                     return newState;
             }
