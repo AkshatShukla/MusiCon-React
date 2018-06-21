@@ -16,7 +16,13 @@ class UserServiceClient {
     //             return response.json();
     //         });
     // }
-
+    profile() {
+        return fetch(BASE_URL+'profile',
+            {
+                credentials: 'include', // include, same-origin, *omit
+            })
+            .then(response => response.json());
+    }
     login(username, password) {
         var user = {
             username: username,

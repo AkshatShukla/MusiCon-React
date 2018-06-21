@@ -1,5 +1,5 @@
-import * as constants from "../constants/index"
 import UserServiceClient from "../services/user.service.client"
+import * as constants from "../constants";
 
 export const queryChanged = (dispatch, newQuery) => (
     dispatch({
@@ -91,21 +91,36 @@ export const updateUser = (dispatch) =>(
         type:constants.SAVE
     })
 )
-export const login = (dispatch, username, password) => (
-
-    UserServiceClient.instance
-        .login(username, password)
-        .then(response => {
-            if(response.status === 500){
-                alert('Wrong username or password')
-            }
-            else {
-                dispatch({
+export const updateStateWithUserNameAndType = (dispatch,username,type)=> (
+    dispatch({
                     type: constants.SAVE_USERNAME_AND_USERTYPE,
                     username: username,
-                    userType: response.json().type
+                    userType: type
                 })
-            }
-        })
+)
+export const getProfile = (dispatch) => (
+    UserServiceClient.instance
+        .profile()
+        .then(response => dispatch({
+            type: constants.FETCH_PROFILE,
+            data: response
+        })))
+
+export const login = (dispatch, username, password) => (
+     UserServiceClient.instance
+        .login(username, password)
+        // .then(response => {
+        //     if(response.status === 500){
+        //         alert('Wrong username or password')
+        //     }
+        //     else {
+        //         dispatch({
+        //             type: constants.SAVE_USERNAME_AND_USERTYPE,
+        //             username: username,
+        //             userType: response.json().type
+        //         })
+        //     }
+        // })
+
 );
 

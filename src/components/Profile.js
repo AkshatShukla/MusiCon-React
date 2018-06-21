@@ -1,16 +1,10 @@
 import React from 'react'
-
+import actions from '../actions'
 export default class Profile extends React.Component {
 
     constructor(props) {
         super(props);
-
-        var inputElemusername,
-            inputElemFirstName,
-            inputElemLastName,
-            inputElemEmail,
-            inputElemDOB,
-            inputElemAddress;
+        this.props.getProfile();
     }
 
     render() {
@@ -22,6 +16,7 @@ export default class Profile extends React.Component {
                     &nbsp;
                     <input className="col-8"
                            id="username"
+                           value={this.props.username}
                            onChange={(Event) => this.props.TextChanged('username', Event.target.value)}
                            />
                 </form>
@@ -31,6 +26,7 @@ export default class Profile extends React.Component {
                     &nbsp;
                     <input className="col-8"
                            id="firstName"
+                           value={this.props.firstName}
                            onChange={(Event) => this.props.TextChanged('firstName', Event.target.value)}
                     />
                 </form>
@@ -40,6 +36,7 @@ export default class Profile extends React.Component {
                     &nbsp;
                     <input className="col-8"
                            id="lastName"
+                           value={this.props.lastName}
                            onChange={(Event) => this.props.TextChanged('lastName', Event.target.value)}
                     />
                 </form>
@@ -49,6 +46,7 @@ export default class Profile extends React.Component {
                     &nbsp;
                     <input className="col-8"
                            id="email"
+                           value={this.props.email}
                            onChange={(Event) => this.props.TextChanged('email', Event.target.value)}
                     />
                 </form>
@@ -58,6 +56,7 @@ export default class Profile extends React.Component {
                     &nbsp;
                     <input className="col-8"
                            id="dob"
+                           value={this.props.dob}
                            onChange={(Event) => this.props.TextChanged('dob', Event.target.value)}
                     />
                 </form>
@@ -67,6 +66,7 @@ export default class Profile extends React.Component {
                     &nbsp;
                     <input className="col-8"
                            id="address"
+                           value={this.props.address}
                            onChange={(Event) => this.props.TextChanged('address', Event.target.value)}
                     />
                 </form>

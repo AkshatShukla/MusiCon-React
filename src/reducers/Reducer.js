@@ -2,8 +2,8 @@ import * as constants from "../constants/index"
 import SearchServiceClient from "../services/search.service.client";
 
 export const Reducer = (state = {
-    username:'',
-    password:'',
+    username: '',
+    password: '',
     verifyPassword: '',
     userType: '',
     eventLocation: '',
@@ -17,35 +17,48 @@ export const Reducer = (state = {
     switch (action.type) {
 
         case constants.SAVE:
-            newState = Object.assign({},state);
+            newState = Object.assign({}, state);
             console.log(newState);
             return newState;
         case constants.TEXT_CHANGED:
             newState = Object.assign({}, state);
-            if(action.fieldType === 'username'){
+            if (action.fieldType === 'username') {
                 newState.username = action.text;
             }
-            else if(action.fieldType === 'password'){
+            else if (action.fieldType === 'password') {
                 newState.password = action.text;
-            }else if(action.feildType === 'firstName'){
+            } else if (action.fieldType === 'firstName') {
                 newState.firstName = action.text;
-            }else if(action.feildType === 'lastName'){
+            } else if (action.fieldType === 'lastName') {
                 newState.lastName = action.text;
-            }else if(action.feildType === 'email'){
+            } else if (action.fieldType === 'email') {
                 newState.email = action.text;
-            }else if(action.feildType === 'dob'){
+            } else if (action.fieldType === 'dob') {
                 newState.dob = action.text;
-            }else if(action.feildType === 'address'){
+            } else if (action.fieldType === 'address') {
                 newState.address = action.text;
             }
-            else if(action.fieldType === 'verifyPassword'){
+            else if (action.fieldType === 'verifyPassword') {
                 newState.verifyPassword = action.text
             }
-            else if(action.fieldType === 'eventLocation'){
+            else if (action.fieldType === 'eventLocation') {
                 newState.eventLocation = action.text
             }
 
             return newState;
+
+        case constants.FETCH_PROFILE:
+            newState = Object.assign({}, state);
+            newState.username = action.data.username;
+            newState.firstName = action.data.firstName
+            newState.lastName = action.data.lastName
+            newState.email = action.data.email
+            newState.dob = action.data.dob
+            newState.phone = action.data.phone
+            newState.userType = action.data.userType
+            newState.eventLocation = action.data.eventLocation
+            return newState;
+
 
         case constants.SAVE_USERTYPE:
             newState = Object.assign({}, state);
@@ -82,7 +95,7 @@ export const Reducer = (state = {
         case constants.SEARCH:
             searchServiceClient
                 .searchQuery(action.query.value, action.searchType.value)
-                .then((r)=>console.log(r));
+                .then((r) => console.log(r));
             console.log(state);
             return state;
         // case constants.REFRESH_TOKEN:

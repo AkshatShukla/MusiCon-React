@@ -5,7 +5,9 @@ import * as actions from "../actions";
 
 const dispathToPropsMapper = dispatch => ({
     textChanged: (type, newText) => actions.textChanged(dispatch, type, newText),
-    login: (username, password) => actions.login(dispatch, username, password)
+    login: (username, password) => actions.login(dispatch, username, password),
+    updateStateWithUserNameAndType: (username,type) =>
+        actions.updateStateWithUserNameAndType(dispatch,username,type)
 });
 
 const stateToPropsMapper = state => ({
