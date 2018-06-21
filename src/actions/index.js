@@ -4,6 +4,7 @@ import * as constants from "../constants";
 import AlbumServiceClient from "../services/album.service.client";
 import ArtistServiceClient from "../services/artist.service.client";
 import TrackServiceClient from "../services/track.service.client";
+import GetDetailsServiceClient from "../services/get-details.service.client";
 
 export const queryChanged = (dispatch, newQuery) => (
     dispatch({
@@ -56,25 +57,27 @@ export const searchQuery = (dispatch, query, queryType) => {
                             })
                         })
                 } else if (rootKey === 'tracks') {
-                    trackServiceClient
-                        .insertIntoDatabase(results.tracks.items)
-                        .then(() => {
-                            dispatch({
-                                type: constants.SEARCH,
-                                flag: 'track',
-                                results: results.tracks.items
-                            })
-                        })
+                    // trackServiceClient
+                    //     .insertIntoDatabase(results.tracks.items)
+                    //     .then(() => {
+                    //         //
+                    //     })
+                    dispatch({
+                        type: constants.SEARCH,
+                        flag: 'track',
+                        results: results.tracks.items
+                    })
                 } else if (rootKey === 'artists') {
-                    artistServiceClient
-                        .insertIntoDatabase(results.artists.items)
-                        .then(() => {
-                            dispatch({
-                                type: constants.SEARCH,
-                                flag: 'artist',
-                                results: results.artists.items
-                            })
-                        })
+                    // artistServiceClient
+                    //     .insertIntoDatabase(results.artists.items)
+                    //     .then(() => {
+                    //         //
+                    //     })
+                    dispatch({
+                        type: constants.SEARCH,
+                        flag: 'artist',
+                        results: results.artists.items
+                    })
                 }
             });
     }
