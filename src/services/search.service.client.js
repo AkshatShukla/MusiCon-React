@@ -21,8 +21,8 @@ class SearchServiceClient {
         return this.checkToken()
             .then((token) => {
                 accessToken = token;
-                console.log(accessToken);
-                return fetch(SPOTIFY_SEARCH_URL + '?q=' + query + '&type=' + type, {
+                // console.log(accessToken);
+                return fetch(SPOTIFY_SEARCH_URL + '?q=' + query + '&type=' + type + '&limit=10', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',

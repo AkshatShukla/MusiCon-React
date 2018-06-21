@@ -1,4 +1,4 @@
-import React from  'react'
+import React from 'react'
 import ReactDOM from "react-dom";
 import NavigationBar from "../components/Navigation-Bar";
 import Search from "../components/Search";
@@ -8,20 +8,18 @@ import LoginContainer from "./LoginContainer";
 import ProfileContainer from "./ProfileContainer";
 import SearchContainer from "./SearchContainer";
 
-export  default class HomeContainer
+export default class HomeContainer
     extends React.Component {
     render() {
         return (
             <Router>
                 <div>
                     <Route path="/"
-                           component={NavigationBar}>
-                    </Route>
+                           component={NavigationBar}/>
                     <Route path="/"
-                           component={SearchContainer}>
-                    </Route>
+                           component={SearchContainer}/>
                     <Route path='/login'
-                    component={LoginContainer}/>
+                           component={LoginContainer}/>
                     <Route path='/profile'
                            component={ProfileContainer}/>
                 </div>

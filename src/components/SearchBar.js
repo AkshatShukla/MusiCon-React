@@ -1,4 +1,5 @@
 import React from 'react'
+import ResultListContainer from "../containers/ResultListContainer";
 
 const SearchBar = ({queryChanged, searchTypeChanged, searchQuery}) => {
     let selectElem;
@@ -26,6 +27,7 @@ const SearchBar = ({queryChanged, searchTypeChanged, searchQuery}) => {
                 <i className="fa fa-search" aria-hidden="true">
                 </i>
             </button>
+            <ResultListContainer/>
         </div>
     )
 };

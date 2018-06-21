@@ -11,7 +11,7 @@ const dispatchToPropsMapper = dispatch => ({
         actions.searchQuery(dispatch, query, queryType)
 });
 const stateToPropsMapper = state => ({
-    // preview: state.preview
+    // flag: state.searchFlag
 });
 const SearchContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(SearchBar);
 export default SearchContainer;

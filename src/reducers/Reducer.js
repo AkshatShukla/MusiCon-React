@@ -5,10 +5,12 @@ export const Reducer = (state = {
     username:'',
     password:'',
     userType: '',
-    widgets: [],
-    clientId: constants.clientid,
     query: '',
-    queryType: 'Album'
+    queryType: 'Album',
+    albumResults: [],
+    trackResults: [],
+    artistResults: [],
+    searchFlag: ''
 }, action) => {
     let newState;
     let searchServiceClient = SearchServiceClient.instance;
@@ -30,11 +32,6 @@ export const Reducer = (state = {
             newState.userType = action.userType;
             return newState;
 
-        case constants.REFRESH_TOKEN:
-            newState = Object.assign({}, state);
-            return newState;
-        // check if token has been updated?
-
         case constants.QUERY_CHANGED:
             newState = Object.assign({}, state);
             newState.query = action.query;
@@ -47,11 +44,24 @@ export const Reducer = (state = {
             return newState;
 
         case constants.SEARCH:
-            searchServiceClient
-                .searchQuery(action.query.value, action.searchType.value)
-                .then((r)=>console.log(r));
-            console.log(state);
-            return state;
+            newState = Object.assign({}, state);
+            switch (action.flag) {
+                case 'album':
+                    newState.albumResults = action.results;
+                    newState.searchFlag = action.flag;
+                    return newState;
+                case 'track':
+                    newState.trackResults = action.results;
+                    newState.searchFlag = action.flag;
+                    return newState;
+                case 'artist':
+                    newState.artistResults = action.results;
+                    newState.searchFlag = action.flag;
+                    return newState;
+                default:
+                    return newState;
+            }
+
         // case constants.REFRESH_TOKEN:
         //     newState = Object.assign({}, state);
         //     if (newState.token === undefined || newState.token === null) {

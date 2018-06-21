@@ -1,5 +1,7 @@
 import * as constants from "../constants/index"
 import UserServiceClient from "../services/user.service.client"
+import SearchServiceClient from "../services/search.service.client";
+
 
 // Example of actions
 // export const headingTextChanged = (dispatch, widgetId, newText) => (
@@ -23,20 +25,37 @@ export const searchTypeChanged = (dispatch, newType) => (
     })
 );
 
-export const searchQuery = (dispatch, query, queryType) => (
-    dispatch({
-        type: constants.SEARCH,
-        query: query,
-        searchType: queryType
-    })
-);
+export const searchQuery = (dispatch, query, queryType) => {
+    let searchServiceClient = SearchServiceClient.instance;
+    searchServiceClient
+        .searchQuery(query.value, queryType.value)
+        .then((results) => {
+            var rootKey;
+            for(var ele in results) {
+                rootKey = ele;
+            }
+            if (rootKey === 'albums') {
+                dispatch({
+                    type: constants.SEARCH,
+                    flag: 'album',
+                    results: results.albums.items
+                })
+            } else if (rootKey === 'tracks') {
+                dispatch({
+                    type: constants.SEARCH,
+                    flag: 'track',
+                    results: results.tracks.items
+                })
+            } else if (rootKey === 'artists') {
+                dispatch({
+                    type: constants.SEARCH,
+                    flag: 'artist',
+                    results: results.artists.items
+                })
+            }
+        });
+};
 
-export const refreshToken = (dispatch, newToken) => (
-    dispatch({
-        type: constants.REFRESH_TOKEN,
-        token: newToken
-    })
-);
 export const usernameChanged = (dispatch, newText) => (
     dispatch({
         type: constants.USERNAME_TEXT_CHANGED,
