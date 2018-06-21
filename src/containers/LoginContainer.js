@@ -4,13 +4,14 @@ import Login from "../components/Login";
 import * as actions from "../actions";
 
 const dispathToPropsMapper = dispatch => ({
-    usernameChanged: (newText) => actions.usernameChanged(dispatch, newText),
-    passwordChanged: (newText) => actions.passwordChanged(dispatch, newText),
-    login: (username, password) => actions.login(dispatch, username, password)
-    // headingTextChanged: (widgetId, newText) =>
-    //     actions.headingTextChanged(dispatch, widgetId, newText)
-})
+    textChanged: (type, newText) => actions.textChanged(dispatch, type, newText),
+    login: (username, password) => actions.login(dispatch, username, password),
+    updateStateWithUserNameAndType: (username,type) =>
+        actions.updateStateWithUserNameAndType(dispatch,username,type)
+});
+
 const stateToPropsMapper = state => ({
-})
+});
+
 const LoginContainer = connect(stateToPropsMapper, dispathToPropsMapper)(Login)
 export default LoginContainer;

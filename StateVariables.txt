@@ -1,2 +1,6 @@
 username used in login
 password used in login
+email used in profile
+dob used in profile
+firstName used in profile
+lastName used in profile
