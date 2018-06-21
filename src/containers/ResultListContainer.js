@@ -3,6 +3,8 @@ import {connect} from "react-redux";
 import * as actions from "../actions";
 
 const dispatchToPropsMapper = dispatch => ({
+    selectedTrack: (artist, track) =>
+        actions.selectedTrack(dispatch, artist, track)
 });
 const stateToPropsMapper = state => ({
     albumResults: state.albumResults,

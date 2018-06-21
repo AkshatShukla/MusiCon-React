@@ -3,26 +3,30 @@ import AlbumResultItem from './AlbumResultItem'
 import TrackResultItem from './TrackResultItem'
 import ArtistResultItem from './ArtistResultItem'
 
-const ResultList = ({albumResults, trackResults, artistResults, flag}) => {
+const ResultList = ({albumResults, trackResults, artistResults, flag, selectedTrack}) => {
     const renderListOfResults = (results, f) => {
         if (results !== undefined) {
             console.log(results);
             if (f === 'album') {
                 return results.map((result) => (
-                    <div className="col-sm-3">
+                    <div className="col-sm-3"
+                         key={result.id}>
                         <AlbumResultItem result={result}/>
                     </div>
                 ))
             }
             else if (f === 'track') {
                 return results.map((result) => (
-                    <div className="col-sm-3">
-                        <TrackResultItem result={result}/>
+                    <div className="col-sm-3"
+                         key={result.id}>
+                        <TrackResultItem result={result}
+                                         selectedTrack={selectedTrack}/>
                     </div>
                 ))
             } else {
                 return results.map((result) => (
-                    <div className="col-sm-3">
+                    <div className="col-sm-3"
+                         key={result.id}>
                         <ArtistResultItem result={result}/>
                     </div>
                 ))
