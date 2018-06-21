@@ -20,6 +20,7 @@ const SearchBar = ({queryChanged, searchTypeChanged, searchQuery}) => {
                     <option value="album" selected className="dropdown-item">Album</option>
                     <option value="track" className="dropdown-item">Track</option>
                     <option value="artist" className="dropdown-item">Artist</option>
+                    <option value="events" className="dropdown-item">Events</option>
                 </select>
             </div>
             <button className="btn btn-sm btn-primary" onClick={e => searchQuery(inputElem, selectElem)}>

@@ -16,6 +16,10 @@ class SearchServiceClient {
         return this[_singleton]
     }
 
+    searchEvents(query){
+        return fetch('https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city='+query+'&apikey=RAcRAAAio2LeFih8v4pqWXlZo1CA4mVs')
+
+    }
     searchQuery(query, type) {
         let accessToken;
         return this.checkToken()

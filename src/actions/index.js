@@ -1,6 +1,5 @@
-import SearchServiceClient from '../services/search.service.client';
-import UserServiceClient from '../services/user.service.client';
-import GetDetailsServiceClient from "../services/get-details.service.client";
+import SearchServiceClient from '../services/search.service.client'
+import UserServiceClient from '../services/user.service.client'
 import * as constants from "../constants";
 import AlbumServiceClient from "../services/album.service.client";
 import ArtistServiceClient from "../services/artist.service.client";
@@ -21,49 +20,64 @@ export const searchTypeChanged = (dispatch, newType) => (
 );
 
 export const searchQuery = (dispatch, query, queryType) => {
-    let searchServiceClient = SearchServiceClient.instance;
-    let albumServiceClient = AlbumServiceClient.instance;
-    let trackServiceClient = TrackServiceClient.instance
-    let artistServiceClient = ArtistServiceClient.instance;
-    searchServiceClient
-        .searchQuery(query.value, queryType.value)
-        .then((results) => {
-            var rootKey;
-            for (var ele in results) {
-                rootKey = ele;
-            }
-            if (rootKey === 'albums') {
-                albumServiceClient
-                    .insertIntoDatabase(results.albums.items)
-                    .then(() => {
-                        dispatch({
-                            type: constants.SEARCH,
-                            flag: 'album',
-                            results: results.albums.items
-                        })
+
+    if (queryType.value === 'events') {
+        let searchServiceClient = SearchServiceClient.instance;
+        searchServiceClient.searchEvents(query.value)
+            .then(response => {response.json()
+                .then(results =>
+                    dispatch({
+                        type: constants.SEARCH,
+                        flag: 'events',
+                        results: results
                     })
-            } else if (rootKey === 'tracks') {
-                trackServiceClient
-                    .insertIntoDatabase(results.tracks.items)
-                    .then(() => {
-                        dispatch({
-                            type: constants.SEARCH,
-                            flag: 'track',
-                            results: results.tracks.items
+                )});
+    }
+    else {
+        let searchServiceClient = SearchServiceClient.instance;
+        let albumServiceClient = AlbumServiceClient.instance;
+        let trackServiceClient = TrackServiceClient.instance
+        let artistServiceClient = ArtistServiceClient.instance;
+        searchServiceClient
+            .searchQuery(query.value, queryType.value)
+            .then((results) => {
+                var rootKey;
+                for (var ele in results) {
+                    rootKey = ele;
+                }
+                if (rootKey === 'albums') {
+                    albumServiceClient
+                        .insertIntoDatabase(results.albums.items)
+                        .then(() => {
+                            dispatch({
+                                type: constants.SEARCH,
+                                flag: 'album',
+                                results: results.albums.items
+                            })
                         })
-                    })
-            } else if (rootKey === 'artists') {
-                artistServiceClient
-                    .insertIntoDatabase(results.artists.items)
-                    .then(() => {
-                        dispatch({
-                            type: constants.SEARCH,
-                            flag: 'artist',
-                            results: results.artists.items
+                } else if (rootKey === 'tracks') {
+                    trackServiceClient
+                        .insertIntoDatabase(results.tracks.items)
+                        .then(() => {
+                            dispatch({
+                                type: constants.SEARCH,
+                                flag: 'track',
+                                results: results.tracks.items
+                            })
                         })
-                    })
-            }
-        });
+                } else if (rootKey === 'artists') {
+                    artistServiceClient
+                        .insertIntoDatabase(results.artists.items)
+                        .then(() => {
+                            dispatch({
+                                type: constants.SEARCH,
+                                flag: 'artist',
+                                results: results.artists.items
+                            })
+                        })
+                }
+            });
+    }
 };
 export const textChanged = (dispatch, type, newText) => (
     dispatch({

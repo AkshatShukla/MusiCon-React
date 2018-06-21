@@ -2,8 +2,9 @@ import React from 'react'
 import AlbumResultItem from './AlbumResultItem'
 import TrackResultItem from './TrackResultItem'
 import ArtistResultItem from './ArtistResultItem'
+//import EventResultItem from './EventResultItem';
 
-const ResultList = ({albumResults, trackResults, artistResults, flag, selectedTrack}) => {
+const ResultList = ({albumResults, trackResults, artistResults,eventResults, flag, selectedTrack}) => {
     const renderListOfResults = (results, f) => {
         if (results !== undefined) {
             console.log(results);
@@ -23,7 +24,17 @@ const ResultList = ({albumResults, trackResults, artistResults, flag, selectedTr
                                          selectedTrack={selectedTrack}/>
                     </div>
                 ))
-            } else {
+            }
+            // else if (f === 'events'){
+            //     return results.map((result) => (
+            //         <div className="col-sm-3">
+            //             {/*<h1>In case</h1>*/}
+            //
+            //             <EventResultItem result={result}/>
+            //         </div>
+            //     ))
+            // }
+            else {
                 return results.map((result) => (
                     <div className="col-sm-3"
                          key={result.id}>
