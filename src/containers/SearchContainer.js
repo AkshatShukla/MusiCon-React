@@ -4,7 +4,7 @@ import * as actions from "../actions";
 
 const dispatchToPropsMapper = dispatch => ({
     queryChanged: (newQuery) =>
-        actions.queryChanged(dispatch, newQuery),
+        actions.textChanged(dispatch, 'newQuery', newQuery),
     searchTypeChanged: (newType) =>
         actions.searchTypeChanged(dispatch, newType),
     searchQuery: (query, queryType) =>

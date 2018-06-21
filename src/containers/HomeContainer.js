@@ -1,7 +1,6 @@
 import React from  'react'
 import ReactDOM from "react-dom";
 import NavigationBar from "../components/Navigation-Bar";
-import Search from "../components/Search";
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
 import Login from "../components/Login";
 import LoginContainer from "./LoginContainer";

@@ -7,7 +7,6 @@ const SearchBar = ({queryChanged, searchTypeChanged, searchQuery}) => {
     return (
         <div className="container-fluid"
         style={{marginTop: '10px'}}>
-            {/*<h2>Search</h2>*/}
             <div className="form-group row container-fluid">
                 <input onChange={() => queryChanged(inputElem.value)}
                        ref={node => inputElem = node}

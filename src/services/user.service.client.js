@@ -10,12 +10,6 @@ class UserServiceClient {
             this[_singleton] = new UserServiceClient(_singleton);
         return this[_singleton]
     }
-    // findAllCourses() {
-    //     return fetch(COURSE_API_URL)
-    //         .then(function(response){
-    //             return response.json();
-    //         });
-    // }
     profile() {
         return fetch(BASE_URL+'profile',
             {

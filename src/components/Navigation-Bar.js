@@ -3,9 +3,6 @@ import React from 'react'
 const NavigationBar = ({
                    // first state then props check if order of them matters
                }) => {
-    let selectElem
-    let inputElem
-    let inputElem1
     return (
         <nav className="navbar navbar-dark bg-dark">
             <a className="navbar-brand" href="/">MusiCon</a>

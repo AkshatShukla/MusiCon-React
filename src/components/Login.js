@@ -1,8 +1,6 @@
 import React from 'react'
 
 export default class Login extends React.Component{
-    // let inputElem;
-    // let inputElem1;
     username='';
     password='';
     constructor(props){

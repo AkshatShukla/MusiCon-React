@@ -1,5 +1,4 @@
 import * as constants from "../constants/index"
-import SearchServiceClient from "../services/search.service.client";
 
 export const Reducer = (state = {
     username: '',
@@ -7,8 +6,6 @@ export const Reducer = (state = {
     verifyPassword: '',
     userType: '',
     eventLocation: '',
-    widgets: [],
-    clientId: constants.clientid,
     query: '',
     queryType: 'Album',
     albumResults: [],
@@ -17,13 +14,13 @@ export const Reducer = (state = {
     searchFlag: ''
 }, action) => {
     let newState;
-    let searchServiceClient = SearchServiceClient.instance;
     switch (action.type) {
 
         case constants.SAVE:
             newState = Object.assign({}, state);
             console.log(newState);
             return newState;
+
         case constants.TEXT_CHANGED:
             newState = Object.assign({}, state);
             if (action.fieldType === 'username') {
@@ -41,12 +38,12 @@ export const Reducer = (state = {
                 newState.dob = action.text;
             } else if (action.fieldType === 'address') {
                 newState.address = action.text;
-            }
-            else if (action.fieldType === 'verifyPassword') {
+            } else if (action.fieldType === 'verifyPassword') {
                 newState.verifyPassword = action.text
-            }
-            else if (action.fieldType === 'eventLocation') {
+            } else if (action.fieldType === 'eventLocation') {
                 newState.eventLocation = action.text
+            } else if (action.fieldType === 'newQuery') {
+                newState.query = action.text;
             }
 
             return newState;
@@ -54,13 +51,13 @@ export const Reducer = (state = {
         case constants.FETCH_PROFILE:
             newState = Object.assign({}, state);
             newState.username = action.data.username;
-            newState.firstName = action.data.firstName
-            newState.lastName = action.data.lastName
-            newState.email = action.data.email
-            newState.dob = action.data.dob
-            newState.phone = action.data.phone
-            newState.userType = action.data.userType
-            newState.eventLocation = action.data.eventLocation
+            newState.firstName = action.data.firstName;
+            newState.lastName = action.data.lastName;
+            newState.email = action.data.email;
+            newState.dob = action.data.dob;
+            newState.phone = action.data.phone;
+            newState.userType = action.data.userType;
+            newState.eventLocation = action.data.eventLocation;
             return newState;
 
 
