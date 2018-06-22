@@ -4,7 +4,7 @@ export const Reducer = (state = {
     username: '',
     password: '',
     verifyPassword: '',
-    userType: '',
+    userType: undefined,
     eventLocation: '',
     query: '',
     queryType: 'Album',
@@ -17,9 +17,11 @@ export const Reducer = (state = {
         duration: '',
         listeners: '',
         lastFmUrl: '',
+        image: '',
         album: '',
         artist: '',
-        wiki: ''
+        wiki: '',
+        tracks: []
     },
     modalToggle: false
 }, action) => {
@@ -69,6 +71,7 @@ export const Reducer = (state = {
             newState.userType = action.data.type;
             newState.city = action.data.city;
             newState.eventLocation = action.data.eventLocation;
+            console.log(newState);
             return newState;
 
 
@@ -103,6 +106,7 @@ export const Reducer = (state = {
                 case 'artist':
                     newState.artistResults = action.results;
                     newState.searchFlag = action.flag;
+                    console.log(newState);
                     return newState;
                 case 'events':
                     newState.eventResults = action.results._embedded.events;
@@ -117,27 +121,56 @@ export const Reducer = (state = {
 
         case constants.LOGOUT:
             newState = Object.assign({}, state);
-            newState.type=undefined;
+            newState.username = '';
+            newState.password = '';
+            newState.verifyPassword = '';
+            newState.userType = undefined;
+            console.log(newState);
+            // return {username: '',
+            //     password: '',
+            //     userType: ''};
             return newState;
 
         case constants.SET_DETAILS:
             newState = Object.assign({}, state);
             switch (action.flag) {
                 case 'album':
-                    // to be done
+                    newState.details.name = action.result.album.name;
+                    newState.details.duration = '';
+                    newState.details.listeners = action.result.album.listeners;
+                    newState.details.lastFmUrl = action.result.album.url;
+                    if (action.result.album.image.length > 3)
+                        newState.details.image = action.result.album.image[2]['#text'];
+                    newState.details.album = '';
+                    newState.details.artist = action.result.album.artist;
+                    newState.details.wiki = action.result.album.wiki;
+                    newState.details.tracks = action.result.album.tracks.track;
+                    newState.modalToggle = !newState.modalToggle;
                     return newState;
                 case 'track':
                     newState.details.name = action.result.track.name;
                     newState.details.duration = action.result.track.duration;
                     newState.details.listeners = action.result.track.listeners;
                     newState.details.lastFmUrl = action.result.track.url;
+                    newState.details.image = '';
                     newState.details.album = action.result.track.album;
                     newState.details.artist = action.result.track.artist;
                     newState.details.wiki = action.result.track.wiki;
+                    newState.details.tracks = [];
                     newState.modalToggle = !newState.modalToggle;
                     return newState;
                 case 'artist':
-                    // to be done
+                    newState.details.name = action.result.artist.name;
+                    newState.details.duration = '';
+                    newState.details.listeners = action.result.artist.stats.listeners;
+                    newState.details.lastFmUrl = action.result.artist.url;
+                    if (action.result.artist.image.length > 3)
+                        newState.details.image = action.result.artist.image[2]['#text'];
+                    newState.details.album = '';
+                    newState.details.artist = '';
+                    newState.details.wiki = action.result.artist.bio;
+                    newState.details.tracks = [];
+                    newState.modalToggle = !newState.modalToggle;
                     return newState;
                 default:
                     return newState;

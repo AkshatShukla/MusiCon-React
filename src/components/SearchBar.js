@@ -6,7 +6,7 @@ const SearchBar = ({queryChanged, searchTypeChanged, searchQuery}) => {
     let inputElem;
     return (
         <div className="container-fluid"
-        style={{marginTop: '10px'}}>
+             style={{marginTop: '10px'}}>
             <div className="form-group row container-fluid">
                 <input onChange={() => queryChanged(inputElem.value)}
                        ref={node => inputElem = node}
@@ -16,8 +16,9 @@ const SearchBar = ({queryChanged, searchTypeChanged, searchQuery}) => {
                 <label htmlFor="example-text-input" className="col-form-label">Type:&nbsp;</label>
                 <select className="dropdown"
                         onChange={() => searchTypeChanged(selectElem.value)}
-                        ref={node => selectElem = node}>
-                    <option value="album" selected className="dropdown-item">Album</option>
+                        ref={node => selectElem = node}
+                        defaultValue="album">
+                    <option value="album" className="dropdown-item">Album</option>
                     <option value="track" className="dropdown-item">Track</option>
                     <option value="artist" className="dropdown-item">Artist</option>
                     <option value="events" className="dropdown-item">Events</option>

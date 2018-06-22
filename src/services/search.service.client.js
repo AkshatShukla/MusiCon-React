@@ -1,5 +1,3 @@
-import * as actions from "../actions";
-
 let _singleton = Symbol();
 const TOKEN_CHECK_API_URL = 'http://localhost:4000/api/get-token';//later change this to heroku url
 const SPOTIFY_SEARCH_URL = 'https://api.spotify.com/v1/search';

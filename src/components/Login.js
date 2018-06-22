@@ -1,27 +1,30 @@
 import React from 'react'
 
-export default class Login extends React.Component{
-    username='';
-    password='';
-    constructor(props){
-        super(props);
+export default class Login extends React.Component {
+    username = '';
+    password = '';
 
-    }
-    login(username,password){
-        this.props.login(username,password).then(response => {
-            if(response.status===500){
+    // constructor(props) {
+    //     super(props);
+    //
+    // }
+
+    login(username, password) {
+        this.props.login(username, password).then(response => {
+            if (response.status === 500) {
                 alert("Wrong username or password")
             }
-            else{
+            else {
                 response.json()
                     .then(r2 => {
-                        this.props.updateStateWithUserNameAndType(username,r2.type);
+                        this.props.updateStateWithUserNameAndType(username, r2.type);
                         this.props.history.push('/profile')
                     });
 
             }
         })
     }
+
     render() {
         return (
             <div>
@@ -31,8 +34,8 @@ export default class Login extends React.Component{
                     &nbsp;
                     <input className="col-8"
                            id="username"
-                           onChange={(e) => this.username= e.target.value}
-                           />
+                           onChange={(e) => this.username = e.target.value}
+                    />
                 </form>
                 <br/>
 
@@ -41,12 +44,13 @@ export default class Login extends React.Component{
                     &nbsp;
                     <input className="col-8"
                            id="password"
-                           onChange={(e) => this.password= e.target.value}
-                           />
+                           onChange={(e) => this.password = e.target.value}
+                    />
                 </form>
 
                 <button onClick={() => this.login(this.username, this.value)}
-                >Login</button>
+                >Login
+                </button>
             </div>
         )
     }

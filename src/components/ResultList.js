@@ -5,14 +5,18 @@ import ArtistResultItem from './ArtistResultItem'
 import EventResultItem from './EventResultItem'
 
 const ResultList = ({albumResults, trackResults, artistResults, eventResults,
-                         modalToggle, details, flag, selectedTrack,toggleDetails,like}) => {
+                        toggleDetails, modalToggle, details, flag, selectedItem, like}) => {
     const renderListOfResults = (results, f) => {
         if (results !== undefined) {
             if (f === 'album') {
                 return results.map((result) => (
                     <div className="col-sm-3"
                          key={result.id}>
-                        <AlbumResultItem result={result} like={like}/>
+                        <AlbumResultItem result={result}
+                                         selectedItem={selectedItem}
+                                         details={details}
+                                         modalToggle={modalToggle}
+                                         toggleDetails={toggleDetails}/>
                     </div>
                 ))
             }
@@ -21,10 +25,11 @@ const ResultList = ({albumResults, trackResults, artistResults, eventResults,
                     <div className="col-sm-3"
                          key={result.id}>
                         <TrackResultItem result={result}
-                                         selectedTrack={selectedTrack}
+                                         selectedItem={selectedItem}
                                          details={details}
                                          modalToggle={modalToggle}
-                                         toggleDetails={toggleDetails} like={like}/>
+                                         toggleDetails={toggleDetails}
+                                         like={like}/>
                     </div>
                 ))
             }
@@ -40,7 +45,12 @@ const ResultList = ({albumResults, trackResults, artistResults, eventResults,
                 return results.map((result) => (
                     <div className="col-sm-3"
                          key={result.id}>
-                        <ArtistResultItem result={result} like={like}/>
+                        <ArtistResultItem result={result}
+                                          selectedItem={selectedItem}
+                                          details={details}
+                                          modalToggle={modalToggle}
+                                          toggleDetails={toggleDetails}
+                                          like={like}/>
                     </div>
                 ))
             }
