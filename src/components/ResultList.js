@@ -4,14 +4,20 @@ import TrackResultItem from './TrackResultItem'
 import ArtistResultItem from './ArtistResultItem'
 import EventResultItem from './EventResultItem'
 
-const ResultList = ({albumResults, trackResults, artistResults, eventResults, toggleDetails, modalToggle, details, flag, selectedTrack}) => {
+const ResultList = ({albumResults, trackResults, artistResults, eventResults,
+                        toggleDetails, modalToggle, details, flag, selectedItem, like}) => {
     const renderListOfResults = (results, f) => {
         if (results !== undefined) {
             if (f === 'album') {
                 return results.map((result) => (
                     <div className="col-sm-3"
                          key={result.id}>
-                        <AlbumResultItem result={result}/>
+                        <AlbumResultItem result={result}
+                                         selectedItem={selectedItem}
+                                         details={details}
+                                         modalToggle={modalToggle}
+                                         toggleDetails={toggleDetails}
+                        like={like}/>
                     </div>
                 ))
             }
@@ -20,16 +26,18 @@ const ResultList = ({albumResults, trackResults, artistResults, eventResults, to
                     <div className="col-sm-3"
                          key={result.id}>
                         <TrackResultItem result={result}
-                                         selectedTrack={selectedTrack}
+                                         selectedItem={selectedItem}
                                          details={details}
                                          modalToggle={modalToggle}
-                                         toggleDetails={toggleDetails}/>
+                                         toggleDetails={toggleDetails}
+                                         like={like}/>
                     </div>
                 ))
             }
             else if (f==='events'){
                 return results.map((result) => (
-                    <div className="col-sm-3">
+                    <div className="col-sm-3"
+                         key={result.id}>
                         <EventResultItem result={result}/>
                     </div>
                 ))
@@ -38,7 +46,12 @@ const ResultList = ({albumResults, trackResults, artistResults, eventResults, to
                 return results.map((result) => (
                     <div className="col-sm-3"
                          key={result.id}>
-                        <ArtistResultItem result={result}/>
+                        <ArtistResultItem result={result}
+                                          selectedItem={selectedItem}
+                                          details={details}
+                                          modalToggle={modalToggle}
+                                          toggleDetails={toggleDetails}
+                                          />
                     </div>
                 ))
             }

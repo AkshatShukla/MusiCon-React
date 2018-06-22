@@ -1,22 +1,25 @@
 import React from 'react'
+
 export default class Profile extends React.Component {
 
     constructor(props) {
         super(props);
         this.props.getProfile();
     }
-update(){
-        var user ={
-            username:this.props.username,
-            firstName:this.props.firstName,
-            lastName:this.props.lastName,
-            email:this.props.email,
-            dob:this.props.dob,
-            city:this.props.city,
-            phone:this.props.phone
+
+    update() {
+        var user = {
+            username: this.props.username,
+            firstName: this.props.firstName,
+            lastName: this.props.lastName,
+            email: this.props.email,
+            dob: this.props.dob,
+            city: this.props.city,
+            phone: this.props.phone
         };
         this.props.update(user);
-}
+    }
+
     render() {
         return (
             <div>
@@ -28,7 +31,7 @@ update(){
                            id="username"
                            value={this.props.username}
                            onChange={(Event) => this.props.TextChanged('username', Event.target.value)}
-                           />
+                    />
                 </form>
                 <br/>
                 <form className="form-inline">
@@ -72,14 +75,14 @@ update(){
                 </form>
                 <br/>
                 <form className="form-inline">
-                <label htmlFor="address">Enter City:</label>
-                &nbsp;
-                <input className="col-8"
-                       id="city"
-                       value={this.props.city}
-                       onChange={(Event) => this.props.TextChanged('city', Event.target.value)}
-                />
-            </form>
+                    <label htmlFor="address">Enter City:</label>
+                    &nbsp;
+                    <input className="col-8"
+                           id="city"
+                           value={this.props.city}
+                           onChange={(Event) => this.props.TextChanged('city', Event.target.value)}
+                    />
+                </form>
                 <form className="form-inline">
                     <label htmlFor="address">Enter Phone Number:</label>
                     &nbsp;

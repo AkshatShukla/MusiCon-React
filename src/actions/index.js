@@ -1,11 +1,10 @@
 import SearchServiceClient from '../services/search.service.client'
 import UserServiceClient from '../services/user.service.client'
 import * as constants from "../constants";
-import AlbumServiceClient from "../services/album.service.client";
-import ArtistServiceClient from "../services/artist.service.client";
-import EventServiceClient from "../services/event.service.client";
-import TrackServiceClient from "../services/track.service.client";
 import GetDetailsServiceClient from "../services/get-details.service.client";
+import EventServiceClient from "../services/event.service.client";
+import AlbumServiceClient from '../services/album.service.client';
+import TrackServiceClient from '../services/track.service.client';
 
 export const queryChanged = (dispatch, newQuery) => (
     dispatch({
@@ -26,20 +25,19 @@ export const searchQuery = (dispatch, query, queryType) => {
     if (queryType.value === 'events') {
         let searchServiceClient = SearchServiceClient.instance;
         searchServiceClient.searchEvents(query.value)
-            .then(response => {response.json()
-                .then(results =>
-                    dispatch({
-                        type: constants.SEARCH,
-                        flag: 'events',
-                        results: results
-                    })
-                )});
+            .then(response => {
+                response.json()
+                    .then(results =>
+                        dispatch({
+                            type: constants.SEARCH,
+                            flag: 'events',
+                            results: results
+                        })
+                    )
+            });
     }
     else {
         let searchServiceClient = SearchServiceClient.instance;
-        let albumServiceClient = AlbumServiceClient.instance;
-        let trackServiceClient = TrackServiceClient.instance
-        let artistServiceClient = ArtistServiceClient.instance;
         searchServiceClient
             .searchQuery(query.value, queryType.value)
             .then((results) => {
@@ -48,37 +46,18 @@ export const searchQuery = (dispatch, query, queryType) => {
                     rootKey = ele;
                 }
                 if (rootKey === 'albums') {
-                    // albumServiceClient
-                    //     .insertIntoDatabase(results.albums.items)
-                    //     .then(() => {
-                    //         dispatch({
-                    //             type: constants.SEARCH,
-                    //             flag: 'album',
-                    //             results: results.albums.items
-                    //         })
-                    //     })
                     dispatch({
                         type: constants.SEARCH,
                         flag: 'album',
                         results: results.albums.items
                     })
                 } else if (rootKey === 'tracks') {
-                    // trackServiceClient
-                    //     .insertIntoDatabase(results.tracks.items)
-                    //     .then(() => {
-                    //         //
-                    //     })
                     dispatch({
                         type: constants.SEARCH,
                         flag: 'track',
                         results: results.tracks.items
                     })
                 } else if (rootKey === 'artists') {
-                    // artistServiceClient
-                    //     .insertIntoDatabase(results.artists.items)
-                    //     .then(() => {
-                    //         //
-                    //     })
                     dispatch({
                         type: constants.SEARCH,
                         flag: 'artist',
@@ -162,7 +141,8 @@ export const getProfile = (dispatch) => (
         .then(response => dispatch({
             type: constants.FETCH_PROFILE,
             data: response
-        })));
+        }))
+);
 
 export const login = (dispatch, username, password) => (
     UserServiceClient.instance
@@ -170,41 +150,71 @@ export const login = (dispatch, username, password) => (
 
 );
 
-export const searchEventsForUser = (dispatch,city) => {
-    if(city!==undefined){
-    SearchServiceClient.instance
-        .searchEventsForUser(city)
-        .then(response => response.json()
-            .then(results => dispatch({
-                    type: constants.SEARCH,
-                    flag: 'eventsforuser',
-                    results: results
-                })
-            ))}};
+export const searchEventsForUser = (dispatch, city) => {
+    if (city !== undefined) {
+        SearchServiceClient.instance
+            .searchEventsForUser(city)
+            .then(response => response.json()
+                .then(results => dispatch({
+                        type: constants.SEARCH,
+                        flag: 'eventsforuser',
+                        results: results
+                    })
+                ))
+    }
+};
 
 export const logout = (dispatch) => (
     UserServiceClient.instance
         .logout()
-        .then(response =>
-            results => dispatch({
+        .then(() =>
+            dispatch({
                 type: constants.LOGOUT
             })
         )
-)
-export const selectedTrack = (dispatch, artist, track) => {
+);
+export const selectedItem = (dispatch, artist, item, type) => {
     let getDetailsServiceClient = GetDetailsServiceClient.instance;
-    getDetailsServiceClient
-        .getTrackInfo(artist, track)
-        .then(response => {
-            response.json().then((res) => {
-                console.log(res);
-                dispatch({
-                    type: constants.SET_DETAILS,
-                    flag: 'track',
-                    result: res
+    if (type === 'track') {
+        getDetailsServiceClient
+            .getTrackInfo(artist, item)
+            .then(response => {
+                response.json().then((res) => {
+                    console.log(res);
+                    dispatch({
+                        type: constants.SET_DETAILS,
+                        flag: 'track',
+                        result: res
+                    })
                 })
             })
-        })
+    } else if (type === 'album') {
+        getDetailsServiceClient
+            .getAlbumInfo(artist, item)
+            .then(response => {
+                response.json().then((res) => {
+                    console.log(res);
+                    dispatch({
+                        type: constants.SET_DETAILS,
+                        flag: 'album',
+                        result: res
+                    })
+                })
+            })
+    } else if (type === 'artist') {
+        getDetailsServiceClient
+            .getArtistInfo(artist)
+            .then(response => {
+                response.json().then((res) => {
+                    console.log(res);
+                    dispatch({
+                        type: constants.SET_DETAILS,
+                        flag: 'artist',
+                        result: res
+                    })
+                })
+            })
+    }
 };
 
 export const toggleDetails = (dispatch) => (
@@ -212,6 +222,39 @@ export const toggleDetails = (dispatch) => (
         type: constants.TOGGLE_DETAILS
     })
 );
+
+export const itemLiked = (dispatch,item ,type) => {
+    if(type==='album'){
+        AlbumServiceClient.instance
+            .saveLike(item)
+            .then(response =>{
+                if(response.status===501){
+                    alert("Already liked");
+                }
+                else if(response.status===500){
+                    alert("Try Logging in");
+                }
+                else {
+                    alert("Liked Album "+item.name);
+                }
+            })
+    }
+    else if(type==='track'){
+        TrackServiceClient.instance
+            .saveLike(item)
+            .then(response =>{
+                if(response.status===501){
+                    alert("Already liked");
+                }
+                else if(response.status===500){
+                    alert("Try Logging in");
+                }
+                else {
+                    alert('Liked Track '+item.name);
+                }
+            })
+    }
+}
 
 export const createEvent = (dispatch, eventName, venueName, eventDate) => {
     let eventServiceClient = EventServiceClient.instance;

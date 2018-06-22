@@ -3,10 +3,11 @@ import {connect} from "react-redux";
 import * as actions from "../actions";
 
 const dispatchToPropsMapper = dispatch => ({
-    selectedTrack: (artist, track) =>
-        actions.selectedTrack(dispatch, artist, track),
+    selectedItem: (artist, track, type) =>
+        actions.selectedItem(dispatch, artist, track, type),
     toggleDetails: () =>
-        actions.toggleDetails(dispatch)
+        actions.toggleDetails(dispatch),
+    like :(result,type)  => actions.itemLiked(dispatch,result,type)
 });
 const stateToPropsMapper = state => ({
     albumResults: state.albumResults,
