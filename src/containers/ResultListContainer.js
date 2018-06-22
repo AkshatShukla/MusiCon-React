@@ -4,13 +4,16 @@ import * as actions from "../actions";
 
 const dispatchToPropsMapper = dispatch => ({
     selectedTrack: (artist, track) =>
-        actions.selectedTrack(dispatch, artist, track)
+        actions.selectedTrack(dispatch, artist, track),
+    toggleDetails: () =>
+        actions.toggleDetails(dispatch)
 });
 const stateToPropsMapper = state => ({
     albumResults: state.albumResults,
     trackResults: state.trackResults,
     artistResults: state.artistResults,
     eventResults: state.eventResults,
+    modalToggle: state.modalToggle,
     details: state.details,
     flag: state.searchFlag
 });

@@ -20,7 +20,8 @@ export const Reducer = (state = {
         album: '',
         artist: '',
         wiki: ''
-    }
+    },
+    modalToggle: false
 }, action) => {
     let newState;
     switch (action.type) {
@@ -52,7 +53,6 @@ export const Reducer = (state = {
             } else if (action.fieldType === 'phone') {
                 newState.phone = action.text;
             }
-
 
             return newState;
 
@@ -115,11 +115,14 @@ export const Reducer = (state = {
                 case 'events':
                     newState.eventResults = action.results._embedded.events;
                     newState.searchFlag = action.flag;
+                    return newState;
                 case 'eventsforuser':
                     newState.eventsNearUser = action.results._embedded.events;
+                    return newState;
                 default:
                     return newState;
             }
+
         case constants.LOGOUT:
             newState = Object.assign({}, state);
             newState.type=undefined;
@@ -139,12 +142,20 @@ export const Reducer = (state = {
                     newState.details.album = action.result.track.album;
                     newState.details.artist = action.result.track.artist;
                     newState.details.wiki = action.result.track.wiki;
-                    console.log(newState);
+                    newState.modalToggle = !newState.modalToggle;
                     return newState;
                 case 'artist':
                     // to be done
                     return newState;
+                default:
+                    return newState;
             }
+
+        case constants.TOGGLE_DETAILS:
+            newState = Object.assign({}, state);
+            newState.modalToggle = !newState.modalToggle;
+            console.log(newState);
+            return newState;
         default:
             return state
     }

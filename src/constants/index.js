@@ -12,3 +12,4 @@ export const BASE_URL = 'http://localhost:4000/api/';//later change this to hero
 export const LAST_FM_API_KEY = '936c99c515a1eeafd21e0ca253de20d8';
 export const LAST_FM_TRACK_INFO_URL = 'http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=API_KEY';
 export const SET_DETAILS = 'SET_DETAILS';
+export const TOGGLE_DETAILS = 'TOGGLE_DETAILS';

@@ -4,7 +4,7 @@ import TrackResultItem from './TrackResultItem'
 import ArtistResultItem from './ArtistResultItem'
 import EventResultItem from './EventResultItem'
 
-const ResultList = ({albumResults, trackResults, artistResults,eventResults, flag}) => {
+const ResultList = ({albumResults, trackResults, artistResults, eventResults, toggleDetails, modalToggle, details, flag, selectedTrack}) => {
     const renderListOfResults = (results, f) => {
         if (results !== undefined) {
             if (f === 'album') {
@@ -21,7 +21,9 @@ const ResultList = ({albumResults, trackResults, artistResults,eventResults, fla
                          key={result.id}>
                         <TrackResultItem result={result}
                                          selectedTrack={selectedTrack}
-                                         details={details}/>
+                                         details={details}
+                                         modalToggle={modalToggle}
+                                         toggleDetails={toggleDetails}/>
                     </div>
                 ))
             }

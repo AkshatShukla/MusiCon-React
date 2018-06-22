@@ -204,6 +204,11 @@ export const selectedTrack = (dispatch, artist, track) => {
                 })
             })
         })
-
 };
+
+export const toggleDetails = (dispatch) => (
+    dispatch({
+        type: constants.TOGGLE_DETAILS
+    })
+);
 

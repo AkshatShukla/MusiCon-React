@@ -1,10 +1,14 @@
 import React from 'react'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-const TrackResultItem = ({result, selectedTrack, details}) => {
+const TrackResultItem = ({result, selectedTrack, toggleDetails, modalToggle, details}) => {
     function millisToMinutesAndSeconds(millis) {
         const minutes = Math.floor(millis / 60000);
         const seconds = ((millis % 60000) / 1000).toFixed(0);
         return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+    }
+    function showDetails() {
+        console.log(details.name);
     }
 
     return (
@@ -20,8 +24,22 @@ const TrackResultItem = ({result, selectedTrack, details}) => {
                 </form>
                 {/*<a href={result.preview_url !== null ? result.preview_url : ''}>Preview Track</a>*/}
                 <button className="btn btn-outline-dark"
-                        onClick={() => selectedTrack(result.artists[0].name, result.name)}>Get More Details
+                        onClick={() => {
+                            selectedTrack(result.artists[0].name, result.name);
+                            //toggleDetails();
+                        }}>Get More Details
                 </button>
+                <br/>
+                <Modal isOpen={modalToggle} toggle={toggleDetails} backdrop={false} centered={true}>
+                    <ModalHeader toggle={toggleDetails}>{details.name}</ModalHeader>
+                    <ModalBody>
+                        {details.wiki !== undefined ? details.wiki.summary : 'No Summary Available'}
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="primary" onClick={()=>showDetails()}>Do Something</Button>{' '}
+                        <Button color="secondary" onClick={toggleDetails}>Cancel</Button>
+                    </ModalFooter>
+                </Modal>
             </div>
             <div className="card-footer">
                 <small className="text-muted">Popularity: {result.popularity}
