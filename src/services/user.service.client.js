@@ -1,5 +1,7 @@
+import * as constants from '../constants';
+
 let _singleton = Symbol();
-const BASE_URL = 'http://localhost:4000/api/';//later change this to heroku url
+
 class UserServiceClient {
     constructor(singletonToken) {
         if (_singleton !== singletonToken)
@@ -21,7 +23,7 @@ class UserServiceClient {
         })
     }
     profile() {
-        return fetch(BASE_URL+'profile',
+        return fetch(constants.BASE_URL+'profile',
             {
                 credentials: 'include', // include, same-origin, *omit
             })
@@ -32,7 +34,7 @@ class UserServiceClient {
             username: username,
             password: password
         };
-        return fetch(BASE_URL+'login',{
+        return fetch(constants.BASE_URL+'login',{
             method: 'post',
             credentials: "include",
             body: JSON.stringify(user),
@@ -49,7 +51,7 @@ class UserServiceClient {
             type: type,
             eventLocation: location
         };
-        return fetch(BASE_URL+'register',{
+        return fetch(constants.BASE_URL+'register',{
             method: 'post',
             credentials: "include",
             body: JSON.stringify(user),
@@ -65,7 +67,7 @@ class UserServiceClient {
             password: password,
             type: type
         };
-        return fetch(BASE_URL+'register',{
+        return fetch(constants.BASE_URL+'register',{
             method: 'post',
             credentials: "include",
             body: JSON.stringify(user),

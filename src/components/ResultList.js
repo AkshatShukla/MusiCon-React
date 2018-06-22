@@ -3,20 +3,25 @@ import AlbumResultItem from './AlbumResultItem'
 import TrackResultItem from './TrackResultItem'
 import ArtistResultItem from './ArtistResultItem'
 import EventResultItem from './EventResultItem'
+
 const ResultList = ({albumResults, trackResults, artistResults,eventResults, flag}) => {
     const renderListOfResults = (results, f) => {
         if (results !== undefined) {
             if (f === 'album') {
                 return results.map((result) => (
-                    <div className="col-sm-3">
+                    <div className="col-sm-3"
+                         key={result.id}>
                         <AlbumResultItem result={result}/>
                     </div>
                 ))
             }
             else if (f === 'track') {
                 return results.map((result) => (
-                    <div className="col-sm-3">
-                        <TrackResultItem result={result}/>
+                    <div className="col-sm-3"
+                         key={result.id}>
+                        <TrackResultItem result={result}
+                                         selectedTrack={selectedTrack}
+                                         details={details}/>
                     </div>
                 ))
             }
@@ -29,7 +34,8 @@ const ResultList = ({albumResults, trackResults, artistResults,eventResults, fla
             }
             else {
                 return results.map((result) => (
-                    <div className="col-sm-3">
+                    <div className="col-sm-3"
+                         key={result.id}>
                         <ArtistResultItem result={result}/>
                     </div>
                 ))
