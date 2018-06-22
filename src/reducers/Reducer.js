@@ -7,7 +7,11 @@ export const Reducer = (state = {
     userType: '',
     eventLocation: '',
     query: '',
+    eventName: '',
+    venueName: '',
+    eventDate: '',
     queryType: 'Album',
+    eventsForConcertManager: [],
     albumResults: [],
     trackResults: [],
     artistResults: [],
@@ -52,6 +56,12 @@ export const Reducer = (state = {
                 newState.query = action.text;
             } else if (action.fieldType === 'phone') {
                 newState.phone = action.text;
+            } else if (action.fieldType === 'eventName') {
+                newState.eventName = action.text;
+            } else if (action.fieldType === 'venueName') {
+                newState.venueName = action.text;
+            } else if (action.fieldType === 'eventDate') {
+                newState.eventDate = action.text;
             }
 
             return newState;
@@ -148,6 +158,12 @@ export const Reducer = (state = {
             newState.modalToggle = !newState.modalToggle;
             console.log(newState);
             return newState;
+
+        case constants.ALL_EVENTS_FOR_USER:
+            newState = Object.assign({}, state);
+            newState.eventsForConcertManager = action.events;
+            return newState;
+
         default:
             return state
     }

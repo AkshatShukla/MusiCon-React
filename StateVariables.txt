@@ -8,3 +8,4 @@ firstName used in profile
 lastName used in profile
 userType stores type of logged in user
 eventsNearUser finds all events near the User
+eventName, venueName, eventDate used in OrganizeEvent

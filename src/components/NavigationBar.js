@@ -12,6 +12,7 @@ const NavigationBarComponent = ({type,logout}) => {
             <Link className="navbar-nav" to="/login">Login</Link>
             <Link className="navbar-nav" to="/registration">Registration</Link>
             <Link className="navbar-nav" to="/profile">Profile</Link>
+            <Link className="navbar-nav" to="/event">Event</Link>
             <Link to='/' onClick={logout()}>Logout</Link>
 
         </nav>

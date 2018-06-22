@@ -7,6 +7,7 @@ import SearchContainer from "./SearchContainer";
 import RegistrationContainer from "./RegistrationContainer";
 import {connect} from "react-redux";
 import EventsNearUserContainer from "../containers/EventsNearUserContainer";
+import OrganizeEventContainer from "./OrganizeEventContainer";
 
 class HomeComponent
     extends React.Component {
@@ -24,8 +25,8 @@ class HomeComponent
                            component={RegistrationContainer}/>
                     <Route path='/profile'
                            component={ProfileContainer}/>
-                    <Route path='/profile'
-                           component={EventsNearUserContainer}/>
+                    <Route path='/event'
+                           component={OrganizeEventContainer}/>
                 </div>
             </Router>
 

@@ -3,6 +3,7 @@ import UserServiceClient from '../services/user.service.client'
 import * as constants from "../constants";
 import AlbumServiceClient from "../services/album.service.client";
 import ArtistServiceClient from "../services/artist.service.client";
+import EventServiceClient from "../services/event.service.client";
 import TrackServiceClient from "../services/track.service.client";
 import GetDetailsServiceClient from "../services/get-details.service.client";
 
@@ -211,4 +212,28 @@ export const toggleDetails = (dispatch) => (
         type: constants.TOGGLE_DETAILS
     })
 );
+
+export const createEvent = (dispatch, eventName, venueName, eventDate) => {
+    let eventServiceClient = EventServiceClient.instance;
+    eventServiceClient
+        .createEvent(eventName, venueName, eventDate)
+        .then(response => {
+            console.log(response)
+        })
+};
+
+export const findAllEventOfUser = (dispatch) => {
+    let eventServiceClient = EventServiceClient.instance;
+    eventServiceClient
+        .findAllEventOFUser()
+        .then(response => {
+            response.json()
+                .then(res => {
+                    dispatch({
+                        type: constants.ALL_EVENTS_FOR_USER,
+                        events: res.events
+                    })
+                })
+        })
+};
 
