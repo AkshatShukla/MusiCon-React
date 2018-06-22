@@ -13,8 +13,12 @@ export default class Login extends React.Component{
                 alert("Wrong username or password")
             }
             else{
-                this.props.updateStateWithUserNameAndType(username,response.json().type);
-                this.props.history.push('/profile')
+                response.json()
+                    .then(r2 => {
+                        this.props.updateStateWithUserNameAndType(username,r2.type);
+                        this.props.history.push('/profile')
+                    });
+
             }
         })
     }

@@ -1,4 +1,3 @@
-import React from 'react';
 import {connect} from 'react-redux';
 import Registration from '../components/Registration';
 import * as actions from "../actions";

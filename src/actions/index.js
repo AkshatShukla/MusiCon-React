@@ -118,10 +118,9 @@ export const registerUser = (dispatch, username, password, verifyPassword, userT
     }
 };
 
-export const updateUser = (dispatch) => (
-    dispatch({
-        type: constants.SAVE
-    })
+export const updateUser = (user) => (
+    UserServiceClient.instance
+        .updateUser(user)
 );
 export const updateStateWithUserNameAndType = (dispatch, username, type) => (
     dispatch({
@@ -144,3 +143,24 @@ export const login = (dispatch, username, password) => (
 
 );
 
+export const searchEventsForUser = (dispatch,city) => {
+    if(city!==undefined){
+    SearchServiceClient.instance
+        .searchEventsForUser(city)
+        .then(response => response.json()
+            .then(results => dispatch({
+                    type: constants.SEARCH,
+                    flag: 'eventsforuser',
+                    results: results
+                })
+            ))}};
+
+export const logout = (dispatch) => (
+    UserServiceClient.instance
+        .logout()
+        .then(response =>
+            results => dispatch({
+                type: constants.LOGOUT
+            })
+        )
+)

@@ -6,4 +6,5 @@ export const TYPE_CHANGED = 'TYPE_CHANGED';
 export const SEARCH = 'SEARCH';
 export const SAVE_USERTYPE = 'SAVE_USERTYPE';
 export const SAVE ='SAVE';
+export const LOGOUT ='LOGOUT';
 export const FETCH_PROFILE ='FETCH_PROFILE';

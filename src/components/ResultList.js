@@ -6,7 +6,6 @@ import EventResultItem from './EventResultItem'
 const ResultList = ({albumResults, trackResults, artistResults,eventResults, flag}) => {
     const renderListOfResults = (results, f) => {
         if (results !== undefined) {
-            console.log(results);
             if (f === 'album') {
                 return results.map((result) => (
                     <div className="col-sm-3">
@@ -24,8 +23,6 @@ const ResultList = ({albumResults, trackResults, artistResults,eventResults, fla
             else if (f==='events'){
                 return results.map((result) => (
                     <div className="col-sm-3">
-                        {/*<h1>In case</h1>*/}
-
                         <EventResultItem result={result}/>
                     </div>
                 ))
