@@ -4,7 +4,7 @@ export const Reducer = (state = {
     username: '',
     password: '',
     verifyPassword: '',
-    userType: '',
+    userType: undefined,
     eventLocation: '',
     query: '',
     queryType: 'Album',
@@ -71,6 +71,7 @@ export const Reducer = (state = {
             newState.userType = action.data.type;
             newState.city = action.data.city;
             newState.eventLocation = action.data.eventLocation;
+            console.log(newState);
             return newState;
 
 
@@ -120,7 +121,14 @@ export const Reducer = (state = {
 
         case constants.LOGOUT:
             newState = Object.assign({}, state);
-            newState.type=undefined;
+            newState.username = '';
+            newState.password = '';
+            newState.verifyPassword = '';
+            newState.userType = undefined;
+            console.log(newState);
+            // return {username: '',
+            //     password: '',
+            //     userType: ''};
             return newState;
 
         case constants.SET_DETAILS:

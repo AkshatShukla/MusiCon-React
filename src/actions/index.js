@@ -1,9 +1,6 @@
 import SearchServiceClient from '../services/search.service.client'
 import UserServiceClient from '../services/user.service.client'
 import * as constants from "../constants";
-import AlbumServiceClient from "../services/album.service.client";
-import ArtistServiceClient from "../services/artist.service.client";
-import TrackServiceClient from "../services/track.service.client";
 import GetDetailsServiceClient from "../services/get-details.service.client";
 
 export const queryChanged = (dispatch, newQuery) => (
@@ -25,20 +22,19 @@ export const searchQuery = (dispatch, query, queryType) => {
     if (queryType.value === 'events') {
         let searchServiceClient = SearchServiceClient.instance;
         searchServiceClient.searchEvents(query.value)
-            .then(response => {response.json()
-                .then(results =>
-                    dispatch({
-                        type: constants.SEARCH,
-                        flag: 'events',
-                        results: results
-                    })
-                )});
+            .then(response => {
+                response.json()
+                    .then(results =>
+                        dispatch({
+                            type: constants.SEARCH,
+                            flag: 'events',
+                            results: results
+                        })
+                    )
+            });
     }
     else {
         let searchServiceClient = SearchServiceClient.instance;
-        let albumServiceClient = AlbumServiceClient.instance;
-        let trackServiceClient = TrackServiceClient.instance;
-        let artistServiceClient = ArtistServiceClient.instance;
         searchServiceClient
             .searchQuery(query.value, queryType.value)
             .then((results) => {
@@ -161,7 +157,8 @@ export const getProfile = (dispatch) => (
         .then(response => dispatch({
             type: constants.FETCH_PROFILE,
             data: response
-        })));
+        }))
+);
 
 export const login = (dispatch, username, password) => (
     UserServiceClient.instance
@@ -169,23 +166,25 @@ export const login = (dispatch, username, password) => (
 
 );
 
-export const searchEventsForUser = (dispatch,city) => {
-    if(city!==undefined){
-    SearchServiceClient.instance
-        .searchEventsForUser(city)
-        .then(response => response.json()
-            .then(results => dispatch({
-                    type: constants.SEARCH,
-                    flag: 'eventsforuser',
-                    results: results
-                })
-            ))}};
+export const searchEventsForUser = (dispatch, city) => {
+    if (city !== undefined) {
+        SearchServiceClient.instance
+            .searchEventsForUser(city)
+            .then(response => response.json()
+                .then(results => dispatch({
+                        type: constants.SEARCH,
+                        flag: 'eventsforuser',
+                        results: results
+                    })
+                ))
+    }
+};
 
 export const logout = (dispatch) => (
     UserServiceClient.instance
         .logout()
-        .then(response =>
-            results => dispatch({
+        .then(() =>
+            dispatch({
                 type: constants.LOGOUT
             })
         )
@@ -218,7 +217,7 @@ export const selectedItem = (dispatch, artist, item, type) => {
                     })
                 })
             })
-    } else if (type === 'artist')  {
+    } else if (type === 'artist') {
         getDetailsServiceClient
             .getArtistInfo(artist)
             .then(response => {

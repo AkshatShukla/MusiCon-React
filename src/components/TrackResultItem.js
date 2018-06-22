@@ -13,8 +13,7 @@ const TrackResultItem = ({result, selectedItem, toggleDetails, modalToggle, deta
 
     return (
         <div className="card shadow p-3 mb-5 bg-white rounded" style={{width: '22rem'}}>
-            <img className="card-img-top" src={result.album.images.length !== 0 ? result.album.images[0].url : ''}
-                 alt="No Image Available"/>
+            <img className="card-img-top" src={result.album.images.length !== 0 ? result.album.images[0].url : ''} alt=''/>
             <div className="card-body">
                 <h5 className="card-title">{result.name}</h5>
                 <p>By {result.artists[0].name}</p>

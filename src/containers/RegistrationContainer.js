@@ -3,7 +3,7 @@ import Registration from '../components/Registration';
 import * as actions from "../actions";
 
 
-const dispathToPropsMapper = dispatch => ({
+const dispatchToPropsMapper = dispatch => ({
     textChanged: (type, newText) => actions.textChanged(dispatch, type, newText),
     selectUserType: (type) => actions.selectUserType(dispatch, type),
     registerManager: (username, password, verifyPassword, userType, eventLocation) =>
@@ -16,5 +16,5 @@ const stateToPropsMapper = state => ({
     userType: state.userType
 });
 
-const RegistrationContainer = connect(stateToPropsMapper, dispathToPropsMapper)(Registration)
+const RegistrationContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Registration);
 export default RegistrationContainer;

@@ -8,8 +8,7 @@ const ArtistResultItem = ({result, selectedItem, toggleDetails, modalToggle, det
 
     return (
         <div className="card shadow p-3 mb-5 bg-white rounded">
-            <img className="card-img-top" src={result.images.length !== 0 ? result.images[0].url : ''}
-                 alt="No Image Available"/>
+            <img className="card-img-top" src={result.images.length !== 0 ? result.images[0].url : ''} alt=''/>
             <div className="card-body">
                 <h5 className="card-title">{result.name}</h5>
                 <p>Genres:</p>
