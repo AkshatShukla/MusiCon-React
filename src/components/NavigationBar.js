@@ -11,28 +11,40 @@ const NavigationBarComponent = ({type, logout}) => {
             </Link>
             <form className="form-inline">
                 <div hidden={type !== undefined}>
-                <Link style={{display: 'block', height: '100%'}}
-                      className="navbar-nav" to="/login">
-                    <button className="btn btn-dark">Login</button>
-                </Link>
+                    <Link style={{display: 'block', height: '100%'}}
+                          className="navbar-nav" to="/login">
+                        <button className="btn btn-dark">Login</button>
+                    </Link>
                 </div>
                 <div hidden={type !== undefined}>
-                <Link style={{display: 'block', height: '100%'}}
-                      className="navbar-nav" to="/registration">
-                    <button className="btn btn-dark">Registration</button>
-                </Link>
+                    <Link style={{display: 'block', height: '100%'}}
+                          className="navbar-nav" to="/registration">
+                        <button className="btn btn-dark">Registration</button>
+                    </Link>
                 </div>
                 <div hidden={type === undefined}>
-                <Link style={{display: 'block', height: '100%'}}
-                      className="navbar-nav" to="/profile">
-                    <button className="btn btn-dark">Profile</button>
-                </Link>
+                    <Link style={{display: 'block', height: '100%'}}
+                          className="navbar-nav" to="/profile">
+                        <button className="btn btn-dark">Profile</button>
+                    </Link>
                 </div>
                 <div hidden={type === undefined}>
-                <Link style={{display: 'block', height: '100%'}}
-                      className="navbar-nav" to='/' onClick={() => logout()}>
-                    <button className="btn btn-dark">Logout</button>
-                </Link>
+                    <Link style={{display: 'block', height: '100%'}}
+                          className="navbar-nav" to="/my-page">
+                        <button className="btn btn-dark">My Page</button>
+                    </Link>
+                </div>
+                <div hidden={type === undefined}>
+                    <Link style={{display: 'block', height: '100%'}}
+                          className="navbar-nav" to="/admin-page">
+                        <button className="btn btn-dark">Admin Page</button>
+                    </Link>
+                </div>
+                <div hidden={type === undefined}>
+                    <Link style={{display: 'block', height: '100%'}}
+                          className="navbar-nav" to='/' onClick={() => logout()}>
+                        <button className="btn btn-dark">Logout</button>
+                    </Link>
                 </div>
             </form>
         </nav>

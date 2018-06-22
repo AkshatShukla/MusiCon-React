@@ -6,6 +6,8 @@ import ProfileContainer from "./ProfileContainer";
 import SearchContainer from "./SearchContainer";
 import RegistrationContainer from "./RegistrationContainer";
 import {connect} from "react-redux";
+import UserStatsContainer from "./UserStatsContainer";
+import AdminPageContainer from "./AdminPageContainer";
 // import EventsNearUserContainer from "../containers/EventsNearUserContainer";
 
 class HomeComponent
@@ -25,6 +27,10 @@ class HomeComponent
                                component={RegistrationContainer}/>
                         <Route path='/profile'
                                component={ProfileContainer}/>
+                        <Route path='/my-page'
+                               component={UserStatsContainer}/>
+                        <Route path='/admin-page'
+                               component={AdminPageContainer}/>
                         {/*<Route path='/profile1'*/}
                                {/*component={EventsNearUserContainer}/>*/}
                     </div>

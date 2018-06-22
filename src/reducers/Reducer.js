@@ -126,9 +126,6 @@ export const Reducer = (state = {
             newState.verifyPassword = '';
             newState.userType = undefined;
             console.log(newState);
-            // return {username: '',
-            //     password: '',
-            //     userType: ''};
             return newState;
 
         case constants.SET_DETAILS:
