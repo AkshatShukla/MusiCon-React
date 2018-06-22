@@ -102,7 +102,7 @@ export const registerManager = (dispatch, username, password, verifyPassword, us
         alert("Password doesn't match");
     else {
         UserServiceClient.instance
-            .register(username, password, userType, eventLocation)
+            .registerManager(username, password, userType, eventLocation)
             .then(response => {
                 if (response.status === 500) {
                     alert('username already exist')
@@ -123,7 +123,7 @@ export const registerUser = (dispatch, username, password, verifyPassword, userT
         alert("Password doesn't match");
     else {
         UserServiceClient.instance
-            .register2(username, password, userType)
+            .registerUser(username, password, userType)
             .then(response => {
                 if (response.status === 500) {
                     alert('username already exist')

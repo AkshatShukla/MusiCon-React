@@ -34,7 +34,7 @@ class UserServiceClient {
         });
     }
 
-    register(username, password, type, location){
+    registerManager(username, password, type, location){
         var user = {
             username: username,
             password: password,
@@ -51,7 +51,7 @@ class UserServiceClient {
         });
     }
 
-    register2(username, password, type){
+    registerUser(username, password, type){
         var user = {
             username: username,
             password: password,
