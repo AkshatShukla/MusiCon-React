@@ -62,6 +62,8 @@ export const Reducer = (state = {
             newState.firstName = action.data.firstName;
             newState.lastName = action.data.lastName;
             newState.email = action.data.email;
+            newState.password = '';
+            newState.verifyPassword = '';
             newState.dob = action.data.dob;
             newState.phone = action.data.phone;
             newState.userType = action.data.type;
