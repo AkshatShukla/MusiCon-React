@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-const TrackResultItem = ({result, selectedTrack, toggleDetails, modalToggle, details}) => {
+const TrackResultItem = ({result, selectedItem, toggleDetails, modalToggle, details}) => {
     function millisToMinutesAndSeconds(millis) {
         const minutes = Math.floor(millis / 60000);
         const seconds = ((millis % 60000) / 1000).toFixed(0);
@@ -25,7 +25,7 @@ const TrackResultItem = ({result, selectedTrack, toggleDetails, modalToggle, det
                 {/*<a href={result.preview_url !== null ? result.preview_url : ''}>Preview Track</a>*/}
                 <button className="btn btn-outline-dark"
                         onClick={() => {
-                            selectedTrack(result.artists[0].name, result.name);
+                            selectedItem(result.artists[0].name, result.name, result.type);
                             //toggleDetails();
                         }}>Get More Details
                 </button>

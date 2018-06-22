@@ -37,7 +37,7 @@ export const searchQuery = (dispatch, query, queryType) => {
     else {
         let searchServiceClient = SearchServiceClient.instance;
         let albumServiceClient = AlbumServiceClient.instance;
-        let trackServiceClient = TrackServiceClient.instance
+        let trackServiceClient = TrackServiceClient.instance;
         let artistServiceClient = ArtistServiceClient.instance;
         searchServiceClient
             .searchQuery(query.value, queryType.value)
@@ -189,21 +189,49 @@ export const logout = (dispatch) => (
                 type: constants.LOGOUT
             })
         )
-)
-export const selectedTrack = (dispatch, artist, track) => {
+);
+export const selectedItem = (dispatch, artist, item, type) => {
     let getDetailsServiceClient = GetDetailsServiceClient.instance;
-    getDetailsServiceClient
-        .getTrackInfo(artist, track)
-        .then(response => {
-            response.json().then((res) => {
-                console.log(res);
-                dispatch({
-                    type: constants.SET_DETAILS,
-                    flag: 'track',
-                    result: res
+    if (type === 'track') {
+        getDetailsServiceClient
+            .getTrackInfo(artist, item)
+            .then(response => {
+                response.json().then((res) => {
+                    console.log(res);
+                    dispatch({
+                        type: constants.SET_DETAILS,
+                        flag: 'track',
+                        result: res
+                    })
                 })
             })
-        })
+    } else if (type === 'album') {
+        getDetailsServiceClient
+            .getAlbumInfo(artist, item)
+            .then(response => {
+                response.json().then((res) => {
+                    console.log(res);
+                    dispatch({
+                        type: constants.SET_DETAILS,
+                        flag: 'album',
+                        result: res
+                    })
+                })
+            })
+    } else if (type === 'artist')  {
+        getDetailsServiceClient
+            .getArtistInfo(artist)
+            .then(response => {
+                response.json().then((res) => {
+                    console.log(res);
+                    dispatch({
+                        type: constants.SET_DETAILS,
+                        flag: 'artist',
+                        result: res
+                    })
+                })
+            })
+    }
 };
 
 export const toggleDetails = (dispatch) => (
