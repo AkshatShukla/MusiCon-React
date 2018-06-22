@@ -17,8 +17,14 @@ class SearchServiceClient {
     }
 
     searchEvents(query){
-        return fetch('https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city='+query+'&apikey=RAcRAAAio2LeFih8v4pqWXlZo1CA4mVs')
+        return fetch('https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&keyword='+
+            query+'&apikey=RAcRAAAio2LeFih8v4pqWXlZo1CA4mVs')
 
+    }
+    searchEventsForUser(city){
+
+        return fetch('https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city='+
+            city+'&apikey=RAcRAAAio2LeFih8v4pqWXlZo1CA4mVs')
     }
     searchQuery(query, type) {
         let accessToken;

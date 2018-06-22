@@ -12,6 +12,16 @@ class UserServiceClient {
             this[_singleton] = new UserServiceClient(_singleton);
         return this[_singleton]
     }
+    updateUser(user){
+        return fetch(BASE_URL+'profile',{
+            method: 'put',
+            credentials: 'include', // include, same-origin, *omit
+            body:JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    }
     profile() {
         return fetch(constants.BASE_URL+'profile',
             {
@@ -66,7 +76,10 @@ class UserServiceClient {
             }
         });
     }
-
+    logout(){
+        return fetch(BASE_URL+'logout',{
+            method: 'post'})
+    }
 
 }
 export default UserServiceClient;

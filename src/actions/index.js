@@ -47,15 +47,20 @@ export const searchQuery = (dispatch, query, queryType) => {
                     rootKey = ele;
                 }
                 if (rootKey === 'albums') {
-                    albumServiceClient
-                        .insertIntoDatabase(results.albums.items)
-                        .then(() => {
-                            dispatch({
-                                type: constants.SEARCH,
-                                flag: 'album',
-                                results: results.albums.items
-                            })
-                        })
+                    // albumServiceClient
+                    //     .insertIntoDatabase(results.albums.items)
+                    //     .then(() => {
+                    //         dispatch({
+                    //             type: constants.SEARCH,
+                    //             flag: 'album',
+                    //             results: results.albums.items
+                    //         })
+                    //     })
+                    dispatch({
+                        type: constants.SEARCH,
+                        flag: 'album',
+                        results: results.albums.items
+                    })
                 } else if (rootKey === 'tracks') {
                     // trackServiceClient
                     //     .insertIntoDatabase(results.tracks.items)
@@ -139,10 +144,9 @@ export const registerUser = (dispatch, username, password, verifyPassword, userT
     }
 };
 
-export const updateUser = (dispatch) => (
-    dispatch({
-        type: constants.SAVE
-    })
+export const updateUser = (user) => (
+    UserServiceClient.instance
+        .updateUser(user)
 );
 export const updateStateWithUserNameAndType = (dispatch, username, type) => (
     dispatch({
@@ -165,14 +169,40 @@ export const login = (dispatch, username, password) => (
 
 );
 
+export const searchEventsForUser = (dispatch,city) => {
+    if(city!==undefined){
+    SearchServiceClient.instance
+        .searchEventsForUser(city)
+        .then(response => response.json()
+            .then(results => dispatch({
+                    type: constants.SEARCH,
+                    flag: 'eventsforuser',
+                    results: results
+                })
+            ))}};
+
+export const logout = (dispatch) => (
+    UserServiceClient.instance
+        .logout()
+        .then(response =>
+            results => dispatch({
+                type: constants.LOGOUT
+            })
+        )
+)
 export const selectedTrack = (dispatch, artist, track) => {
-    console.log(artist);
-    console.log(track);
     let getDetailsServiceClient = GetDetailsServiceClient.instance;
     getDetailsServiceClient
         .getTrackInfo(artist, track)
         .then(response => {
-            response.json().then((r) => console.log(r))
+            response.json().then((res) => {
+                console.log(res);
+                dispatch({
+                    type: constants.SET_DETAILS,
+                    flag: 'track',
+                    result: res
+                })
+            })
         })
 
 };

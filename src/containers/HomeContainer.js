@@ -1,14 +1,14 @@
 import React from  'react'
-import ReactDOM from "react-dom";
-import NavigationBar from "../components/Navigation-Bar";
-import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
-import Login from "../components/Login";
+import NavigationBar from "../components/NavigationBar";
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 import LoginContainer from "./LoginContainer";
 import ProfileContainer from "./ProfileContainer";
 import SearchContainer from "./SearchContainer";
 import RegistrationContainer from "./RegistrationContainer";
+import {connect} from "react-redux";
+import EventsNearUserContainer from "../containers/EventsNearUserContainer";
 
-export default class HomeContainer
+class HomeComponent
     extends React.Component {
     render() {
         return (
@@ -24,11 +24,22 @@ export default class HomeContainer
                            component={RegistrationContainer}/>
                     <Route path='/profile'
                            component={ProfileContainer}/>
+                    <Route path='/profile'
+                           component={EventsNearUserContainer}/>
                 </div>
             </Router>
 
         )
     }
 }
+const dispathToPropsMapper = dispatch => ({
+});
+
+const stateToPropsMapper = state => ({
+    type:state.userType
+});
+
+const HomeContainer = connect(stateToPropsMapper, dispathToPropsMapper)(HomeComponent)
+export default HomeContainer;
 
 

@@ -11,15 +11,20 @@ export const Reducer = (state = {
     albumResults: [],
     trackResults: [],
     artistResults: [],
-    searchFlag: ''
+    searchFlag: '',
+    details: {
+        name: '',
+        duration: '',
+        listeners: '',
+        lastFmUrl: '',
+        album: '',
+        artist: '',
+        wiki: ''
+    }
 }, action) => {
     let newState;
     switch (action.type) {
 
-        case constants.SAVE:
-            newState = Object.assign({}, state);
-            console.log(newState);
-            return newState;
 
         case constants.TEXT_CHANGED:
             newState = Object.assign({}, state);
@@ -36,15 +41,18 @@ export const Reducer = (state = {
                 newState.email = action.text;
             } else if (action.fieldType === 'dob') {
                 newState.dob = action.text;
-            } else if (action.fieldType === 'address') {
-                newState.address = action.text;
+            } else if (action.fieldType === 'city') {
+                newState.city = action.text;
             } else if (action.fieldType === 'verifyPassword') {
                 newState.verifyPassword = action.text
             } else if (action.fieldType === 'eventLocation') {
                 newState.eventLocation = action.text
             } else if (action.fieldType === 'newQuery') {
                 newState.query = action.text;
+            } else if (action.fieldType === 'phone') {
+                newState.phone = action.text;
             }
+
 
             return newState;
 
@@ -56,7 +64,8 @@ export const Reducer = (state = {
             newState.email = action.data.email;
             newState.dob = action.data.dob;
             newState.phone = action.data.phone;
-            newState.userType = action.data.userType;
+            newState.userType = action.data.type;
+            newState.city = action.data.city;
             newState.eventLocation = action.data.eventLocation;
             return newState;
 
@@ -94,10 +103,36 @@ export const Reducer = (state = {
                     newState.searchFlag = action.flag;
                     return newState;
                 case 'events':
-                    // console.log('events',action.results._embedded.events);
                     newState.eventResults = action.results._embedded.events;
                     newState.searchFlag = action.flag;
+                case 'eventsforuser':
+                    newState.eventsNearUser = action.results._embedded.events;
                 default:
+                    return newState;
+            }
+        case constants.LOGOUT:
+            newState = Object.assign({}, state);
+            newState.type=undefined;
+            return newState;
+
+        case constants.SET_DETAILS:
+            newState = Object.assign({}, state);
+            switch (action.flag) {
+                case 'album':
+                    // to be done
+                    return newState;
+                case 'track':
+                    newState.details.name = action.result.track.name;
+                    newState.details.duration = action.result.track.duration;
+                    newState.details.listeners = action.result.track.listeners;
+                    newState.details.lastFmUrl = action.result.track.url;
+                    newState.details.album = action.result.track.album;
+                    newState.details.artist = action.result.track.artist;
+                    newState.details.wiki = action.result.track.wiki;
+                    console.log(newState);
+                    return newState;
+                case 'artist':
+                    // to be done
                     return newState;
             }
         default:

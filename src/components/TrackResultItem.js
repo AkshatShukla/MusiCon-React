@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TrackResultItem = ({result, selectedTrack}) => {
+const TrackResultItem = ({result, selectedTrack, details}) => {
     function millisToMinutesAndSeconds(millis) {
         const minutes = Math.floor(millis / 60000);
         const seconds = ((millis % 60000) / 1000).toFixed(0);
@@ -15,10 +15,9 @@ const TrackResultItem = ({result, selectedTrack}) => {
                 <h5 className="card-title">{result.name}</h5>
                 <p>By {result.artists[0].name}</p>
                 <p>Duration: {millisToMinutesAndSeconds(result.duration_ms)}</p>
-                <button className="btn-outline-dark" style={{marginBottom : '10px'}}>
-                    <a style={{color: 'grey'}} href={result['external_urls'].spotify}>Show on Spotify</a>
-                </button>
-                <br/>
+                <form action={result['external_urls'].spotify}>
+                    <button className="btn btn-outline-dark" style={{marginBottom : '10px'}}>Show on Spotify</button>
+                </form>
                 {/*<a href={result.preview_url !== null ? result.preview_url : ''}>Preview Track</a>*/}
                 <button className="btn btn-outline-dark"
                         onClick={() => selectedTrack(result.artists[0].name, result.name)}>Get More Details

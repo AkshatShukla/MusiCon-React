@@ -1,12 +1,22 @@
 import React from 'react'
-import actions from '../actions'
 export default class Profile extends React.Component {
 
     constructor(props) {
         super(props);
         this.props.getProfile();
     }
-
+update(){
+        var user ={
+            username:this.props.username,
+            firstName:this.props.firstName,
+            lastName:this.props.lastName,
+            email:this.props.email,
+            dob:this.props.dob,
+            city:this.props.city,
+            phone:this.props.phone
+        };
+        this.props.update(user);
+}
     render() {
         return (
             <div>
@@ -62,16 +72,25 @@ export default class Profile extends React.Component {
                 </form>
                 <br/>
                 <form className="form-inline">
-                    <label htmlFor="address">Enter Address:</label>
+                <label htmlFor="address">Enter City:</label>
+                &nbsp;
+                <input className="col-8"
+                       id="city"
+                       value={this.props.city}
+                       onChange={(Event) => this.props.TextChanged('city', Event.target.value)}
+                />
+            </form>
+                <form className="form-inline">
+                    <label htmlFor="address">Enter Phone Number:</label>
                     &nbsp;
                     <input className="col-8"
-                           id="address"
-                           value={this.props.address}
-                           onChange={(Event) => this.props.TextChanged('address', Event.target.value)}
+                           id="city"
+                           value={this.props.phone}
+                           onChange={(Event) => this.props.TextChanged('phone', Event.target.value)}
                     />
                 </form>
                 <br/>
-                <button onClick={() => this.props.update()}>Update</button>
+                <button onClick={() => this.update()}>Update</button>
             </div>
         )
     }

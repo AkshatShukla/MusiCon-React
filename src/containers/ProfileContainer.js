@@ -1,4 +1,4 @@
-import React from  'react'
+
 import {connect} from 'react-redux'
 import Profile from '../components/Profile'
 import * as actions from "../actions";
@@ -6,8 +6,8 @@ import * as actions from "../actions";
 const dispathToPropsMapper = dispatch => ({
     TextChanged: (type,newText) =>
         actions.textChanged(dispatch, type, newText),
-    update: () =>
-        actions.updateUser(dispatch),
+    update: (user) =>
+        actions.updateUser(user),
     getProfile: () =>
         actions.getProfile(dispatch)
 
@@ -20,7 +20,7 @@ const stateToPropsMapper = state => ({
     email:state.email,
     dob:state.dob,
     phone:state.phone,
-    address:state.address
+    city:state.city,
 })
 const ProfileContainer = connect(stateToPropsMapper, dispathToPropsMapper)(Profile)
 export default ProfileContainer;
