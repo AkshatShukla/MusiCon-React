@@ -15,8 +15,15 @@ class TrackServiceClient {
         return this[_singleton]
     }
 
-    insertIntoDatabase(result) {
-
+    saveLike(item){
+        return fetch(constants.BASE_URL+'likeTrack',{
+            method: 'post',
+            credentials: "include",
+            body: JSON.stringify(item),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
     }
 }
 

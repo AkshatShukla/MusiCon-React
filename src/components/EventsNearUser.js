@@ -11,7 +11,8 @@ export default class EventsNearUser extends React.Component{
         return (
             <div>
                 <h1>Events Near User</h1>
-                {console.log(this.props.searchforEventsNearUser(this.props.city))}
+                {/*{console.log(this.props.searchforEventsNearUser(this.props.city))}*/}
+                {/*Just display cards here tested when we are in page for user*/}
                 {/*{this.props.eventsNearUser.map(*/}
                     {/*event =>*/}
                         {/*<h1>event</h1>*/}

@@ -24,8 +24,8 @@ class HomeComponent
                            component={RegistrationContainer}/>
                     <Route path='/profile'
                            component={ProfileContainer}/>
-                    <Route path='/profile'
-                           component={EventsNearUserContainer}/>
+                    {/*<Route path='/profile'*/}
+                           {/*component={EventsNearUserContainer}/>*/}
                 </div>
             </Router>
 

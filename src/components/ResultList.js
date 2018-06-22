@@ -4,14 +4,15 @@ import TrackResultItem from './TrackResultItem'
 import ArtistResultItem from './ArtistResultItem'
 import EventResultItem from './EventResultItem'
 
-const ResultList = ({albumResults, trackResults, artistResults, eventResults, toggleDetails, modalToggle, details, flag, selectedTrack}) => {
+const ResultList = ({albumResults, trackResults, artistResults, eventResults,
+                         modalToggle, details, flag, selectedTrack,toggleDetails,like}) => {
     const renderListOfResults = (results, f) => {
         if (results !== undefined) {
             if (f === 'album') {
                 return results.map((result) => (
                     <div className="col-sm-3"
                          key={result.id}>
-                        <AlbumResultItem result={result}/>
+                        <AlbumResultItem result={result} like={like}/>
                     </div>
                 ))
             }
@@ -23,14 +24,15 @@ const ResultList = ({albumResults, trackResults, artistResults, eventResults, to
                                          selectedTrack={selectedTrack}
                                          details={details}
                                          modalToggle={modalToggle}
-                                         toggleDetails={toggleDetails}/>
+                                         toggleDetails={toggleDetails} like={like}/>
                     </div>
                 ))
             }
             else if (f==='events'){
                 return results.map((result) => (
-                    <div className="col-sm-3">
-                        <EventResultItem result={result}/>
+                    <div className="col-sm-3"
+                         key={result.id}>
+                        <EventResultItem result={result} like={like}/>
                     </div>
                 ))
             }
@@ -38,7 +40,7 @@ const ResultList = ({albumResults, trackResults, artistResults, eventResults, to
                 return results.map((result) => (
                     <div className="col-sm-3"
                          key={result.id}>
-                        <ArtistResultItem result={result}/>
+                        <ArtistResultItem result={result} like={like}/>
                     </div>
                 ))
             }

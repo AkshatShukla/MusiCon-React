@@ -6,7 +6,8 @@ const dispatchToPropsMapper = dispatch => ({
     selectedTrack: (artist, track) =>
         actions.selectedTrack(dispatch, artist, track),
     toggleDetails: () =>
-        actions.toggleDetails(dispatch)
+        actions.toggleDetails(dispatch),
+    like :(result,type)  => actions.itemLiked(dispatch,result,type)
 });
 const stateToPropsMapper = state => ({
     albumResults: state.albumResults,

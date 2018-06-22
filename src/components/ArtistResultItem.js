@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ArtistResultItem = ({result}) => {
+const ArtistResultItem = ({result,like}) => {
     return (
         <div className="card shadow p-3 mb-5 bg-white rounded">
             <img className="card-img-top" src={result.images.length !== 0 ? result.images[0].url : ''} alt="No Image Available"/>
@@ -9,7 +9,7 @@ const ArtistResultItem = ({result}) => {
                 <p>Genres:</p>
                 <ul className="list-group">
                     {result.genres.map(genre => (
-                        <li key="index">{genre}</li>
+                        <li key={genre}>{genre}</li>
                     ))}
                 </ul>
                 <br/>
@@ -17,6 +17,9 @@ const ArtistResultItem = ({result}) => {
             </div>
             <div className="card-footer">
                 <small className="text-muted">Followers: {result.followers.total}</small>
+            </div>
+            <div className="card-footer ">
+                <button onClick={() =>like(result,'artist')}>Like</button>
             </div>
         </div>
     )

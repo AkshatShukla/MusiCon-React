@@ -5,6 +5,7 @@ import AlbumServiceClient from "../services/album.service.client";
 import ArtistServiceClient from "../services/artist.service.client";
 import TrackServiceClient from "../services/track.service.client";
 import GetDetailsServiceClient from "../services/get-details.service.client";
+import EventServiceClient from "../services/event.service.client";
 
 export const queryChanged = (dispatch, newQuery) => (
     dispatch({
@@ -36,9 +37,6 @@ export const searchQuery = (dispatch, query, queryType) => {
     }
     else {
         let searchServiceClient = SearchServiceClient.instance;
-        let albumServiceClient = AlbumServiceClient.instance;
-        let trackServiceClient = TrackServiceClient.instance
-        let artistServiceClient = ArtistServiceClient.instance;
         searchServiceClient
             .searchQuery(query.value, queryType.value)
             .then((results) => {
@@ -47,37 +45,18 @@ export const searchQuery = (dispatch, query, queryType) => {
                     rootKey = ele;
                 }
                 if (rootKey === 'albums') {
-                    // albumServiceClient
-                    //     .insertIntoDatabase(results.albums.items)
-                    //     .then(() => {
-                    //         dispatch({
-                    //             type: constants.SEARCH,
-                    //             flag: 'album',
-                    //             results: results.albums.items
-                    //         })
-                    //     })
                     dispatch({
                         type: constants.SEARCH,
                         flag: 'album',
                         results: results.albums.items
                     })
                 } else if (rootKey === 'tracks') {
-                    // trackServiceClient
-                    //     .insertIntoDatabase(results.tracks.items)
-                    //     .then(() => {
-                    //         //
-                    //     })
                     dispatch({
                         type: constants.SEARCH,
                         flag: 'track',
                         results: results.tracks.items
                     })
                 } else if (rootKey === 'artists') {
-                    // artistServiceClient
-                    //     .insertIntoDatabase(results.artists.items)
-                    //     .then(() => {
-                    //         //
-                    //     })
                     dispatch({
                         type: constants.SEARCH,
                         flag: 'artist',
@@ -211,4 +190,20 @@ export const toggleDetails = (dispatch) => (
         type: constants.TOGGLE_DETAILS
     })
 );
+
+export const itemLiked = (dispatch,item ,type) => {
+    if(type==='album'){
+        AlbumServiceClient.instance
+            .saveLike(item)
+    }
+    else if(type==='track'){
+        TrackServiceClient.instance
+            .saveLike(item)
+    }
+    // else if(type==='artist'){
+    //     console.log('in action event type artist')
+    //     ArtistServiceClient.instance
+    //         .saveLike()
+    // }
+}
 
