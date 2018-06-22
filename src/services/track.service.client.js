@@ -1,3 +1,5 @@
+import * as constants from '../constants';
+
 let _singleton = Symbol();
 
 class TrackServiceClient {

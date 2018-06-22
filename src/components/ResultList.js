@@ -16,7 +16,8 @@ const ResultList = ({albumResults, trackResults, artistResults, eventResults,
                                          selectedItem={selectedItem}
                                          details={details}
                                          modalToggle={modalToggle}
-                                         toggleDetails={toggleDetails}/>
+                                         toggleDetails={toggleDetails}
+                        like={like}/>
                     </div>
                 ))
             }
@@ -37,7 +38,7 @@ const ResultList = ({albumResults, trackResults, artistResults, eventResults,
                 return results.map((result) => (
                     <div className="col-sm-3"
                          key={result.id}>
-                        <EventResultItem result={result} like={like}/>
+                        <EventResultItem result={result}/>
                     </div>
                 ))
             }
@@ -50,7 +51,7 @@ const ResultList = ({albumResults, trackResults, artistResults, eventResults,
                                           details={details}
                                           modalToggle={modalToggle}
                                           toggleDetails={toggleDetails}
-                                          like={like}/>
+                                          />
                     </div>
                 ))
             }

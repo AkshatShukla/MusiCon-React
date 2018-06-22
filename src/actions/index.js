@@ -3,6 +3,8 @@ import UserServiceClient from '../services/user.service.client'
 import * as constants from "../constants";
 import GetDetailsServiceClient from "../services/get-details.service.client";
 import EventServiceClient from "../services/event.service.client";
+import AlbumServiceClient from '../services/album.service.client';
+import TrackServiceClient from '../services/track.service.client';
 
 export const queryChanged = (dispatch, newQuery) => (
     dispatch({
@@ -225,15 +227,32 @@ export const itemLiked = (dispatch,item ,type) => {
     if(type==='album'){
         AlbumServiceClient.instance
             .saveLike(item)
+            .then(response =>{
+                if(response.status===501){
+                    alert("Already liked");
+                }
+                else if(response.status===500){
+                    alert("Try Logging in");
+                }
+                else {
+                    alert("Liked Album "+item.name);
+                }
+            })
     }
     else if(type==='track'){
         TrackServiceClient.instance
             .saveLike(item)
+            .then(response =>{
+                if(response.status===501){
+                    alert("Already liked");
+                }
+                else if(response.status===500){
+                    alert("Try Logging in");
+                }
+                else {
+                    alert('Liked Track '+item.name);
+                }
+            })
     }
-    // else if(type==='artist'){
-    //     console.log('in action event type artist')
-    //     ArtistServiceClient.instance
-    //         .saveLike()
-    // }
 }
 
