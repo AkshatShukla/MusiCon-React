@@ -75,22 +75,12 @@ export const Reducer = (state = {
             newState.userType = action.userType;
             return newState;
 
-        case constants.PASSWORD_TEXT_CHANGED:
-            newState = Object.assign({}, state);
-            newState.password = action.text;
-            return newState;
 
         case constants.SAVE_USERNAME_AND_USERTYPE:
             newState = Object.assign({}, state);
             newState.username = action.username;
             newState.userType = action.userType;
             return newState;
-
-        case constants.QUERY_CHANGED:
-            newState = Object.assign({}, state);
-            newState.query = action.query;
-            return newState;
-
 
         case constants.TYPE_CHANGED:
             newState = Object.assign({}, state);
