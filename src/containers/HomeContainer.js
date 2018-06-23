@@ -9,12 +9,14 @@ import {connect} from "react-redux";
 import UserStatsContainer from "./UserStatsContainer";
 import AdminPageContainer from "./AdminPageContainer";
 import OrganizeEventContainer from "./OrganizeEventContainer";
+import SearchBar from "../components/SearchBar";
 // import EventsNearUserContainer from "../containers/EventsNearUserContainer";
 
 class HomeComponent
     extends React.Component {
     render() {
         return (
+            <div>
             <Router>
                 <div >
                     <div className="m-0">
@@ -41,6 +43,8 @@ class HomeComponent
                     </div>
                 </div>
             </Router>
+                <SearchContainer/>
+            </div>
 
         )
     }

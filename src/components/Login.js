@@ -5,11 +5,6 @@ export default class Login extends React.Component {
     username = '';
     password = '';
 
-    // constructor(props) {
-    //     super(props);
-    //
-    // }
-
     login(username, password) {
         this.props.login(username, password).then(response => {
             if (response.status === 500) {
@@ -19,39 +14,13 @@ export default class Login extends React.Component {
                 response.json()
                     .then(r2 => {
                         this.props.updateStateWithUserNameAndType(username, r2.type);
-                        this.props.history.push('/profile')
+                        this.props.history.push('/my-page');
                     });
 
             }
         })
     }
 
-//     <!-- /container -->
-// {/*<div>*/}
-//
-// {/*<form className="form-inline">*/}
-// {/*<label htmlFor="username">Enter username:</label>*/}
-// {/*&nbsp;*/}
-// {/*<input className="col-8"*/}
-// {/*id="username"*/}
-// {/*onChange={(e) => this.username = e.target.value}*/}
-// {/*/>*/}
-// {/*</form>*/}
-// {/*<br/>*/}
-//
-// {/*<form className="form-inline">*/}
-// {/*<label htmlFor="password">Enter Password:</label>*/}
-// {/*&nbsp;*/}
-// {/*<input className="col-8"*/}
-// {/*id="password"*/}
-// {/*onChange={(e) => this.password = e.target.value}*/}
-// {/*/>*/}
-// {/*</form>*/}
-//
-// {/*<button onClick={() => this.login(this.username, this.value)}*/}
-// {/*>Login*/}
-// {/*</button>*/}
-// {/*</div>*/}
     render() {
         return (
             <div className="container ">
