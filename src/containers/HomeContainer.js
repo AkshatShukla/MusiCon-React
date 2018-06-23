@@ -8,6 +8,7 @@ import RegistrationContainer from "./RegistrationContainer";
 import {connect} from "react-redux";
 import UserStatsContainer from "./UserStatsContainer";
 import AdminPageContainer from "./AdminPageContainer";
+import OrganizeEventContainer from "./OrganizeEventContainer";
 // import EventsNearUserContainer from "../containers/EventsNearUserContainer";
 
 class HomeComponent
@@ -15,12 +16,14 @@ class HomeComponent
     render() {
         return (
             <Router>
-                <div>
+                <div >
+                    <div className="m-0">
                     <Route path="/"
                            component={NavigationBar}/>
-                    <div className="container-fluid">
-                        <Route path="/"
-                               component={SearchContainer}/>
+                    </div>
+                    <div className="m-0">
+                        {/*<Route path="/"*/}
+                               {/*component={SearchContainer}/>*/}
                         <Route path='/login'
                                component={LoginContainer}/>
                         <Route path='/registration'
@@ -29,6 +32,8 @@ class HomeComponent
                                component={ProfileContainer}/>
                         <Route path='/my-page'
                                component={UserStatsContainer}/>
+                        <Route path='/manager'
+                               component={OrganizeEventContainer}/>
                         <Route path='/admin-page'
                                component={AdminPageContainer}/>
                         {/*<Route path='/profile1'*/}
