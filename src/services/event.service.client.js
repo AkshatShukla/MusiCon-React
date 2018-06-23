@@ -21,7 +21,7 @@ class EventServiceClient {
             venueName: venueName,
             eventDate: eventDate
         };
-        return fetch(constants.BASE_URL + 'createEvent', {
+        return fetch(constants.BASE_URL + 'event', {
             method: 'post',
             body: JSON.stringify(event),
             credentials: "include",

@@ -10,8 +10,12 @@ export const Reducer = (state = {
     eventName: '',
     venueName: '',
     eventDate: '',
+    playlistName: '',
+    playlistDescription: '',
     queryType: 'Album',
     eventsForConcertManager: [],
+    playlistsForListener: [],
+    tracksInPlaylist: [],
     albumResults: [],
     trackResults: [],
     artistResults: [],
@@ -64,6 +68,10 @@ export const Reducer = (state = {
                 newState.venueName = action.text;
             } else if (action.fieldType === 'eventDate') {
                 newState.eventDate = action.text;
+            } else if (action.fieldType === 'playlistName') {
+                newState.playlistName = action.text;
+            } else if (action.playlistDescription === 'playlistDescription') {
+                newState.playlistDescription = action.text
             }
 
             return newState;
@@ -192,6 +200,16 @@ export const Reducer = (state = {
         case constants.ALL_EVENTS_FOR_USER:
             newState = Object.assign({}, state);
             newState.eventsForConcertManager = action.events;
+            return newState;
+
+        case constants.ALL_PLAYLIST_FOR_USER:
+            newState = Object.assign({}, state);
+            newState.playlistsForListener = action.playlists;
+            return newState;
+
+        case constants.TRACKS_IN_PLAYLIST:
+            newState = Object.assign({}, state);
+            newState.tracksInPlaylist = action.tracks;
             return newState;
 
         default:
