@@ -290,3 +290,22 @@ export const findAllEventOfUser = (dispatch) => {
         })
 };
 
+export const deleteEventForConcertManager = (dispatch, event) => {
+    let eventServiceClient = EventServiceClient.instance;
+    eventServiceClient
+        .deleteEvent(event._id)
+        .then(response => {
+            eventServiceClient
+                .findAllEventOFUser()
+                .then(response1 => {
+                    response1.json()
+                        .then(res => {
+                            dispatch({
+                                type: constants.ALL_EVENTS_FOR_USER,
+                                events: res.events
+                            })
+                        })
+                })
+        })
+};
+

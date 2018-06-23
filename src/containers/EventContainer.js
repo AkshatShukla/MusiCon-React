@@ -3,7 +3,8 @@ import EventOfManager from "../components/EventOfManager";
 import * as actions from "../actions";
 
 const dispathToPropsMapper = dispatch => ({
-    findAllEventOFUser: () => actions.findAllEventOfUser(dispatch)
+    findAllEventOFUser: () => actions.findAllEventOfUser(dispatch),
+    deleteEvent: (event) => actions.deleteEventForConcertManager(dispatch, event)
 });
 
 const stateToPropsMapper = state => ({

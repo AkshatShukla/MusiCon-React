@@ -20,7 +20,7 @@ class EventServiceClient {
             eventName: eventName,
             venueName: venueName,
             eventDate: eventDate
-        }
+        };
         return fetch(constants.BASE_URL + 'createEvent', {
             method: 'post',
             body: JSON.stringify(event),
@@ -33,6 +33,13 @@ class EventServiceClient {
 
     findAllEventOFUser(){
         return fetch(constants.BASE_URL + 'events',{
+            credentials: "include"
+        })
+    }
+
+    deleteEvent(eventId){
+        return fetch(constants.BASE_URL + 'event/' + eventId,{
+            method: 'delete',
             credentials: "include"
         })
     }
