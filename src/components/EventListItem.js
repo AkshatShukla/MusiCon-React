@@ -14,5 +14,4 @@ const EventListItem = ({event, deleteEvent}) => {
         </div>
     )
 };
-
 export default EventListItem;

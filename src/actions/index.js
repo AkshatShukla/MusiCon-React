@@ -7,6 +7,7 @@ import AlbumServiceClient from '../services/album.service.client';
 import TrackServiceClient from '../services/track.service.client';
 import ArtistServiceClient from "../services/artist.service.client";
 import AdminServiceClient from "../services/admin.service.client";
+import PlaylistServiceClient from "../services/playlist.service.client";
 
 export const queryChanged = (dispatch, newQuery) => (
     dispatch({
@@ -328,4 +329,70 @@ export const getUsers= (dispatch) => {
                 })
             }));
 
+export const createPlaylist = (dispatch, playlistName, playlistDescription) => {
+    let playlistServiceClient = PlaylistServiceClient.instance;
+    playlistServiceClient
+        .createPlaylist(playlistName, playlistDescription)
+        .then(response => {
+            playlistServiceClient
+                .findAllPlaylistOFUser()
+                .then(response1 => {
+                    response1.json()
+                        .then(res => {
+                            dispatch({
+                                type: constants.ALL_PLAYLIST_FOR_USER,
+                                playlists: res.playlist
+                            })
+                        })
+                })
+        })
+};
+
+export const findAllPlaylistOfUser = (dispatch) => {
+    let playlistServiceClient = PlaylistServiceClient.instance;
+    playlistServiceClient
+        .findAllPlaylistOFUser()
+        .then(response => {
+            response.json()
+                .then(res => {
+                    dispatch({
+                        type: constants.ALL_PLAYLIST_FOR_USER,
+                        playlists: res.playlist
+                    })
+                })
+        })
+};
+
+export const deletePlaylist = (dispatch, playlist) => {
+    let playlistServiceClient = PlaylistServiceClient.instance;
+    playlistServiceClient
+        .deletePlaylist(playlist._id)
+        .then(response => {
+            playlistServiceClient
+                .findAllPlaylistOFUser()
+                .then(response1 => {
+                    response1.json()
+                        .then(res => {
+                            dispatch({
+                                type: constants.ALL_PLAYLIST_FOR_USER,
+                                playlists: res.playlist
+                            })
+                        })
+                })
+        })
+};
+
+export const getTracksInPlaylist = (dispatch, playlist) => {
+    let playlistServiceClient = PlaylistServiceClient.instance;
+    playlistServiceClient
+        .getTracksInPlaylist(playlist._id)
+        .then(response => {
+            response.json()
+                .then(results =>
+                    dispatch({
+                        type: constants.TRACKS_IN_PLAYLIST,
+                        tracks: results.track
+                    }))
+        })
 }
+
