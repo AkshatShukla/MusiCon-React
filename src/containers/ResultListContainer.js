@@ -16,7 +16,8 @@ const stateToPropsMapper = state => ({
     eventResults: state.eventResults,
     modalToggle: state.modalToggle,
     details: state.details,
-    flag: state.searchFlag
+    flag: state.searchFlag,
+    type:state.userType
 });
 const ResultListContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(ResultList);
 export default ResultListContainer;

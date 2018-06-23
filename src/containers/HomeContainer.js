@@ -9,6 +9,7 @@ import {connect} from "react-redux";
 import UserStatsContainer from "./UserStatsContainer";
 import AdminPageContainer from "./AdminPageContainer";
 import OrganizeEventContainer from "./OrganizeEventContainer";
+import SearchBar from "../components/SearchBar";
 // import EventsNearUserContainer from "../containers/EventsNearUserContainer";
 
 class HomeComponent
@@ -22,8 +23,6 @@ class HomeComponent
                            component={NavigationBar}/>
                     </div>
                     <div className="m-0">
-                        {/*<Route path="/"*/}
-                               {/*component={SearchContainer}/>*/}
                         <Route path='/login'
                                component={LoginContainer}/>
                         <Route path='/registration'
@@ -36,8 +35,8 @@ class HomeComponent
                                component={OrganizeEventContainer}/>
                         <Route path='/admin-page'
                                component={AdminPageContainer}/>
-                        {/*<Route path='/profile1'*/}
-                               {/*component={EventsNearUserContainer}/>*/}
+                        <Route exact path='/'
+                               component={SearchContainer}/>
                     </div>
                 </div>
             </Router>
