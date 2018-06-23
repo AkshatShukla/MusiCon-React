@@ -261,7 +261,17 @@ export const createEvent = (dispatch, eventName, venueName, eventDate) => {
     eventServiceClient
         .createEvent(eventName, venueName, eventDate)
         .then(response => {
-            console.log(response)
+            eventServiceClient
+                .findAllEventOFUser()
+                .then(response1 => {
+                    response1.json()
+                        .then(res => {
+                            dispatch({
+                                type: constants.ALL_EVENTS_FOR_USER,
+                                events: res.events
+                            })
+                        })
+                })
         })
 };
 
