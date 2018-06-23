@@ -27,7 +27,6 @@ export default class Login extends React.Component {
                 <div className="card card-container">
                     {/*<p id="profile-name" className="profile-name-card"></p>*/}
                     <form className="form-signin">
-                        <span id="reauth-email" className="reauth-email"></span>
                         <input id="inputEmail" className="form-control" placeholder="Username"
                                required autoFocus
                                onChange={(e) => this.username = e.target.value}/>

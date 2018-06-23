@@ -10,10 +10,14 @@ export const Reducer = (state = {
     eventName: '',
     venueName: '',
     eventDate: '',
+    playlistName: '',
+    playlistDescription: '',
     queryType: 'Album',
     eventsForConcertManager: [],
     likedAlbums: [],
     likedTracks: [],
+    playlistsForListener: [],
+    tracksInPlaylist: [],
     albumResults: [],
     trackResults: [],
     artistResults: [],
@@ -28,6 +32,9 @@ export const Reducer = (state = {
         artist: '',
         wiki: '',
         tracks: []
+    },
+    admin:{
+        users:[]
     },
     modalToggle: false
 }, action) => {
@@ -66,6 +73,10 @@ export const Reducer = (state = {
                 newState.venueName = action.text;
             } else if (action.fieldType === 'eventDate') {
                 newState.eventDate = action.text;
+            } else if (action.fieldType === 'playlistName') {
+                newState.playlistName = action.text;
+            } else if (action.playlistDescription === 'playlistDescription') {
+                newState.playlistDescription = action.text
             }
 
             return newState;
@@ -208,6 +219,21 @@ export const Reducer = (state = {
                 default:
                     return newState;
             }
+
+        case constants.ADMIN_SAVE_USERS:
+            newState = Object.assign({}, state);
+            newState.admin.users=action.users;
+            return newState;
+
+        case constants.ALL_PLAYLIST_FOR_USER:
+            newState = Object.assign({}, state);
+            newState.playlistsForListener = action.playlists;
+            return newState;
+
+        case constants.TRACKS_IN_PLAYLIST:
+            newState = Object.assign({}, state);
+            newState.tracksInPlaylist = action.tracks;
+            return newState;
 
         default:
             return state

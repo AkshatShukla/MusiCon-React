@@ -12,9 +12,6 @@ const EventResultItem = ({result,like}) => {
             <div className="card-footer">
                 <small className="text-muted">Date: {result.dates.start.localDate}</small>
             </div>
-            <div className="card-footer ">
-                <button onClick={() =>like(result,'event')}>Like</button>
-            </div>
         </div>
     )
 };

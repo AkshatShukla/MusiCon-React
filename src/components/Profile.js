@@ -1,4 +1,5 @@
 import React from 'react'
+import '../css/login.css';
 
 export default class Profile extends React.Component {
 
@@ -22,78 +23,62 @@ export default class Profile extends React.Component {
 
     render() {
         return (
-            <div>
-
-                <form className="form-inline">
-                    <label htmlFor="username">Username:</label>
-                    &nbsp;
-                    <input className="col-8"
-                           id="username"
-                           value={this.props.username}
-                           onChange={(Event) => this.props.TextChanged('username', Event.target.value)}
-                    />
-                </form>
-                <br/>
-                <form className="form-inline">
-                    <label htmlFor="firstName">Firstname:</label>
-                    &nbsp;
-                    <input className="col-8"
-                           id="firstName"
-                           value={this.props.firstName}
-                           onChange={(Event) => this.props.TextChanged('firstName', Event.target.value)}
-                    />
-                </form>
-                <br/>
-                <form className="form-inline">
-                    <label htmlFor="lastName">Enter Lastname:</label>
-                    &nbsp;
-                    <input className="col-8"
-                           id="lastName"
-                           value={this.props.lastName}
-                           onChange={(Event) => this.props.TextChanged('lastName', Event.target.value)}
-                    />
-                </form>
-                <br/>
-                <form className="form-inline">
-                    <label htmlFor="username">Enter email:</label>
-                    &nbsp;
-                    <input className="col-8"
-                           id="email"
-                           value={this.props.email}
-                           onChange={(Event) => this.props.TextChanged('email', Event.target.value)}
-                    />
-                </form>
-                <br/>
-                <form className="form-inline">
-                    <label htmlFor="dob">Enter Date of Birth:</label>
-                    &nbsp;
-                    <input className="col-8"
-                           id="dob"
-                           value={this.props.dob}
-                           onChange={(Event) => this.props.TextChanged('dob', Event.target.value)}
-                    />
-                </form>
-                <br/>
-                <form className="form-inline">
-                    <label htmlFor="address">Enter City:</label>
-                    &nbsp;
-                    <input className="col-8"
-                           id="city"
-                           value={this.props.city}
-                           onChange={(Event) => this.props.TextChanged('city', Event.target.value)}
-                    />
-                </form>
-                <form className="form-inline">
-                    <label htmlFor="address">Enter Phone Number:</label>
-                    &nbsp;
-                    <input className="col-8"
-                           id="city"
-                           value={this.props.phone}
-                           onChange={(Event) => this.props.TextChanged('phone', Event.target.value)}
-                    />
-                </form>
-                <br/>
-                <button onClick={() => this.update()}>Update</button>
+            <div className="container">
+                <div className="cardRegistration card-container">
+                    <form className="form-signin form-inline row m-2">
+                        <label htmlFor="username form-label" className="col-2 ">Username:</label>
+                        <input className="col-9 form-control"
+                               id="username"
+                               value={this.props.username}
+                               onChange={(Event) => this.props.TextChanged('username', Event.target.value)}
+                        />
+                    </form>
+                    <form className="form-signin form-inline m-2">
+                        <label htmlFor="firstName" className="col-2">Firstname:</label>
+                        <input className="col-9 form-control"
+                               id="firstName"
+                               value={this.props.firstName}
+                               onChange={(Event) => this.props.TextChanged('firstName', Event.target.value)}
+                        /></form>
+                    <form className="form-signin form-inline m-2">
+                        <label htmlFor="lastName" className="col-2">Lastname:</label>
+                        <input className="col-9 form-control"
+                               id="lastName"
+                               value={this.props.lastName}
+                               onChange={(Event) => this.props.TextChanged('lastName', Event.target.value)}
+                        /></form>
+                    <form className="form-signin form-inline m-2">
+                        <label htmlFor="username" className="col-2">Email:</label>
+                        <input className="col-9 form-control"
+                               id="email"
+                               value={this.props.email}
+                               onChange={(Event) => this.props.TextChanged('email', Event.target.value)}
+                        /></form>
+                    <form className="form-signin form-inline m-2">
+                        <label htmlFor="dob" className="col-2">Date of Birth:</label>
+                        <input className="col-9 form-control"
+                               id="dob"
+                               value={this.props.dob}
+                               onChange={(Event) => this.props.TextChanged('dob', Event.target.value)}
+                        /></form>
+                    <form className="form-signin form-inline m-2">
+                        <label htmlFor="address" className="col-2">City:</label>
+                        <input className="col-9 form-control"
+                               id="city"
+                               value={this.props.city}
+                               onChange={(Event) => this.props.TextChanged('city', Event.target.value)}
+                        /></form>
+                    <form className="form-signin form-inline m-2">
+                        <label htmlFor="address" className="col-2">Phone Number:</label>
+                        <input className="col-9 form-control"
+                               id="city"
+                               value={this.props.phone}
+                               onChange={(Event) => this.props.TextChanged('phone', Event.target.value)}
+                        />
+                    </form>
+                    <button onClick={() => this.update()}
+                            className='btn btn-success'>Update</button>
+                </div>
             </div>
         )
     }

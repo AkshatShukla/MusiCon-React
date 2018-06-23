@@ -52,6 +52,12 @@ const NavigationBarComponent = ({type, logout}) => {
                         <button className="btn btn-dark">Manager's Page</button>
                     </Link>
                 </div>
+                <div hidden={type !== 'Listener'}>
+                    <Link style={{display: 'block', height: '100%'}}
+                          className="navbar-nav" to="/playlist">
+                        <button className="btn btn-dark">PlayList</button>
+                    </Link>
+                </div>
                 <div hidden={type === undefined}>
                     <Link style={{display: 'block', height: '100%'}}
                           className="navbar-nav" to='/' onClick={() => logout()}>

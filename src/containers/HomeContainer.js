@@ -11,6 +11,7 @@ import AdminPageContainer from "./AdminPageContainer";
 import OrganizeEventContainer from "./OrganizeEventContainer";
 import LikedAlbumsContainer from "./LikedAlbumsContainer";
 import LikedTrackContainer from "./LikedTracksContainer";
+import CreatePlaylistContainer from "./CreatePlaylistContainer";
 // import EventsNearUserContainer from "../containers/EventsNearUserContainer";
 
 class HomeComponent
@@ -38,6 +39,8 @@ class HomeComponent
                                component={LikedTrackContainer}/>
                         <Route path='/manager'
                                component={OrganizeEventContainer}/>
+                        <Route path='/playlist'
+                               component={CreatePlaylistContainer}/>
                         <Route path='/admin-page'
                                component={AdminPageContainer}/>
                         <Route exact path='/'
