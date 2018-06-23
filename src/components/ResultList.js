@@ -54,7 +54,9 @@ const ResultList = ({
                                           selectedItem={selectedItem}
                                           details={details}
                                           modalToggle={modalToggle}
-                                          toggleDetails={toggleDetails}/>
+                                          toggleDetails={toggleDetails}
+                                          like={like}
+                                          type={type}/>
                     </div>
                 ))
             }

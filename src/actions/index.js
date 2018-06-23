@@ -5,6 +5,7 @@ import GetDetailsServiceClient from "../services/get-details.service.client";
 import EventServiceClient from "../services/event.service.client";
 import AlbumServiceClient from '../services/album.service.client';
 import TrackServiceClient from '../services/track.service.client';
+import ArtistServiceClient from "../services/artist.service.client";
 
 export const queryChanged = (dispatch, newQuery) => (
     dispatch({
@@ -253,6 +254,13 @@ export const itemLiked = (dispatch,item ,type) => {
                     alert('Liked Track '+item.name);
                 }
             })
+    }
+    else if(type==='artist'){
+        console.log("Follow Artist");
+        console.log(item);
+        ArtistServiceClient.instance
+            .follow(item)
+            .then(response => console.log(response));
     }
 }
 

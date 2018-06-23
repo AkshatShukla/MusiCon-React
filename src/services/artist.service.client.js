@@ -1,4 +1,4 @@
-
+import * as constants from '../constants'
 let _singleton = Symbol();
 
 class ArtistServiceClient {
@@ -13,27 +13,17 @@ class ArtistServiceClient {
         return this[_singleton]
     }
 
-    // insertIntoDatabase(results) {
-    //     console.log(results);
-    //     return fetch(constants.BASE_URL + 'album', {
-    //         method: 'POST',
-    //         body: JSON.stringify(results),
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         }
-    //     })
-    // }
-    // saveLike(){
-    //     console.log('save like for artist');
-    //     return fetch(constants.BASE_URL+'like/artist',{
-    //         method: 'post',
-    //         credentials: "include",
-    //         body: JSON.stringify(result),
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         }
-    //     });
-    // }
+    follow(item){
+        console.log('save like for artist');
+        return fetch(constants.BASE_URL+'followArtist',{
+            method: 'post',
+            credentials: "include",
+            body: JSON.stringify(item),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
 }
 
 export default ArtistServiceClient;

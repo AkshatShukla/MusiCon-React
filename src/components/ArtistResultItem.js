@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-const ArtistResultItem = ({result, selectedItem, toggleDetails, modalToggle, details, like}) => {
+const ArtistResultItem = ({result, selectedItem, toggleDetails, modalToggle, details, like, type}) => {
     function showDetails() {
         console.log(details.name);
     }
@@ -42,8 +42,8 @@ const ArtistResultItem = ({result, selectedItem, toggleDetails, modalToggle, det
             <div className="card-footer">
                 <small className="text-muted">Followers: {result.followers.total}</small>
             </div>
-            <div className="card-footer ">
-                <button onClick={() =>like(result,'artist')}>Like</button>
+            <div className="card-footer " hidden={type===undefined}>
+                <button onClick={() =>like(result,'artist')}>Follow</button>
             </div>
         </div>
     )
