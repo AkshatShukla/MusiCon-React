@@ -54,7 +54,9 @@ const AlbumResultItem = ({result, selectedItem, toggleDetails, modalToggle, deta
                 <small className="text-muted">Release Date: {result.release_date}</small>
             </div>
             <div className="card-footer " hidden={type===undefined}>
-                <button onClick={() =>like(result,'album')}>Like</button>
+                <button className="btn btn-outline-secondary" onClick={() =>like(result,'album')}>
+                    <span><i className="fa fa-thumbs-up"></i>&nbsp;</span>Like
+                </button>
             </div>
         </div>
     )

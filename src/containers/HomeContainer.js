@@ -9,7 +9,8 @@ import {connect} from "react-redux";
 import UserStatsContainer from "./UserStatsContainer";
 import AdminPageContainer from "./AdminPageContainer";
 import OrganizeEventContainer from "./OrganizeEventContainer";
-import SearchBar from "../components/SearchBar";
+import LikedAlbumsContainer from "./LikedAlbumsContainer";
+import LikedTrackContainer from "./LikedTracksContainer";
 // import EventsNearUserContainer from "../containers/EventsNearUserContainer";
 
 class HomeComponent
@@ -29,8 +30,12 @@ class HomeComponent
                                component={RegistrationContainer}/>
                         <Route path='/profile'
                                component={ProfileContainer}/>
-                        <Route path='/my-page'
+                        <Route exact path='/my-page'
                                component={UserStatsContainer}/>
+                        <Route path='/my-page/liked-albums'
+                               component={LikedAlbumsContainer}/>
+                        <Route path='/my-page/liked-tracks'
+                               component={LikedTrackContainer}/>
                         <Route path='/manager'
                                component={OrganizeEventContainer}/>
                         <Route path='/admin-page'

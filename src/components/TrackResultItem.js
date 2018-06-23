@@ -49,7 +49,9 @@ const TrackResultItem = ({result, selectedItem, toggleDetails, modalToggle, deta
                 </small>
             </div>
             <div className="card-footer " hidden={type===undefined}>
-                <button onClick={() =>like(result,'track')}>Like</button>
+                <button className="btn btn-outline-secondary" onClick={() =>like(result,'track')}>
+                    <span><i className="fa fa-thumbs-up"></i>&nbsp;</span>Like
+                </button>
             </div>
         </div>
     )

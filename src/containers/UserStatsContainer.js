@@ -4,6 +4,8 @@ import * as actions from "../actions";
 
 const dispatchToPropsMapper = dispatch => ({
     // functions to be written
+    // fetchLikedAlbums: () =>
+    //     actions.fetchLikedAlbums(dispatch)
 });
 const stateToPropsMapper = state => ({
     // albumResults: state.albumResults,
@@ -13,6 +15,7 @@ const stateToPropsMapper = state => ({
     // modalToggle: state.modalToggle,
     // details: state.details,
     // flag: state.searchFlag
+    username: state.username
 });
 const UserStatsContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(UserStats);
 export default UserStatsContainer;

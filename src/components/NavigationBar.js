@@ -28,13 +28,19 @@ const NavigationBarComponent = ({type, logout}) => {
                         <button className="btn btn-dark">Profile</button>
                     </Link>
                 </div>
-                <div hidden={type === undefined}>
+                <div hidden={type !== 'Listener'}>
                     <Link style={{display: 'block', height: '100%'}}
                           className="navbar-nav" to="/my-page">
                         <button className="btn btn-dark">My Page</button>
                     </Link>
                 </div>
-                <div hidden={type === undefined}>
+                <div hidden={type !== 'Audiophile'}>
+                    <Link style={{display: 'block', height: '100%'}}
+                          className="navbar-nav" to="/my-page">
+                        <button className="btn btn-dark">Audiophile Page</button>
+                    </Link>
+                </div>
+                <div hidden={type !== 'Admin'}>
                     <Link style={{display: 'block', height: '100%'}}
                           className="navbar-nav" to="/admin-page">
                         <button className="btn btn-dark">Admin Page</button>
