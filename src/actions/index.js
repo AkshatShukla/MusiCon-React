@@ -327,7 +327,8 @@ export const getUsers= (dispatch) => {
                     type: constants.ADMIN_SAVE_USERS,
                     users: users
                 })
-            }));
+            }))
+};
 
 export const createPlaylist = (dispatch, playlistName, playlistDescription) => {
     let playlistServiceClient = PlaylistServiceClient.instance;
