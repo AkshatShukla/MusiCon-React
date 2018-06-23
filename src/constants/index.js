@@ -16,3 +16,4 @@ export const LAST_FM_ARTIST_INFO_URL = 'http://ws.audioscrobbler.com/2.0/?method
 export const SET_DETAILS = 'SET_DETAILS';
 export const TOGGLE_DETAILS = 'TOGGLE_DETAILS';
 export const ALL_EVENTS_FOR_USER = 'ALL_EVENTS_FOR_USER';
+export const ADMIN_SAVE_USERS = 'ADMIN_SAVE_USERS';

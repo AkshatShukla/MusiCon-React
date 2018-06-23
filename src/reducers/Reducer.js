@@ -27,6 +27,9 @@ export const Reducer = (state = {
         wiki: '',
         tracks: []
     },
+    admin:{
+        users:[]
+    },
     modalToggle: false
 }, action) => {
     let newState;
@@ -193,7 +196,10 @@ export const Reducer = (state = {
             newState = Object.assign({}, state);
             newState.eventsForConcertManager = action.events;
             return newState;
-
+        case constants.ADMIN_SAVE_USERS:
+            newState = Object.assign({}, state);
+            newState.admin.users=action.users;
+            return newState;
         default:
             return state
     }

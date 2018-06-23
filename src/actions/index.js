@@ -6,6 +6,7 @@ import EventServiceClient from "../services/event.service.client";
 import AlbumServiceClient from '../services/album.service.client';
 import TrackServiceClient from '../services/track.service.client';
 import ArtistServiceClient from "../services/artist.service.client";
+import AdminServiceClient from "../services/admin.service.client";
 
 export const queryChanged = (dispatch, newQuery) => (
     dispatch({
@@ -316,4 +317,15 @@ export const deleteEventForConcertManager = (dispatch, event) => {
                 })
         })
 };
+export const getUsers= (dispatch) => {
+    AdminServiceClient.instance
+        .getUsers()
+        .then(response => response.json()
+            .then(users => {
+                dispatch({
+                    type: constants.ADMIN_SAVE_USERS,
+                    users: users
+                })
+            }));
 
+}

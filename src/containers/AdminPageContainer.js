@@ -3,16 +3,10 @@ import {connect} from "react-redux";
 import * as actions from "../actions";
 
 const dispatchToPropsMapper = dispatch => ({
-    // functions to be written
+    getUsers: () => actions.getUsers(dispatch),
 });
 const stateToPropsMapper = state => ({
-    // albumResults: state.albumResults,
-    // trackResults: state.trackResults,
-    // artistResults: state.artistResults,
-    // eventResults: state.eventResults,
-    // modalToggle: state.modalToggle,
-    // details: state.details,
-    // flag: state.searchFlag
+    users:state.admin.users
 });
 const AdminPageContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(AdminPage);
 export default AdminPageContainer;
