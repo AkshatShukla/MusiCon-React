@@ -12,7 +12,7 @@ const TrackResultItem = ({result, selectedItem, toggleDetails, modalToggle, deta
     }
 
     return (
-        <div className="card shadow p-3 mb-5 bg-white rounded" style={{width: '22rem'}}>
+        <div className="card shadow p-3 mb-5 bg-white rounded" style={{width: '18rem'}}>
             <img className="card-img-top" src={result.album.images.length !== 0 ? result.album.images[0].url : ''} alt=''/>
             <div className="card-body">
                 <h5 className="card-title">{result.name}</h5>
@@ -28,6 +28,10 @@ const TrackResultItem = ({result, selectedItem, toggleDetails, modalToggle, deta
                             //toggleDetails();
                         }}>Get More Details
                 </button>
+                <audio controls hidden={result.preview_url === null} style={{width: '140px', marginTop: '15px'}}>
+                    <source src={result.preview_url !== null ? result.preview_url : ''}
+                            style={{marginRight: '40px'}}/>
+                </audio>
                 <br/>
                 <Modal isOpen={modalToggle} toggle={toggleDetails} backdrop={false} centered={true}>
                     <ModalHeader toggle={toggleDetails}>{details.name}</ModalHeader>
@@ -42,10 +46,6 @@ const TrackResultItem = ({result, selectedItem, toggleDetails, modalToggle, deta
             </div>
             <div className="card-footer">
                 <small className="text-muted">Popularity: {result.popularity}
-                    <audio controls>
-                        <source src={result.preview_url !== null ? result.preview_url : ''}
-                                style={{marginRight: '40px'}}/>
-                    </audio>
                 </small>
             </div>
             <div className="card-footer " hidden={type===undefined}>
