@@ -14,9 +14,12 @@ import SearchBar from "../components/SearchBar";
 
 class HomeComponent
     extends React.Component {
+    componentWillReceiveProps(nextProps) {
+    console.log("console.log from homen",nextProps);
+
+    }
     render() {
         return (
-            <div>
             <Router>
                 <div >
                     <div className="m-0">
@@ -24,8 +27,6 @@ class HomeComponent
                            component={NavigationBar}/>
                     </div>
                     <div className="m-0">
-                        {/*<Route path="/"*/}
-                               {/*component={SearchContainer}/>*/}
                         <Route path='/login'
                                component={LoginContainer}/>
                         <Route path='/registration'
@@ -38,13 +39,11 @@ class HomeComponent
                                component={OrganizeEventContainer}/>
                         <Route path='/admin-page'
                                component={AdminPageContainer}/>
-                        {/*<Route path='/profile1'*/}
-                               {/*component={EventsNearUserContainer}/>*/}
+                        <Route exact path='/'
+                               component={SearchContainer}/>
                     </div>
                 </div>
             </Router>
-                <SearchContainer/>
-            </div>
 
         )
     }
