@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-const TrackResultItem = ({result, selectedItem, toggleDetails, modalToggle, details, like}) => {
+const TrackResultItem = ({result, selectedItem, toggleDetails, modalToggle, details, like, type}) => {
     function millisToMinutesAndSeconds(millis) {
         const minutes = Math.floor(millis / 60000);
         const seconds = ((millis % 60000) / 1000).toFixed(0);
@@ -48,7 +48,7 @@ const TrackResultItem = ({result, selectedItem, toggleDetails, modalToggle, deta
                     </audio>
                 </small>
             </div>
-            <div className="card-footer ">
+            <div className="card-footer " hidden={type===undefined}>
                 <button onClick={() =>like(result,'track')}>Like</button>
             </div>
         </div>

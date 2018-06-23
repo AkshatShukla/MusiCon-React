@@ -14,10 +14,6 @@ import SearchBar from "../components/SearchBar";
 
 class HomeComponent
     extends React.Component {
-    componentWillReceiveProps(nextProps) {
-    console.log("console.log from homen",nextProps);
-
-    }
     render() {
         return (
             <Router>
