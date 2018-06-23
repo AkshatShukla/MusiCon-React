@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import Profile from '../components/Profile'
 import * as actions from "../actions";
 
-const dispathToPropsMapper = dispatch => ({
+const dispatchToPropsMapper = dispatch => ({
     TextChanged: (type,newText) =>
         actions.textChanged(dispatch, type, newText),
     update: (user) =>
@@ -22,5 +22,5 @@ const stateToPropsMapper = state => ({
     phone:state.phone,
     city:state.city,
 })
-const ProfileContainer = connect(stateToPropsMapper, dispathToPropsMapper)(Profile)
+const ProfileContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Profile)
 export default ProfileContainer;

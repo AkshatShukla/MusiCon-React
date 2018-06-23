@@ -2,7 +2,7 @@ import {connect} from 'react-redux'
 import Login from "../components/Login";
 import * as actions from "../actions";
 
-const dispathToPropsMapper = dispatch => ({
+const dispatchToPropsMapper = dispatch => ({
     textChanged: (type, newText) => actions.textChanged(dispatch, type, newText),
     login: (username, password) => actions.login(dispatch, username, password),
     updateStateWithUserNameAndType: (username,type) =>
@@ -12,5 +12,5 @@ const dispathToPropsMapper = dispatch => ({
 const stateToPropsMapper = state => ({
 });
 
-const LoginContainer = connect(stateToPropsMapper, dispathToPropsMapper)(Login)
+const LoginContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Login)
 export default LoginContainer;
