@@ -60,7 +60,6 @@ const ResultList = ({albumResults, trackResults, artistResults, eventResults,
     return (
         <div className="container-fluid bg-white">
             <br/>
-            <h3 className="text-dark">Results</h3>
             <br/>
             <div className="card-deck row">
                 {flag === 'album' && renderListOfResults(albumResults, flag)}
