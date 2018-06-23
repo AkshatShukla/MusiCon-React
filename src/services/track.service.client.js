@@ -24,6 +24,23 @@ class TrackServiceClient {
             }
         });
     }
+
+    saveDislike(item) {
+        return fetch(constants.BASE_URL + 'dislikeTrack',{
+            method: 'delete',
+            credentials: "include",
+            body: JSON.stringify(item),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+
+    getLikedTracks() {
+        return fetch(constants.BASE_URL + 'likedTracks', {
+            credentials: 'include'
+        })
+    }
 }
 
 export default TrackServiceClient;

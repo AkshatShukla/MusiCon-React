@@ -3,17 +3,13 @@ import {connect} from "react-redux";
 import * as actions from "../actions";
 
 const dispatchToPropsMapper = dispatch => ({
-    // functions to be written
+    fetchLikedTrack: () =>
+        actions.fetchLikedTracks(dispatch),
+    dislikeTrack: (track, type) =>
+        actions.itemDisliked(dispatch, track, type)
 });
 const stateToPropsMapper = state => ({
-    // albumResults: state.albumResults,
-    // trackResults: state.trackResults,
-    // artistResults: state.artistResults,
-    // eventResults: state.eventResults,
-    // modalToggle: state.modalToggle,
-    // details: state.details,
-    // flag: state.searchFlag
-    username: state.username
+    likedTracks: state.likedTracks
 });
 const LikedTrackContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(LikedTracks);
 export default LikedTrackContainer;

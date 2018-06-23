@@ -268,7 +268,8 @@ export const itemDisliked = (dispatch, item, type) => {
                         response.json()
                             .then((result) => {
                                 dispatch({
-                                    type: constants.FETCH_LIKED_ALBUMS,
+                                    type: constants.FETCH_LIKED_ITEMS,
+                                    itemType: 'album',
                                     likedAlbums: result
                                 })
                             });
@@ -276,7 +277,23 @@ export const itemDisliked = (dispatch, item, type) => {
             })
     }
     else if (type === 'track') {
-        // to be done
+        TrackServiceClient.instance
+            .saveDislike(item)
+            .then(response => {
+                alert('Disliked Track' + item.name);
+                TrackServiceClient.instance
+                    .getLikedTracks()
+                    .then(response => {
+                        response.json()
+                            .then((result) => {
+                                dispatch({
+                                    type: constants.FETCH_LIKED_ITEMS,
+                                    itemType: 'track',
+                                    likedTracks: result
+                                })
+                            });
+                    });
+            })
     }
 };
 
@@ -341,8 +358,25 @@ export const fetchLikedAlbums = (dispatch) => {
             response.json()
                 .then((result) => {
                     dispatch({
-                        type: constants.FETCH_LIKED_ALBUMS,
+                        type: constants.FETCH_LIKED_ITEMS,
+                        itemType: 'album',
                         likedAlbums: result
+                    })
+                });
+        });
+};
+
+export const fetchLikedTracks = (dispatch) => {
+    let trackServiceClient = TrackServiceClient.instance;
+    trackServiceClient
+        .getLikedTracks()
+        .then(response => {
+            response.json()
+                .then((result) => {
+                    dispatch({
+                        type: constants.FETCH_LIKED_ITEMS,
+                        itemType: 'track',
+                        likedTracks: result
                     })
                 });
         });

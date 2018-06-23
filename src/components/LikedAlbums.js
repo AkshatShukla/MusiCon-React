@@ -11,7 +11,6 @@ class LikedAlbums extends React.Component {
     }
 
     showAlbums() {
-        console.log(this.props.likedAlbums);
         return this.props.likedAlbums.map((album) => (
             <div className="col-sm-3"
                  key={album._id}>

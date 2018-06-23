@@ -54,7 +54,10 @@ const UserStats = ({username}) => {
                                 <CardText>This is a wider card with supporting text below as a natural lead-in to
                                     additional content. This card has even longer content than the first to show that
                                     equal height action.</CardText>
-                                <button className="btn btn-dark">Show</button>
+                                <Link style={{display: 'block', height: '100%'}}
+                                      to="/my-page/liked-tracks">
+                                    <button className="btn btn-dark">Show</button>
+                                </Link>
                             </CardBody>
                         </Card>
                         <Card body inverse color="primary">
