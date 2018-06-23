@@ -33,6 +33,7 @@ const OrganizeEvent = ({textChanged, createEvent}) => {
                 &nbsp;
                 <input className="col-8"
                        id="eventDate"
+                       type='date'
                        onChange={() => textChanged('eventDate', inputElem2.value)}
                        ref={node => inputElem2 = node}/>
             </form>

@@ -8,7 +8,7 @@ const EventListItem = ({event}) => {
                 <h6>{event.location}</h6>
             </div>
             <div className="card-footer">
-                <small className="text-muted">Date: {event.date}</small>
+                <small className="text-muted">Date: {event.date.substr(0, 10)}</small>
             </div>
         </div>
     )
