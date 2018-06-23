@@ -223,8 +223,8 @@ export const toggleDetails = (dispatch) => (
     })
 );
 
-export const itemLiked = (dispatch,item ,type) => {
-    if(type==='album'){
+export const itemLiked = (dispatch, item ,type) => {
+    if (type === 'album') {
         AlbumServiceClient.instance
             .saveLike(item)
             .then(response =>{
@@ -235,14 +235,14 @@ export const itemLiked = (dispatch,item ,type) => {
                     alert("Try Logging in");
                 }
                 else {
-                    alert("Liked Album "+item.name);
+                    alert("Liked Album " + item.name);
                 }
             })
     }
-    else if(type==='track'){
+    else if (type === 'track') {
         TrackServiceClient.instance
             .saveLike(item)
-            .then(response =>{
+            .then(response => {
                 if(response.status===501){
                     alert("Already liked");
                 }
@@ -250,11 +250,35 @@ export const itemLiked = (dispatch,item ,type) => {
                     alert("Try Logging in");
                 }
                 else {
-                    alert('Liked Track '+item.name);
+                    alert('Liked Track ' + item.name);
                 }
             })
     }
-}
+};
+
+export const itemDisliked = (dispatch, item, type) => {
+    if (type === 'album') {
+        AlbumServiceClient.instance
+            .saveDislike(item)
+            .then(response => {
+                alert('Disliked Album' + item.name);
+                AlbumServiceClient.instance
+                    .getLikedAlbums()
+                    .then(response => {
+                        response.json()
+                            .then((result) => {
+                                dispatch({
+                                    type: constants.FETCH_LIKED_ALBUMS,
+                                    likedAlbums: result
+                                })
+                            });
+                    });
+            })
+    }
+    else if (type === 'track') {
+        // to be done
+    }
+};
 
 export const createEvent = (dispatch, eventName, venueName, eventDate) => {
     let eventServiceClient = EventServiceClient.instance;
@@ -307,5 +331,20 @@ export const deleteEventForConcertManager = (dispatch, event) => {
                         })
                 })
         })
+};
+
+export const fetchLikedAlbums = (dispatch) => {
+    let albumServiceClient = AlbumServiceClient.instance;
+    albumServiceClient
+        .getLikedAlbums()
+        .then(response => {
+            response.json()
+                .then((result) => {
+                    dispatch({
+                        type: constants.FETCH_LIKED_ALBUMS,
+                        likedAlbums: result
+                    })
+                });
+        });
 };
 

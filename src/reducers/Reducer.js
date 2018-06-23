@@ -12,6 +12,7 @@ export const Reducer = (state = {
     eventDate: '',
     queryType: 'Album',
     eventsForConcertManager: [],
+    likedAlbums: [],
     albumResults: [],
     trackResults: [],
     artistResults: [],
@@ -194,6 +195,10 @@ export const Reducer = (state = {
             newState.eventsForConcertManager = action.events;
             return newState;
 
+        case constants.FETCH_LIKED_ALBUMS:
+            newState = Object.assign({}, state);
+            newState.likedAlbums = action.likedAlbums;
+            return newState;
         default:
             return state
     }
