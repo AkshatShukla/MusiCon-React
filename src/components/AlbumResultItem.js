@@ -2,9 +2,6 @@ import React from 'react'
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 
 const AlbumResultItem = ({result, selectedItem, toggleDetails, modalToggle, details, like,type}) => {
-    function showDetails() {
-        console.log(details.name);
-    }
 
     function renderListOfTracks() {
         if (details.tracks.length !== 0) {
@@ -45,15 +42,14 @@ const AlbumResultItem = ({result, selectedItem, toggleDetails, modalToggle, deta
                         </ul>
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="primary" onClick={() => showDetails()}>Do Something</Button>{' '}
-                        <Button color="secondary" onClick={toggleDetails}>Cancel</Button>
+                        <Button color="secondary" onClick={() => toggleDetails}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
             </div>
             <div className="card-footer">
                 <small className="text-muted">Release Date: {result.release_date}</small>
             </div>
-            <div className="card-footer " hidden={type===undefined}>
+            <div className="card-footer " hidden={type !== 'Listener'}>
                 <button className="btn btn-outline-secondary" onClick={() =>like(result,'album')}>
                     <span><i className="fa fa-thumbs-up"></i>&nbsp;</span>Like
                 </button>

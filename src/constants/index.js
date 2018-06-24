@@ -14,9 +14,10 @@ export const LAST_FM_TRACK_INFO_URL = 'http://ws.audioscrobbler.com/2.0/?method=
 export const LAST_FM_ALBUM_INFO_URL = 'http://ws.audioscrobbler.com/2.0/?method=album.getInfo&api_key=API_KEY';
 export const LAST_FM_ARTIST_INFO_URL = 'http://ws.audioscrobbler.com/2.0/?method=artist.getInfo&api_key=API_KEY';
 export const SET_DETAILS = 'SET_DETAILS';
-export const TOGGLE_DETAILS = 'TOGGLE_DETAILS';
+export const TOGGLE = 'TOGGLE';
 export const ALL_EVENTS_FOR_USER = 'ALL_EVENTS_FOR_USER';
 export const ADMIN_SAVE_USERS = 'ADMIN_SAVE_USERS';
 export const ALL_PLAYLIST_FOR_USER = 'ALL_PLAYLIST_FOR_USER';
 export const TRACKS_IN_PLAYLIST = 'TRACKS_IN_PLAYLIST';
 export const FETCH_LIKED_ITEMS = 'FETCH_LIKED_ITEMS';
+export const ARTISTS_IN_EVENT = 'ARTISTS_IN_EVENT';

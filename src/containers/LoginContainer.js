@@ -6,7 +6,11 @@ const dispatchToPropsMapper = dispatch => ({
     textChanged: (type, newText) => actions.textChanged(dispatch, type, newText),
     login: (username, password) => actions.login(dispatch, username, password),
     updateStateWithUserNameAndType: (username,type) =>
-        actions.updateStateWithUserNameAndType(dispatch,username,type)
+        actions.updateStateWithUserNameAndType(dispatch,username,type),
+    getPlaylist: () =>
+        actions.findAllPlaylistOfUser(dispatch),
+    getEvents: () =>
+        actions.findAllEventOfUser(dispatch)
 });
 
 const stateToPropsMapper = state => ({

@@ -18,6 +18,7 @@ export const Reducer = (state = {
     likedTracks: [],
     playlistsForListener: [],
     tracksInPlaylist: [],
+    artistsInEvent: [],
     albumResults: [],
     trackResults: [],
     artistResults: [],
@@ -36,7 +37,8 @@ export const Reducer = (state = {
     admin:{
         users:[]
     },
-    modalToggle: false
+    modalToggle: false,
+    playlistModalToggle: false
 }, action) => {
     let newState;
     switch (action.type) {
@@ -196,11 +198,18 @@ export const Reducer = (state = {
                     return newState;
             }
 
-        case constants.TOGGLE_DETAILS:
+        case constants.TOGGLE:
             newState = Object.assign({}, state);
-            newState.modalToggle = !newState.modalToggle;
-            console.log(newState);
-            return newState;
+            if (action.toggleType === 'details') {
+                newState.modalToggle = !newState.modalToggle;
+                console.log(newState);
+                return newState;
+            } else if (action.toggleType === 'playlist') {
+                newState.playlistModalToggle = !newState.playlistModalToggle;
+                console.log(newState);
+                return newState;
+            } else
+                return newState;
 
         case constants.ALL_EVENTS_FOR_USER:
             newState = Object.assign({}, state);
@@ -233,6 +242,11 @@ export const Reducer = (state = {
         case constants.TRACKS_IN_PLAYLIST:
             newState = Object.assign({}, state);
             newState.tracksInPlaylist = action.tracks;
+            return newState;
+
+        case constants.ARTISTS_IN_EVENT:
+            newState = Object.assign({}, state);
+            newState.artistsInEvent = action.artists;
             return newState;
 
         default:

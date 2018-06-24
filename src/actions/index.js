@@ -127,7 +127,7 @@ export const registerUser = (dispatch, username, password, verifyPassword, userT
     }
 };
 
-export const updateUser = (id ,user) => (
+export const updateUser = (user) => (
     UserServiceClient.instance
         .updateUser(user)
 );
@@ -220,11 +220,19 @@ export const selectedItem = (dispatch, artist, item, type) => {
     }
 };
 
-export const toggleDetails = (dispatch) => (
-    dispatch({
-        type: constants.TOGGLE_DETAILS
-    })
-);
+export const toggleDetails = (dispatch, toggleType) => {
+    if (toggleType === 'details'){
+        dispatch({
+            type: constants.TOGGLE,
+            toggleType: 'details'
+        })
+    } else if (toggleType === 'playlist') {
+        dispatch({
+            type: constants.TOGGLE,
+            toggleType: 'playlist'
+        })
+    }
+};
 
 export const itemLiked = (dispatch, item ,type) => {
     if (type === 'album') {
@@ -495,3 +503,21 @@ export const deleteUserAdmin = (dispatch,id) => {
                     })
                 })));
 };
+export const getArtistsInEvent = (dispatch, event) => {
+    let eventServiceClient = EventServiceClient.instance;
+    eventServiceClient
+        .getArtistsInEvent(event._id)
+        .then(response => {
+            response.json()
+                .then(results =>
+                dispatch({
+                    type: constants.ARTISTS_IN_EVENT,
+                    artists: results.artist
+                }))
+        })
+}
+
+export const addTrackToPlaylist = (dispatch, track, playlist) => {
+    // to be done
+};
+
