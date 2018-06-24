@@ -23,6 +23,23 @@ class AdminServiceClient {
             }
         });
     }
+    updateUser(user){
+        return fetch(constants.BASE_URL+'admin/user',{
+            method: 'post',
+            credentials: "include",
+            body:JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json'
+            }})
+    }
+    deleteUser(id){
+        return fetch(constants.BASE_URL+'admin/user/'+id,{
+            method: 'delete',
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json'
+            }})
+    }
 }
 
 export default AdminServiceClient;

@@ -127,7 +127,7 @@ export const registerUser = (dispatch, username, password, verifyPassword, userT
     }
 };
 
-export const updateUser = (user) => (
+export const updateUser = (id ,user) => (
     UserServiceClient.instance
         .updateUser(user)
 );
@@ -469,3 +469,29 @@ export const fetchLikedTracks = (dispatch) => {
         });
 };
 
+export const updateUserAdmin = (dispatch,user) => {
+    AdminServiceClient.instance
+        .updateUser(user)
+        .then(()=> AdminServiceClient.instance
+            .getUsers()
+            .then(response => response.json()
+                .then(users => {
+                    dispatch({
+                        type: constants.ADMIN_SAVE_USERS,
+                        users: users
+                    })
+                })));
+};
+export const deleteUserAdmin = (dispatch,id) => {
+    AdminServiceClient.instance
+        .deleteUser(id)
+        .then(()=> AdminServiceClient.instance
+            .getUsers()
+            .then(response => response.json()
+                .then(users => {
+                    dispatch({
+                        type: constants.ADMIN_SAVE_USERS,
+                        users: users
+                    })
+                })));
+};
