@@ -242,6 +242,7 @@ export const Reducer = (state = {
         case constants.TRACKS_IN_PLAYLIST:
             newState = Object.assign({}, state);
             newState.tracksInPlaylist = action.tracks;
+            newState.playlistModalToggle = !newState.playlistModalToggle;
             return newState;
 
         case constants.ARTISTS_IN_EVENT:

@@ -521,3 +521,7 @@ export const addTrackToPlaylist = (dispatch, track, playlist) => {
     // to be done
 };
 
+export const deleteTrackFromPlaylist = (dispatch, track, playlist) => {
+    // to be done
+};
+
