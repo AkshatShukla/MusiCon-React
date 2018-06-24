@@ -16,6 +16,7 @@ export const Reducer = (state = {
     eventsForConcertManager: [],
     likedAlbums: [],
     likedTracks: [],
+    followedArtists: [],
     playlistsForListener: [],
     tracksInPlaylist: [],
     artistsInEvent: [],
@@ -229,6 +230,9 @@ export const Reducer = (state = {
                     return newState;
                 case  'track':
                     newState.likedTracks = action.likedTracks;
+                    return newState;
+                case 'artist':
+                    newState.followedArtists = action.followedArtists;
                     return newState;
                 default:
                     return newState;

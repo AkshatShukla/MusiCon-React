@@ -23,6 +23,23 @@ class ArtistServiceClient {
             }
         });
     }
+
+    unfollow(item) {
+        return fetch(constants.BASE_URL + 'unfollowArtist',{
+            method: 'delete',
+            credentials: "include",
+            body: JSON.stringify(item),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+
+    getFollowedArtists() {
+        return fetch(constants.BASE_URL + 'followedArtists', {
+            credentials: 'include'
+        })
+    }
 }
 
 export default ArtistServiceClient;

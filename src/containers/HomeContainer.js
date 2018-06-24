@@ -14,6 +14,7 @@ import LikedTrackContainer from "./LikedTracksContainer";
 import CreatePlaylistContainer from "./CreatePlaylistContainer";
 // import EventsNearUserContainer from "../containers/EventsNearUserContainer";
 import ExploreAudiophileContainer from '../containers/ExploreAudiophileContainer'
+import FollowedArtistsContainer from "./FollowedArtistsContainer";
 class HomeComponent
     extends React.Component {
     render() {
@@ -37,6 +38,8 @@ class HomeComponent
                                component={LikedAlbumsContainer}/>
                         <Route path='/my-page/liked-tracks'
                                component={LikedTrackContainer}/>
+                        <Route path='/my-page/followed-artists'
+                               component={FollowedArtistsContainer}/>
                         <Route path='/manager'
                                component={OrganizeEventContainer}/>
                         <Route path='/playlist'
