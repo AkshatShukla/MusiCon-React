@@ -666,15 +666,12 @@ export const findAllAudiophile =(dispatch) => {
     AudiophileServiceClient.instance
         .getAllAudiophile()
         .then(response => response.json()
-            .then(result => console.log(result)))
-};
-
             .then(result =>
                 dispatch({
                     type: constants.AUDIOPHILE_RESULTS,
                     audiophiles: result
                 })))
-}
+};
 export const followAudiophile = (dispatch,id,username) => {
     AudiophileServiceClient.instance
         .followAudiophile(id)
