@@ -543,8 +543,20 @@ export const getArtistsInEvent = (dispatch, event, id) => {
 };
 
 export const addTrackToPlaylist = (dispatch, track, playlist) => {
-    console.log(track);
-    // to be done
+    let playlistServiceClient = PlaylistServiceClient.instance;
+    playlistServiceClient
+        .addTrackToPlaylist(playlist, track)
+        .then(response => {
+            if(response.status===501){
+                alert("Already liked");
+            }
+            else if(response.status===500){
+                alert("Try Logging in");
+            }
+            else {
+                alert('Liked Track ');
+            }
+        })
 };
 
 export const recommend = (dispatch, item, type) => {
