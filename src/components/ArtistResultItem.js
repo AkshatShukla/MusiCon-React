@@ -2,9 +2,6 @@ import React from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 const ArtistResultItem = ({result, selectedItem, toggleDetails, modalToggle, details, like, type}) => {
-    function showDetails() {
-        console.log(details.name);
-    }
 
     return (
         <div className="card shadow p-3 mb-5 bg-white rounded">
@@ -34,15 +31,14 @@ const ArtistResultItem = ({result, selectedItem, toggleDetails, modalToggle, det
                         {details.wiki !== undefined ? details.wiki.summary : 'No Summary Available'}
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="primary" onClick={() => showDetails()}>Do Something</Button>{' '}
-                        <Button color="secondary" onClick={toggleDetails}>Cancel</Button>
+                        <Button color="secondary" onClick={() => toggleDetails}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
             </div>
             <div className="card-footer">
                 <small className="text-muted">Followers: {result.followers.total}</small>
             </div>
-            <div className="card-footer " hidden={type===undefined}>
+            <div className="card-footer " hidden={type !== 'Listener'}>
                 <button onClick={() =>like(result,'artist')}>Follow</button>
             </div>
         </div>

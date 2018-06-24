@@ -6,7 +6,8 @@ import EventResultItem from './EventResultItem'
 
 const ResultList = ({
                         albumResults, trackResults, artistResults, eventResults,
-                        toggleDetails, modalToggle, details, flag, selectedItem, like, type
+                        toggleDetails, modalToggle, playlistModalToggle, details, flag, selectedItem, like, type, playlistsForListener,
+                        addTrackToPlaylist
                     }) => {
     const renderListOfResults = (results, f) => {
         if (results !== undefined) {
@@ -32,7 +33,10 @@ const ResultList = ({
                                          selectedItem={selectedItem}
                                          details={details}
                                          modalToggle={modalToggle}
+                                         playlistModalToggle={playlistModalToggle}
+                                         playlistsForListener={playlistsForListener}
                                          toggleDetails={toggleDetails}
+                                         addTrackToPlaylist={addTrackToPlaylist}
                                          type={type}
                                          like={like}/>
                     </div>

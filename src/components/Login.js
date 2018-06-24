@@ -14,6 +14,8 @@ export default class Login extends React.Component {
                 response.json()
                     .then(r2 => {
                         this.props.updateStateWithUserNameAndType(username, r2.type);
+                        this.props.getPlaylist();
+                        this.props.getEvents();
                         this.props.history.push('/my-page');
                     });
 

@@ -220,11 +220,19 @@ export const selectedItem = (dispatch, artist, item, type) => {
     }
 };
 
-export const toggleDetails = (dispatch) => (
-    dispatch({
-        type: constants.TOGGLE_DETAILS
-    })
-);
+export const toggleDetails = (dispatch, toggleType) => {
+    if (toggleType === 'details'){
+        dispatch({
+            type: constants.TOGGLE,
+            toggleType: 'details'
+        })
+    } else if (toggleType === 'playlist') {
+        dispatch({
+            type: constants.TOGGLE,
+            toggleType: 'playlist'
+        })
+    }
+};
 
 export const itemLiked = (dispatch, item ,type) => {
     if (type === 'album') {
@@ -467,5 +475,9 @@ export const fetchLikedTracks = (dispatch) => {
                     })
                 });
         });
+};
+
+export const addTrackToPlaylist = (dispatch, track, playlist) => {
+    // to be done
 };
 
