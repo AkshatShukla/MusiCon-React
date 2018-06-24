@@ -54,8 +54,8 @@ const NavigationBarComponent = ({type, logout}) => {
                 </div>
                 <div hidden={type !== 'Concert Manager'}>
                     <Link style={{display: 'block', height: '100%'}}
-                          className="navbar-nav" to="/manager">
-                        <button className="btn btn-dark">Manager's Page</button>
+                          className="navbar-nav" to="/my-page-manager">
+                        <button className="btn btn-dark">Concert Manager Page</button>
                     </Link>
                 </div>
                 <div hidden={type !== 'Listener'}>

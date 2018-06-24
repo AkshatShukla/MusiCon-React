@@ -1,4 +1,5 @@
 import * as constants from '../constants'
+
 let _singleton = Symbol();
 
 class AudiophileServiceClient {
@@ -13,8 +14,8 @@ class AudiophileServiceClient {
         return this[_singleton]
     }
 
-    recommend(item,type){
-        if(type==='album') {
+    recommend(item, type) {
+        if (type === 'album') {
             return fetch(constants.BASE_URL + 'audiophile/album', {
                 method: 'post',
                 credentials: "include",
@@ -35,8 +36,30 @@ class AudiophileServiceClient {
             });
         }
     }
-    getAllAudiophile(){
-        return fetch(constants.BASE_URL + 'audiophile',{
+
+    getAllAudiophile() {
+        return fetch(constants.BASE_URL + 'audiophile', {
+            method: 'get',
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    }
+
+    unfollowAudiophile(item) {
+        return fetch(constants.BASE_URL + 'audiophile/unfollowAudiophile',{
+            method: 'delete',
+            credentials: "include",
+            body: JSON.stringify(item),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+
+    getFollowedAudiophilesForUser() {
+        return fetch(constants.BASE_URL + 'audiophile/followedAudiophile', {
             method: 'get',
             credentials: "include",
             headers: {

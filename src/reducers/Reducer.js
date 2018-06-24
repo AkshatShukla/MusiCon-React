@@ -17,6 +17,7 @@ export const Reducer = (state = {
     likedAlbums: [],
     likedTracks: [],
     followedArtists: [],
+    followedAudiophiles: [],
     recommendedAlbums: [],
     recommendedTracks: [],
     playlistsForListener: [],
@@ -235,6 +236,9 @@ export const Reducer = (state = {
                     return newState;
                 case 'artist':
                     newState.followedArtists = action.followedArtists;
+                    return newState;
+                case 'audiophile':
+                    newState.followedAudiophiles = action.followedAudiophiles;
                     return newState;
                 default:
                     return newState;

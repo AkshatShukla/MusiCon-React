@@ -29,11 +29,6 @@ const UserStats = ({username}) => {
                                 </Link>
                             </CardBody>
                         </Card>
-                        <Card>
-                            <CardImg top width="100%"
-                                     src="https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=256&h=180"
-                                     alt="Card image cap"/>
-                        </Card>
                         <Card body inverse style={{backgroundColor: '#333', borderColor: '#333'}}>
                             <CardImg top width="100%" src={followed} alt="Card image cap"/>
                             <CardBody>
@@ -48,9 +43,14 @@ const UserStats = ({username}) => {
                             </CardBody>
                         </Card>
                         <Card body inverse style={{backgroundColor: '#333', borderColor: '#333'}}>
-                            <CardTitle>Special Title Treatment</CardTitle>
-                            <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-                            <Button>Button</Button>
+                            <CardTitle><h2>Audiophiles Followed</h2></CardTitle>
+                            <CardSubtitle>The audiophiles you follow!</CardSubtitle>
+                            <CardText>Click on the button below to show all the audiophiles you've been
+                                following</CardText>
+                            <Link style={{display: 'block', height: '100%'}}
+                                  to="/my-page/followed-audiophiles">
+                                <Button>Show</Button>
+                            </Link>
                         </Card>
                         <Card body inverse style={{backgroundColor: '#505050', borderColor: '#575757'}}>
                             <CardImg top width="100%" src={likedTrack} alt="Card image cap"/>
@@ -63,11 +63,6 @@ const UserStats = ({username}) => {
                                     <button className="btn btn-dark">Show</button>
                                 </Link>
                             </CardBody>
-                        </Card>
-                        <Card body inverse color="primary">
-                            <CardTitle>Special Title Treatment</CardTitle>
-                            <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-                            <Button color="secondary">Button</Button>
                         </Card>
                     </CardColumns>
                 </p>

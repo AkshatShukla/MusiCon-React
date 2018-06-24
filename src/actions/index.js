@@ -298,7 +298,7 @@ export const itemDisliked = (dispatch, item, type) => {
         AlbumServiceClient.instance
             .saveDislike(item)
             .then(response => {
-                alert('Disliked Album' + item.name);
+                alert('Disliked Album ' + item.name);
                 AlbumServiceClient.instance
                     .getLikedAlbums()
                     .then(response => {
@@ -317,7 +317,7 @@ export const itemDisliked = (dispatch, item, type) => {
         TrackServiceClient.instance
             .saveDislike(item)
             .then(response => {
-                alert('Disliked Track' + item.name);
+                alert('Disliked Track ' + item.name);
                 TrackServiceClient.instance
                     .getLikedTracks()
                     .then(response => {
@@ -336,7 +336,7 @@ export const itemDisliked = (dispatch, item, type) => {
         ArtistServiceClient.instance
             .unfollow(item)
             .then(response => {
-                alert('Un-followed Artist' + item.name);
+                alert('Un-followed Artist ' + item.name);
                 ArtistServiceClient.instance
                     .getFollowedArtists()
                     .then(response => {
@@ -346,6 +346,26 @@ export const itemDisliked = (dispatch, item, type) => {
                                     type: constants.FETCH_LIKED_ITEMS,
                                     itemType: 'artist',
                                     followedArtists: result
+                                })
+                            });
+                    });
+            })
+    }
+    else if (type === 'audiophile') {
+        AudiophileServiceClient.instance
+            .unfollowAudiophile(item)
+            .then(response => {
+                alert('Un-followed Audiophile ' + item.username);
+                let audiophileServiceClient = AudiophileServiceClient.instance;
+                audiophileServiceClient
+                    .getFollowedAudiophilesForUser()
+                    .then(response => {
+                        response.json()
+                            .then((result) => {
+                                dispatch({
+                                    type: constants.FETCH_LIKED_ITEMS,
+                                    itemType: 'audiophile',
+                                    followedAudiophiles: result
                                 })
                             });
                     });
@@ -518,20 +538,36 @@ export const fetchLikedTracks = (dispatch) => {
         });
 };
 
-export const fetchFollowedArtists = (dispatch) => {
-    let artistServiceClient = ArtistServiceClient.instance;
-    artistServiceClient
-        .getFollowedArtists()
-        .then(response => {
-            response.json()
-                .then((result) => {
-                    dispatch({
-                        type: constants.FETCH_LIKED_ITEMS,
-                        itemType: 'artist',
-                        followedArtists: result
-                    })
-                });
-        });
+export const fetchFollowed = (dispatch, type) => {
+    if (type === 'artist') {
+        let artistServiceClient = ArtistServiceClient.instance;
+        artistServiceClient
+            .getFollowedArtists()
+            .then(response => {
+                response.json()
+                    .then((result) => {
+                        dispatch({
+                            type: constants.FETCH_LIKED_ITEMS,
+                            itemType: 'artist',
+                            followedArtists: result
+                        })
+                    });
+            });
+    } else if (type === 'audiophile') {
+        let audiophileServiceClient = AudiophileServiceClient.instance;
+        audiophileServiceClient
+            .getFollowedAudiophilesForUser()
+            .then(response => {
+                response.json()
+                    .then((result) => {
+                        dispatch({
+                            type: constants.FETCH_LIKED_ITEMS,
+                            itemType: 'audiophile',
+                            followedAudiophiles: result
+                        })
+                    });
+            });
+    }
 };
 
 export const updateUserAdmin = (dispatch, user) => {

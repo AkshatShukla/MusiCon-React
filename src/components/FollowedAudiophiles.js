@@ -1,22 +1,22 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
 import {Button, Jumbotron} from 'reactstrap';
-import FollowedArtistItem from './FollowedArtistItem';
+import FollowedAudiophileItem from "./FollowedAudiophileItem";
 
-class FollowedArtists extends React.Component {
+class FollowedAudiophiles extends React.Component {
 
     constructor(props) {
         super(props);
-        this.props.fetchFollowedArtists('artist');
+        this.props.fetchFollowedAudiophiles('audiophile');
     }
 
-    showArtists() {
-        console.log(this.props.followedArtists);
-        return this.props.followedArtists.map((followedArtist) => (
+    showAudiophiles() {
+        console.log(this.props.followedAudiophiles);
+        return this.props.followedAudiophiles.map((followedAudiophile) => (
             <div className="col-sm-3"
-                 key={followedArtist._id}>
-                <FollowedArtistItem artist={followedArtist}
-                                    unfollowArtist={this.props.unfollowArtist}/>
+                 key={followedAudiophile._id}>
+                <FollowedAudiophileItem audiophile={followedAudiophile}
+                                        unfollowAudiophile={this.props.unfollowAudiophile}/>
             </div>
         ))
     }
@@ -25,8 +25,8 @@ class FollowedArtists extends React.Component {
         return (
             <div>
                 <Jumbotron>
-                    <h1 className="display-3">Artists Followed</h1>
-                    <p className="lead">All the music artists you love songs of</p>
+                    <h1 className="display-3">Audiophiles Followed</h1>
+                    <p className="lead">All the audiophiles you currently follow</p>
                     <hr className="my-2"/>
                     <Link style={{display: 'block', height: '100%'}}
                           to="/my-page">
@@ -35,7 +35,7 @@ class FollowedArtists extends React.Component {
                 </span>My Page</Button>
                     </Link>
                     <div className="card-deck row">
-                        {this.showArtists()}
+                        {this.showAudiophiles()}
                     </div>
                 </Jumbotron>
             </div>
@@ -43,4 +43,4 @@ class FollowedArtists extends React.Component {
     }
 }
 
-export default FollowedArtists;
+export default FollowedAudiophiles;

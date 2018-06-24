@@ -3,8 +3,8 @@ import {connect} from "react-redux";
 import * as actions from "../actions";
 
 const dispatchToPropsMapper = dispatch => ({
-    fetchFollowedArtists: () =>
-        actions.fetchFollowedArtists(dispatch),
+    fetchFollowedArtists: (type) =>
+        actions.fetchFollowed(dispatch, type),
     unfollowArtist: (artist, type) =>
         actions.itemDisliked(dispatch, artist, type)
 });

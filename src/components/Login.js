@@ -23,7 +23,7 @@ export default class Login extends React.Component {
                         } else if (this.props.userType === 'Listener') {
                             this.props.history.push('/my-page');
                         } else if (this.props.userType === 'Concert Manager') {
-                            this.props.history.push('/manager');
+                            this.props.history.push('/my-page-manager');
                         } else if (this.props.userType === 'Admin') {
                             this.props.history.push('/admin-page')
                         }
