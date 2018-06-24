@@ -35,6 +35,15 @@ class AudiophileServiceClient {
             });
         }
     }
+    getAllAudiophile(){
+        return fetch(constants.BASE_URL + 'audiophile',{
+            method: 'get',
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    }
 }
 
 export default AudiophileServiceClient;

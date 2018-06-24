@@ -13,7 +13,7 @@ import LikedAlbumsContainer from "./LikedAlbumsContainer";
 import LikedTrackContainer from "./LikedTracksContainer";
 import CreatePlaylistContainer from "./CreatePlaylistContainer";
 // import EventsNearUserContainer from "../containers/EventsNearUserContainer";
-
+import ExploreAudiophileContainer from '../containers/ExploreAudiophileContainer'
 class HomeComponent
     extends React.Component {
     render() {
@@ -43,6 +43,8 @@ class HomeComponent
                                component={CreatePlaylistContainer}/>
                         <Route path='/admin-page'
                                component={AdminPageContainer}/>
+                        <Route path='/explore'
+                               component={ExploreAudiophileContainer}/>
                         <Route exact path='/'
                                component={SearchContainer}/>
                     </div>

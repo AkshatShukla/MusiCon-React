@@ -546,4 +546,10 @@ export const recommend = (dispatch, item, type) =>{
             }
         })
 }
+export const findAllAudiophile =(dispatch) => {
+    AudiophileServiceClient.instance
+        .getAllAudiophile()
+        .then(response => response.json()
+            .then(result => console.log(result)))
+}
 
