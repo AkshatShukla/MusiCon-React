@@ -32,13 +32,20 @@ const EventListItem = ({event, deleteEvent, getArtistsInEvent, artistsInEvent, e
             { id!==event._id &&<div className="card-footer">
                     <small className="text-muted">Date: {event.date.substr(0, 10)}</small>
             </div>}
-            { id===event._id && <input type='date' onChange={(e) => textChanged(e.target.value,'date')} />}
+            { id===event._id && <input type='date'
+                                       style={{marginBottom: '10px'}}
+                                       onChange={(e) => textChanged(e.target.value,'date')} />}
             { id!==event._id &&<button className='btn btn-outline-dark'
                                        onClick={() => getArtistsInEvent(event, event._id)}
                                        style={{marginBottom: '10px'}}>Artists In Event</button>}
-            { id!==event._id &&<button className='btn' style={{marginBottom: '10px'}} onClick={() => editEvent(event._id)}>Edit</button>}
-            { id===event._id &&<button className='btn' style={{marginBottom: '10px'}} onClick={() => updateEvent(event._id)}>Update</button>}
-            { id!==event._id &&<button className='btn btn-outline-danger' onClick={() => deleteEvent(event)}>Delete</button>}
+            { id!==event._id &&<button className='btn btn-outline-dark'
+                                       style={{marginBottom: '10px'}}
+                                       onClick={() => editEvent(event._id)}>Edit</button>}
+            { id===event._id &&<button className='btn btn-outline-success'
+                                       style={{marginBottom: '10px'}}
+                                       onClick={() => updateEvent(event._id)}>Update</button>}
+            { id!==event._id &&<button className='btn btn-outline-danger'
+                                       onClick={() => deleteEvent(event)}>Delete</button>}
             <Modal isOpen={eventModalToggle === event._id} toggle={() => toggleEvent('')} backdrop={true}
                    centered={true}>
                 <ModalHeader toggle={() => toggleEvent('')}>{event.name} Event</ModalHeader>
