@@ -47,6 +47,23 @@ class EventServiceClient {
     getArtistsInEvent(eventId) {
         return fetch(constants.BASE_URL + 'event/' + eventId + '/artists')
     }
+
+    addArtistToEvent(event, artist) {
+        return fetch(constants.BASE_URL + 'event/' + event._id + '/addartist', {
+            method: 'post',
+            body: JSON.stringify(artist),
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    }
+
+    deleteArtistFromEvent(event, artist) {
+        return fetch(constants.BASE_URL + 'event/' + event._id + '/artist/' + artist._id, {
+            method: 'delete'
+        })
+    }
 }
 
 export default EventServiceClient;

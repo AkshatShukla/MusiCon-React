@@ -576,12 +576,11 @@ export const recommend = (dispatch, item, type) => {
 };
 
 export const deleteTrackFromPlaylist = (dispatch, track, playlist) => {
-    console.log(track)
-    console.log(playlist)
     let playlistServiceClient = PlaylistServiceClient.instance;
     playlistServiceClient
         .deleteTrackFromPlaylist(playlist, track)
         .then(() => {
+            alert('track removed');
             playlistServiceClient
                 .getTracksInPlaylist(playlist._id)
                 .then(response => {
@@ -596,12 +595,35 @@ export const deleteTrackFromPlaylist = (dispatch, track, playlist) => {
 };
 
 export const addArtistToEvent = (dispatch, artist, event) => {
-    console.log(artist);
-    // to be done
+    let eventServiceClient = EventServiceClient.instance;
+    eventServiceClient
+        .addArtistToEvent(event, artist)
+        .then(response => {
+            if (response.status === 501)
+                alert('Already Added')
+            else if (response.status === 500)
+                alert('try logging again')
+            else
+                alert('Artist Added to Event')
+        })
 };
 
 export const deleteArtistFromEvent = (dispatch, artist, event) => {
-    console.log(artist);
-    // to be done
+    let eventServiceClient = EventServiceClient.instance;
+    eventServiceClient
+        .deleteArtistFromEvent(event, artist)
+        .then(() => {
+            alert('artist removed from event');
+            eventServiceClient
+                .getArtistsInEvent(event._id)
+                .then(response => {
+                    response.json()
+                        .then(results =>
+                            dispatch({
+                                type: constants.ARTISTS_IN_EVENT,
+                                artists: results.artist
+                            }))
+                })
+        })
 };
 
