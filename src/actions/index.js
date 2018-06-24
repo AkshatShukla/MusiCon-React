@@ -8,6 +8,7 @@ import TrackServiceClient from '../services/track.service.client';
 import ArtistServiceClient from "../services/artist.service.client";
 import AdminServiceClient from "../services/admin.service.client";
 import PlaylistServiceClient from "../services/playlist.service.client";
+import AudiophileServiceClient from "../services/audiophile.service.client";
 
 export const queryChanged = (dispatch, newQuery) => (
     dispatch({
@@ -520,4 +521,8 @@ export const getArtistsInEvent = (dispatch, event) => {
 export const addTrackToPlaylist = (dispatch, track, playlist) => {
     // to be done
 };
+export const recommend = (dispatch, item, type) =>{
+    AudiophileServiceClient.instance
+        .recommend(item,type)
+}
 

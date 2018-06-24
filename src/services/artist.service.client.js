@@ -14,7 +14,6 @@ class ArtistServiceClient {
     }
 
     follow(item){
-        console.log('save like for artist');
         return fetch(constants.BASE_URL+'followArtist',{
             method: 'post',
             credentials: "include",
