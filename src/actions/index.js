@@ -154,18 +154,25 @@ export const login = (dispatch, username, password) => (
 
 );
 
-export const searchEventsForUser = (dispatch, city) => {
-    if (city !== undefined) {
-        SearchServiceClient.instance
-            .searchEventsForUser(city)
-            .then(response => response.json()
-                .then(results => dispatch({
-                        type: constants.SEARCH,
-                        flag: 'eventsforuser',
-                        results: results
-                    })
-                ))
-    }
+export const searchEventsForUser = (dispatch) => {
+    EventServiceClient.instance
+        .findEventsForUser()
+        .then(response => {
+            if (response.status === 501) {
+                alert('Please Update Location Information in profile Page')
+            }
+            else{
+            response.json()
+            .then(result => {
+
+
+                dispatch({
+                    type: constants.EVENTS_NEAR_USER,
+                    events: result
+                })}
+            )}})
+
+
 };
 
 export const logout = (dispatch) => (
@@ -582,10 +589,10 @@ export const addTrackToPlaylist = (dispatch, track, playlist) => {
     playlistServiceClient
         .addTrackToPlaylist(playlist, track)
         .then(response => {
-            if(response.status===501){
+            if (response.status === 501) {
                 alert("Already Added");
             }
-            else if(response.status===500){
+            else if (response.status === 500) {
                 alert("Try Logging in");
             }
             else {
@@ -662,7 +669,7 @@ export const deleteArtistFromEvent = (dispatch, artist, event) => {
         })
 };
 
-export const findAllAudiophile =(dispatch) => {
+export const findAllAudiophile = (dispatch) => {
     AudiophileServiceClient.instance
         .getAllAudiophile()
         .then(response => response.json()
@@ -672,21 +679,21 @@ export const findAllAudiophile =(dispatch) => {
                     audiophiles: result
                 })))
 };
-export const followAudiophile = (dispatch,id,username) => {
+export const followAudiophile = (dispatch, id, username) => {
     AudiophileServiceClient.instance
         .followAudiophile(id)
         .then(response => {
-            if(response.status===501){
-                alert('Already Followed '+username);
+            if (response.status === 501) {
+                alert('Already Followed ' + username);
             }
-            else{
-                alert('Followed Audiophile '+username);
+            else {
+                alert('Followed Audiophile ' + username);
             }
         })
 }
-export const getAudiophileContent = (dispatch,id,type) => {
+export const getAudiophileContent = (dispatch, id, type) => {
     AudiophileServiceClient.instance
-        .getAudiophileContent(id,type)
+        .getAudiophileContent(id, type)
         .then(response => response.json()
             .then(result => dispatch({
                 type: constants.AUDIOPHILE_RECOMMEND_RESULTS,

@@ -44,7 +44,8 @@ export const Reducer = (state = {
     eventModalToggle: '',
     audiophileItemType :'',
     audiophileItems: [],
-    audiophileDetailsId:''
+    audiophileDetailsId:'',
+    eventsNearUser:[]
 }, action) => {
     let newState;
     switch (action.type) {
@@ -280,6 +281,10 @@ export const Reducer = (state = {
         case constants.CLOSE_AUDIOPHILE_DETAILS:
             newState = Object.assign({}, state);
             newState.audiophileDetailsId = '';
+            return newState;
+        case constants.EVENTS_NEAR_USER:
+            newState = Object.assign({}, state);
+            newState.eventsNearUser = action.events;
             return newState;
 
         default:

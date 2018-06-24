@@ -7,6 +7,7 @@ import {
 import likedAlbum from '../images/facebook_like.png';
 import followed from '../images/artist-followed.png';
 import likedTrack from '../images/track-liked.png';
+import EventsNearUserContainer from "../containers/EventsNearUserContainer";
 
 const UserStats = ({username}) => {
     return (
@@ -72,6 +73,7 @@ const UserStats = ({username}) => {
                     </CardColumns>
                 </p>
             </Jumbotron>
+            <EventsNearUserContainer/>
         </div>
     )
 };
