@@ -9,6 +9,7 @@ export const Reducer = (state = {
     eventLocation: '',
     query: '',
     eventName: '',
+    dob: '',
     venueName: '',
     eventDate: '',
     playlistName: '',
