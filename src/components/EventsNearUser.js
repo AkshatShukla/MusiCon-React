@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import * as actions from '../actions';
 import {Button, Jumbotron} from 'reactstrap';
 import LocalEventItem from "./LocalEventItem";
 import TicketMasterEventItem from "./TicketMasterEventItem";
