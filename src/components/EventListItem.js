@@ -29,13 +29,15 @@ const EventListItem = ({event, deleteEvent, getArtistsInEvent, artistsInEvent, e
                 { id===event._id &&<input placeholder={event.location}
                                           onChange={(e) => textChanged(e.target.value,'loc')}/>}
             </div>
-            <div className="card-footer">
+            { id!==event._id &&<div className="card-footer">
                     <small className="text-muted">Date: {event.date.substr(0, 10)}</small>
-            </div>
-            <button className='btn' onClick={() => getArtistsInEvent(event, event._id)}>Artists In Event</button>
+            </div>}
+            { id===event._id && <input type='date' onChange={(e) => textChanged(e.target.value,'date')} />}
+            { id!==event._id &&<button className='btn' onClick={() => getArtistsInEvent(event, event._id)}>
+                Artists In Event</button>}
             { id!==event._id &&<button className='btn' onClick={() => editEvent(event._id)}>Edit</button>}
             { id===event._id &&<button className='btn' onClick={() => updateEvent(event._id)}>Update</button>}
-            <button className='btn' onClick={() => deleteEvent(event)}>Delete</button>
+            { id!==event._id &&<button className='btn' onClick={() => deleteEvent(event)}>Delete</button>}
             <Modal isOpen={eventModalToggle === event._id} toggle={() => toggleEvent('')} backdrop={true}
                    centered={true}>
                 <ModalHeader toggle={() => toggleEvent('')}>{event.name} Event</ModalHeader>

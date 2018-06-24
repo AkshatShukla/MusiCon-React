@@ -34,10 +34,13 @@ export default class EventOfManager extends React.Component {
     textChanged(text,type){
         if(type==='title'){this.setState({title:text});}
         else if(type==='loc'){this.setState({location:text});}
-
+        else if(type==='date'){this.setState({date:text})}
     }
-    updateEvent(id){
-        this.props.updateEvent({name:this.state.title,location:this.state.location,_id:this.state.id});
+    updateEvent(){
+        this.props.updateEvent({name:this.state.title,
+                                location:this.state.location,
+                                _id:this.state.id,
+                                 date:this.state.date});
         this.setState({id:''})
     }
     editEvent(id){
