@@ -4,7 +4,10 @@ import {
     Jumbotron, Card, Button, CardImg, CardTitle, CardText, CardColumns,
     CardSubtitle, CardBody
 } from 'reactstrap';
-import like from '../images/facebook_like.png';
+import likedAlbum from '../images/facebook_like.png';
+import followed from '../images/artist-followed.png';
+import likedTrack from '../images/track-liked.png';
+import EventsNearUserContainer from "../containers/EventsNearUserContainer";
 
 const UserStats = ({username}) => {
     return (
@@ -15,10 +18,10 @@ const UserStats = ({username}) => {
                 <hr className="my-2"/>
                 <p>
                     <CardColumns>
-                        <Card>
-                            <CardImg top width="100%" src={like} alt="Card image cap"/>
+                        <Card body inverse style={{backgroundColor: '#565656', borderColor: '#4e4e4e'}}>
+                            <CardImg top width="100%" src={likedAlbum} alt="Card image cap"/>
                             <CardBody>
-                                <CardTitle><h2>Liked Albums</h2></CardTitle>
+                                <CardTitle><h2>Albums Liked</h2></CardTitle>
                                 <CardSubtitle>The albums you love!</CardSubtitle>
                                 <CardText>Click on the button below to show all the albums you love.</CardText>
                                 <Link style={{display: 'block', height: '100%'}}
@@ -32,13 +35,17 @@ const UserStats = ({username}) => {
                                      src="https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=256&h=180"
                                      alt="Card image cap"/>
                         </Card>
-                        <Card>
+                        <Card body inverse style={{backgroundColor: '#333', borderColor: '#333'}}>
+                            <CardImg top width="100%" src={followed} alt="Card image cap"/>
                             <CardBody>
-                                <CardTitle>Card title</CardTitle>
-                                <CardSubtitle>Card subtitle</CardSubtitle>
-                                <CardText>This card has supporting text below as a natural lead-in to additional
-                                    content.</CardText>
-                                <Button>Button</Button>
+                                <CardTitle><h2>Artists Followed</h2></CardTitle>
+                                <CardSubtitle>The artists you follow!</CardSubtitle>
+                                <CardText>Click on the button below to show all the artists you've been
+                                    following</CardText>
+                                <Link style={{display: 'block', height: '100%'}}
+                                      to="/my-page/followed-artists">
+                                    <Button>Show</Button>
+                                </Link>
                             </CardBody>
                         </Card>
                         <Card body inverse style={{backgroundColor: '#333', borderColor: '#333'}}>
@@ -46,14 +53,12 @@ const UserStats = ({username}) => {
                             <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
                             <Button>Button</Button>
                         </Card>
-                        <Card>
-                            <CardImg top width="100%" src={like} alt="Card image cap"/>
+                        <Card body inverse style={{backgroundColor: '#505050', borderColor: '#575757'}}>
+                            <CardImg top width="100%" src={likedTrack} alt="Card image cap"/>
                             <CardBody>
-                                <CardTitle><h2>Liked Tracks</h2></CardTitle>
+                                <CardTitle><h2>Tracks Liked</h2></CardTitle>
                                 <CardSubtitle>The tracks you love!</CardSubtitle>
-                                <CardText>This is a wider card with supporting text below as a natural lead-in to
-                                    additional content. This card has even longer content than the first to show that
-                                    equal height action.</CardText>
+                                <CardText>Click on the button below to show all the tracks you love.</CardText>
                                 <Link style={{display: 'block', height: '100%'}}
                                       to="/my-page/liked-tracks">
                                     <button className="btn btn-dark">Show</button>
@@ -68,6 +73,7 @@ const UserStats = ({username}) => {
                     </CardColumns>
                 </p>
             </Jumbotron>
+            <EventsNearUserContainer/>
         </div>
     )
 };

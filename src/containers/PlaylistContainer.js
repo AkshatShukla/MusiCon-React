@@ -7,7 +7,8 @@ const dispatchToPropsMapper = dispatch => ({
     deletePlaylist: (playlist) => actions.deletePlaylist(dispatch, playlist),
     getTracksInPlaylist: (playlist, id) => actions.getTracksInPlaylist(dispatch, playlist, id),
     toggleDetails: (type) => actions.toggleDetails(dispatch, type),
-    deleteTrackFromPlaylist: (track, playlist) => actions.deleteTrackFromPlaylist(dispatch, track, playlist)
+    deleteTrackFromPlaylist: (track, playlist) => actions.deleteTrackFromPlaylist(dispatch, track, playlist),
+    updatePlaylist: (playlist) => actions.updatePlaylist(dispatch,playlist)
 });
 
 

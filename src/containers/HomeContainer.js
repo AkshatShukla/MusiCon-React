@@ -18,6 +18,7 @@ import AllLikedAlbumContainer from "./AllLikedAlbumContainer";
 import AllLikedTrackContainer from "./AllLikedTrackContainer";
 import AllRecommendedAlbumContainer from "./AllRecommendedAlbumContainer";
 import AllRecommendedTrackContainer from "./AllRecommendedTrackContainer";
+import FollowedArtistsContainer from "./FollowedArtistsContainer";
 class HomeComponent
     extends React.Component {
     render() {
@@ -41,6 +42,8 @@ class HomeComponent
                                component={LikedAlbumsContainer}/>
                         <Route path='/my-page/liked-tracks'
                                component={LikedTrackContainer}/>
+                        <Route path='/my-page/followed-artists'
+                               component={FollowedArtistsContainer}/>
                         <Route path='/manager'
                                component={OrganizeEventContainer}/>
                         <Route path='/playlist'

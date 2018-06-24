@@ -17,12 +17,14 @@ export const Reducer = (state = {
     eventsForConcertManager: [],
     likedAlbums: [],
     likedTracks: [],
+    followedArtists: [],
     playlistsForListener: [],
     tracksInPlaylist: [],
     artistsInEvent: [],
     albumResults: [],
     trackResults: [],
     artistResults: [],
+    audiophileResults: [],
     searchFlag: '',
     details: {
         name: '',
@@ -44,7 +46,11 @@ export const Reducer = (state = {
     },
     modalToggle: '',
     playlistModalToggle: '',
-    eventModalToggle: ''
+    eventModalToggle: '',
+    audiophileItemType :'',
+    audiophileItems: [],
+    audiophileDetailsId:'',
+    eventsNearUser:[]
 }, action) => {
     let newState;
     switch (action.type) {
@@ -237,6 +243,9 @@ export const Reducer = (state = {
                 case  'track':
                     newState.likedTracks = action.likedTracks;
                     return newState;
+                case 'artist':
+                    newState.followedArtists = action.followedArtists;
+                    return newState;
                 default:
                     return newState;
             }
@@ -261,6 +270,28 @@ export const Reducer = (state = {
             newState = Object.assign({}, state);
             newState.artistsInEvent = action.artists;
             newState.eventModalToggle = action.id;
+            return newState;
+
+        case constants.AUDIOPHILE_RESULTS:
+            newState = Object.assign({}, state);
+            newState.audiophileResults = action.audiophiles;
+            return newState;
+        case constants.AUDIOPHILE_RECOMMEND_RESULTS:
+            newState = Object.assign({}, state);
+            newState.audiophileItemType = action.audiophileResultType;
+            newState.audiophileItems = action.items;
+            return newState;
+        case constants.OPEN_AUDIOPHILE_DETAILS:
+            newState = Object.assign({}, state);
+            newState.audiophileDetailsId = action.id;
+            return newState;
+        case constants.CLOSE_AUDIOPHILE_DETAILS:
+            newState = Object.assign({}, state);
+            newState.audiophileDetailsId = '';
+            return newState;
+        case constants.EVENTS_NEAR_USER:
+            newState = Object.assign({}, state);
+            newState.eventsNearUser = action.events;
             return newState;
 
         case constants.ALL_LIKED_ALBUM:

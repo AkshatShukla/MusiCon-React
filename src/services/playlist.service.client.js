@@ -63,6 +63,16 @@ class PlaylistServiceClient {
             method: 'delete'
         })
     }
+    updatePlaylist(playlist){
+        return fetch(constants.BASE_URL + 'playlist' , {
+            method: 'put',
+            body:JSON.stringify(playlist),
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    }
 }
 
 export default PlaylistServiceClient;

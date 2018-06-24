@@ -161,18 +161,25 @@ export const login = (dispatch, username, password) => (
 
 );
 
-export const searchEventsForUser = (dispatch, city) => {
-    if (city !== undefined) {
-        SearchServiceClient.instance
-            .searchEventsForUser(city)
-            .then(response => response.json()
-                .then(results => dispatch({
-                        type: constants.SEARCH,
-                        flag: 'eventsforuser',
-                        results: results
-                    })
-                ))
-    }
+export const searchEventsForUser = (dispatch) => {
+    EventServiceClient.instance
+        .findEventsForUser()
+        .then(response => {
+            if (response.status === 501) {
+                alert('Please Update Location Information in profile Page')
+            }
+            else{
+            response.json()
+            .then(result => {
+
+
+                dispatch({
+                    type: constants.EVENTS_NEAR_USER,
+                    events: result
+                })}
+            )}})
+
+
 };
 
 export const logout = (dispatch) => (
@@ -334,6 +341,25 @@ export const itemDisliked = (dispatch, item, type) => {
                                     type: constants.FETCH_LIKED_ITEMS,
                                     itemType: 'track',
                                     likedTracks: result
+                                })
+                            });
+                    });
+            })
+    }
+    else if (type === 'artist') {
+        ArtistServiceClient.instance
+            .unfollow(item)
+            .then(response => {
+                alert('Un-followed Artist' + item.name);
+                ArtistServiceClient.instance
+                    .getFollowedArtists()
+                    .then(response => {
+                        response.json()
+                            .then((result) => {
+                                dispatch({
+                                    type: constants.FETCH_LIKED_ITEMS,
+                                    itemType: 'artist',
+                                    followedArtists: result
                                 })
                             });
                     });
@@ -506,6 +532,22 @@ export const fetchLikedTracks = (dispatch) => {
         });
 };
 
+export const fetchFollowedArtists = (dispatch) => {
+    let artistServiceClient = ArtistServiceClient.instance;
+    artistServiceClient
+        .getFollowedArtists()
+        .then(response => {
+            response.json()
+                .then((result) => {
+                    dispatch({
+                        type: constants.FETCH_LIKED_ITEMS,
+                        itemType: 'artist',
+                        followedArtists: result
+                    })
+                });
+        });
+};
+
 export const updateUserAdmin = (dispatch, user) => {
     AdminServiceClient.instance
         .updateUser(user)
@@ -638,7 +680,58 @@ export const findAllAudiophile = (dispatch) => {
     AudiophileServiceClient.instance
         .getAllAudiophile()
         .then(response => response.json()
-            .then(result => console.log(result)))
+            .then(result =>
+                dispatch({
+                    type: constants.AUDIOPHILE_RESULTS,
+                    audiophiles: result
+                })))
+};
+
+export const followAudiophile = (dispatch, id, username) => {
+    AudiophileServiceClient.instance
+        .followAudiophile(id)
+        .then(response => {
+            if (response.status === 501) {
+                alert('Already Followed ' + username);
+            }
+            else {
+                alert('Followed Audiophile ' + username);
+            }
+        })
+};
+
+export const getAudiophileContent = (dispatch, id, type) => {
+    AudiophileServiceClient.instance
+        .getAudiophileContent(id, type)
+        .then(response => response.json()
+            .then(result => dispatch({
+                type: constants.AUDIOPHILE_RECOMMEND_RESULTS,
+                items: result,
+                audiophileResultType: type
+            }))
+        )
+    dispatch({
+        type: constants.OPEN_AUDIOPHILE_DETAILS,
+        id: id
+    })
+};
+
+export const closeContentPane = (dispatch) => {
+    dispatch({
+        type: constants.CLOSE_AUDIOPHILE_DETAILS,
+    })
+};
+
+export const updateEvent = (dispatch,event) => {
+    EventServiceClient.instance
+        .updateEvent(event)
+        .then(response =>findAllEventOfUser(dispatch) )
+};
+
+export const updatePlaylist = (dispatch,playlist) => {
+    PlaylistServiceClient.instance
+        .updatePlaylist(playlist)
+        .then(response => findAllPlaylistOfUser(dispatch))
 };
 
 export const allLikedAlbum = (dispatch) => {
