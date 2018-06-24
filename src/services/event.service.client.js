@@ -72,6 +72,16 @@ class EventServiceClient {
         })
 
     }
+    updateEvent(event){
+        return fetch(constants.BASE_URL + 'event' , {
+            method: 'put',
+            body:JSON.stringify(event),
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    }
 }
 
 export default EventServiceClient;

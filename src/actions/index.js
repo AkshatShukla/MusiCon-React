@@ -711,3 +711,8 @@ export const closeContentPane = (dispatch) => {
         type: constants.CLOSE_AUDIOPHILE_DETAILS,
     })
 }
+export const updateEvent = (dispatch,event) => {
+    EventServiceClient.instance
+        .updateEvent(event)
+        .then(response =>findAllEventOfUser(dispatch) )
+}
