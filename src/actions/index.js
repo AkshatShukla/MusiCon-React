@@ -332,6 +332,25 @@ export const itemDisliked = (dispatch, item, type) => {
                     });
             })
     }
+    else if (type === 'artist') {
+        ArtistServiceClient.instance
+            .unfollow(item)
+            .then(response => {
+                alert('Un-followed Artist' + item.name);
+                ArtistServiceClient.instance
+                    .getFollowedArtists()
+                    .then(response => {
+                        response.json()
+                            .then((result) => {
+                                dispatch({
+                                    type: constants.FETCH_LIKED_ITEMS,
+                                    itemType: 'artist',
+                                    followedArtists: result
+                                })
+                            });
+                    });
+            })
+    }
 };
 
 export const createEvent = (dispatch, eventName, venueName, eventDate) => {
@@ -499,6 +518,22 @@ export const fetchLikedTracks = (dispatch) => {
         });
 };
 
+export const fetchFollowedArtists = (dispatch) => {
+    let artistServiceClient = ArtistServiceClient.instance;
+    artistServiceClient
+        .getFollowedArtists()
+        .then(response => {
+            response.json()
+                .then((result) => {
+                    dispatch({
+                        type: constants.FETCH_LIKED_ITEMS,
+                        itemType: 'artist',
+                        followedArtists: result
+                    })
+                });
+        });
+};
+
 export const updateUserAdmin = (dispatch, user) => {
     AdminServiceClient.instance
         .updateUser(user)
@@ -631,6 +666,9 @@ export const findAllAudiophile =(dispatch) => {
     AudiophileServiceClient.instance
         .getAllAudiophile()
         .then(response => response.json()
+            .then(result => console.log(result)))
+};
+
             .then(result =>
                 dispatch({
                     type: constants.AUDIOPHILE_RESULTS,
