@@ -477,6 +477,20 @@ export const fetchLikedTracks = (dispatch) => {
         });
 };
 
+export const getArtistsInEvent = (dispatch, event) => {
+    let eventServiceClient = EventServiceClient.instance;
+    eventServiceClient
+        .getArtistsInEvent(event._id)
+        .then(response => {
+            response.json()
+                .then(results =>
+                dispatch({
+                    type: constants.ARTISTS_IN_EVENT,
+                    artists: results.artist
+                }))
+        })
+}
+
 export const addTrackToPlaylist = (dispatch, track, playlist) => {
     // to be done
 };

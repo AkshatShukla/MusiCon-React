@@ -1,6 +1,7 @@
 import React from 'react'
 
-const EventListItem = ({event, deleteEvent}) => {
+const EventListItem = ({event, deleteEvent, getArtistsInEvent, artists}) => {
+
     return (
         <div className="card shadow p-3 mb-5 bg-white rounded " >
             <div className="card-body">
@@ -10,6 +11,7 @@ const EventListItem = ({event, deleteEvent}) => {
             <div className="card-footer">
                 <small className="text-muted">Date: {event.date.substr(0, 10)}</small>
             </div>
+            <button className='btn' onClick={() => getArtistsInEvent(event)}>Artists In Event</button>
             <button className='btn' onClick={() => deleteEvent(event)}>Delete</button>
         </div>
     )

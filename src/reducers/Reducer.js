@@ -18,6 +18,7 @@ export const Reducer = (state = {
     likedTracks: [],
     playlistsForListener: [],
     tracksInPlaylist: [],
+    artistsInEvent: [],
     albumResults: [],
     trackResults: [],
     artistResults: [],
@@ -241,6 +242,11 @@ export const Reducer = (state = {
         case constants.TRACKS_IN_PLAYLIST:
             newState = Object.assign({}, state);
             newState.tracksInPlaylist = action.tracks;
+            return newState;
+
+        case constants.ARTISTS_IN_EVENT:
+            newState = Object.assign({}, state);
+            newState.artistsInEvent = action.artists;
             return newState;
 
         default:
