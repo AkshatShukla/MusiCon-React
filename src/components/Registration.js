@@ -1,74 +1,75 @@
 import React from 'react'
 
-const Registration = ({userType, textChanged, selectUserType, registerManager, registerUser}) => {
-    let inputElem;
-    let inputElem1;
-    let inputElem2;
-    let inputElem3;
-    let selectElement;
+export default class Registration extends React.Component{
+    inputElem;
+    inputElem1;
+    inputElem2;
+    inputElem3;
+    selectElement;
 
-    const register = () => {
-        if (userType === 'Concert Manager') {
-            registerManager(inputElem.value, inputElem1.value, inputElem2.value, selectElement.value, inputElem3.value)
+    register = () => {
+        if (this.props.userType === 'Concert Manager') {
+            this.props.registerManager(this.inputElem.value, this.inputElem1.value, this.inputElem2.value,
+                this.selectElement.value, this.inputElem3.value);
+            this.props.history.push('/login');
         }
         else
-            registerUser(inputElem.value, inputElem1.value, inputElem2.value, selectElement.value);
+            this.props.registerUser(this.inputElem.value, this.inputElem1.value, this.inputElem2.value, this.selectElement.value);
+        this.props.history.push('/login')
     };
 
-    return (
+    render() {return (
         <div className="container">
             <div className="cardRegistration card-container">
                 <form className="form-signin form-inline row m-2">
                     <label htmlFor="username form-label"  className="col-2 ">Enter username:</label>
                     <input className="col-9"
                            id="username"
-                           onChange={() => textChanged('username', inputElem.value)}
-                           ref={node => inputElem = node}/>
+                           onChange={() => this.props.textChanged('username', this.inputElem.value)}
+                           ref={node => this.inputElem = node}/>
                 </form>
                 <form className="form-signin form-inline m-2">
                     <label htmlFor="password"  className="col-2 ">Enter Password:</label>
                     &nbsp;
                     <input className="col-9"
                            id="password"
-                           onChange={() => textChanged('password', inputElem1.value)}
-                           ref={node => inputElem1 = node}/>
+                           onChange={() => this.props.textChanged('password', this.inputElem1.value)}
+                           ref={node => this.inputElem1 = node}/>
                 </form>
                 <form className="form-signin form-inline m-2">
                     <label htmlFor="verifyPassword"  className="col-2 ">Verify Password:</label>
                     &nbsp;
                     <input className="col-9"
                            id="verifyPassword"
-                           onChange={() => textChanged('verifyPassword', inputElem2.value)}
-                           ref={node => inputElem2 = node}/>
+                           onChange={() => this.props.textChanged('verifyPassword', this.inputElem2.value)}
+                           ref={node => this.inputElem2 = node}/>
                 </form>
 
-                <select onChange={() => selectUserType(selectElement.value)}
-                        ref={node => selectElement = node}>
+                <select
+                        ref={node =>this.selectElement = node}>
                     <option>Listener</option>
                     <option>Audiophile</option>
                     <option>Concert Manager</option>
                 </select>
                 <br/>
 
-                {userType === 'Concert Manager' && <div>
+                {this.props.userType === 'Concert Manager' && <div>
                     <form className="form-inline">
                         <label htmlFor="eventLocation">Enter Event Location:</label>
                         &nbsp;
                         <input className="col-8"
                                id="eventLocation"
-                               onChange={() => textChanged('eventLocation', inputElem3.value)}
-                               ref={node => inputElem3 = node}/>
+                               onChange={() => this.props.textChanged('eventLocation', this.inputElem3.value)}
+                               ref={node => this.inputElem3 = node}/>
                     </form>
                 </div>}
 
 
                 <button onClick={() => {
-                    register()
+                    this.register()
                 }}>Register
                 </button>
             </div>
         </div>
-    )
+    )}
 }
-
-export default Registration;

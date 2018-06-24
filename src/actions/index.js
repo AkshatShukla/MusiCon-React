@@ -168,16 +168,17 @@ export const searchEventsForUser = (dispatch) => {
             if (response.status === 501) {
                 alert('Please Update Location Information in profile Page')
             }
-            else{
-            response.json()
-            .then(result => {
-
-
-                dispatch({
-                    type: constants.EVENTS_NEAR_USER,
-                    events: result
-                })}
-            )}})
+            else {
+                response.json()
+                    .then(result => {
+                            dispatch({
+                                type: constants.EVENTS_NEAR_USER,
+                                events: result
+                            })
+                        }
+                    )
+            }
+        })
 
 
 };
@@ -758,13 +759,13 @@ export const closeContentPane = (dispatch) => {
     })
 };
 
-export const updateEvent = (dispatch,event) => {
+export const updateEvent = (dispatch, event) => {
     EventServiceClient.instance
         .updateEvent(event)
-        .then(response =>findAllEventOfUser(dispatch) )
+        .then(response => findAllEventOfUser(dispatch))
 };
 
-export const updatePlaylist = (dispatch,playlist) => {
+export const updatePlaylist = (dispatch, playlist) => {
     PlaylistServiceClient.instance
         .updatePlaylist(playlist)
         .then(response => findAllPlaylistOfUser(dispatch))
@@ -963,5 +964,10 @@ export const itemUnrecommended = (dispatch, item, type) => {
                     });
             })
     }
+};
+export const dropSearchResults = (dispatch) => {
+    dispatch({
+        type: constants.DROP_SEARCH_RESULT
+    })
 };
 
