@@ -38,7 +38,7 @@ export const Reducer = (state = {
         users:[]
     },
     modalToggle: false,
-    playlistModalToggle: false
+    playlistModalToggle: ''
 }, action) => {
     let newState;
     switch (action.type) {
@@ -205,11 +205,16 @@ export const Reducer = (state = {
                 console.log(newState);
                 return newState;
             } else if (action.toggleType === 'playlist') {
-                newState.playlistModalToggle = !newState.playlistModalToggle;
+                //newState.playlistModalToggle = !newState.playlistModalToggle;
                 console.log(newState);
                 return newState;
             } else
                 return newState;
+
+        case constants.TOGGLE_PLAYLIST:
+            newState = Object.assign({}, state);
+            newState.playlistModalToggle = action.id;
+            return newState;
 
         case constants.ALL_EVENTS_FOR_USER:
             newState = Object.assign({}, state);
@@ -242,7 +247,6 @@ export const Reducer = (state = {
         case constants.TRACKS_IN_PLAYLIST:
             newState = Object.assign({}, state);
             newState.tracksInPlaylist = action.tracks;
-            newState.playlistModalToggle = !newState.playlistModalToggle;
             return newState;
 
         case constants.ARTISTS_IN_EVENT:

@@ -8,7 +8,8 @@ const ResultList = ({
                         albumResults, trackResults, artistResults, eventResults,
                         toggleDetails, modalToggle, playlistModalToggle, details, flag,
                         selectedItem, like, type, playlistsForListener,
-                        addTrackToPlaylist, recommend
+                        addTrackToPlaylist, recommend, eventsForConcertManager, addArtistToEvent,
+                        togglePlaylist
                     }) => {
     const renderListOfResults = (results, f) => {
         if (results !== undefined) {
@@ -41,7 +42,8 @@ const ResultList = ({
                                          addTrackToPlaylist={addTrackToPlaylist}
                                          type={type}
                                          recommend={recommend}
-                                         like={like}/>
+                                         like={like}
+                                         togglePlaylist={togglePlaylist}/>
                     </div>
                 ))
             }
@@ -62,6 +64,8 @@ const ResultList = ({
                                           details={details}
                                           modalToggle={modalToggle}
                                           toggleDetails={toggleDetails}
+                                          eventsForConcertManager={eventsForConcertManager}
+                                          addArtistToEvent={addArtistToEvent}
                                           like={like}
                                           type={type}/>
                     </div>
@@ -70,7 +74,7 @@ const ResultList = ({
         }
     };
     return (
-        <div className="container-fluid bg-white">
+        <div>
             <br/>
             <br/>
             <div className="card-deck row">

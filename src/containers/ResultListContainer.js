@@ -7,11 +7,15 @@ const dispatchToPropsMapper = dispatch => ({
         actions.selectedItem(dispatch, artist, track, type),
     toggleDetails: (toggleType) =>
         actions.toggleDetails(dispatch, toggleType),
+    togglePlaylist: (id) =>
+        actions.togglePlaylist(dispatch,id),
     like : (result,type)  => actions.itemLiked(dispatch,result,type),
     addTrackToPlaylist: (track, playlist) =>
         actions.addTrackToPlaylist(dispatch, track, playlist),
-    recommend: (item,type) =>
-        actions.recommend(dispatch,item,type)
+    addArtistToEvent: (artist, event) =>
+        actions.addArtistToEvent(dispatch, artist, event),
+    recommend: (item, type) =>
+        actions.recommend(dispatch, item, type),
 });
 const stateToPropsMapper = state => ({
     albumResults: state.albumResults,
@@ -23,7 +27,8 @@ const stateToPropsMapper = state => ({
     details: state.details,
     flag: state.searchFlag,
     type: state.userType,
-    playlistsForListener: state.playlistsForListener
+    playlistsForListener: state.playlistsForListener,
+    eventsForConcertManager: state.eventsForConcertManager
 });
 const ResultListContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(ResultList);
 export default ResultListContainer;

@@ -235,6 +235,13 @@ export const toggleDetails = (dispatch, toggleType) => {
     }
 };
 
+export const togglePlaylist = (dispatch,id) => (
+    dispatch({
+        type: constants.TOGGLE_PLAYLIST,
+        id: id
+    })
+);
+
 export const itemLiked = (dispatch, item ,type) => {
     if (type === 'album') {
         AlbumServiceClient.instance
@@ -501,6 +508,7 @@ export const updateUserAdmin = (dispatch,user) => {
                     })
                 })));
 };
+
 export const deleteUserAdmin = (dispatch,id) => {
     AdminServiceClient.instance
         .deleteUser(id)
@@ -514,6 +522,7 @@ export const deleteUserAdmin = (dispatch,id) => {
                     })
                 })));
 };
+
 export const getArtistsInEvent = (dispatch, event) => {
     let eventServiceClient = EventServiceClient.instance;
     eventServiceClient
@@ -526,11 +535,13 @@ export const getArtistsInEvent = (dispatch, event) => {
                     artists: results.artist
                 }))
         })
-}
+};
 
 export const addTrackToPlaylist = (dispatch, track, playlist) => {
+    console.log(track);
     // to be done
 };
+
 export const recommend = (dispatch, item, type) =>{
     AudiophileServiceClient.instance
         .recommend(item,type)
@@ -545,9 +556,13 @@ export const recommend = (dispatch, item, type) =>{
                 alert("Recommended Album " + item.name);
             }
         })
-}
+};
 
 export const deleteTrackFromPlaylist = (dispatch, track, playlist) => {
+    // to be done
+};
+
+export const addArtistToEvent = (dispatch, artist, event) => {
     // to be done
 };
 
