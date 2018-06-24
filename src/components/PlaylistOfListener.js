@@ -11,12 +11,16 @@ export default class PlaylistOfListener extends React.Component {
 
     renderList(playlists){
         return playlists.map(playlist =>
-            <div className="col-sm-3">
+            <div className="col-sm-3" key={playlist._id}>
                 <PlaylistListItem
                     playlist = {playlist}
+                    tracksInPlaylist = {this.props.tracksInPlaylist}
+                    playlistModalToggle={this.props.playlistModalToggle}
                     deletePlaylist = {this.props.deletePlaylist}
                     getTracksInPlaylist = {this.props.getTracksInPlaylist}
-                    tracksInPlaylist = {this.props.tracksInPlaylist}/>
+                    toggleDetails={this.props.toggleDetails}
+                    modalToggle={this.props.modalToggle}
+                    deleteTrackFromPlaylist={this.props.deleteTrackFromPlaylist}/>
             </div>
         )
     }

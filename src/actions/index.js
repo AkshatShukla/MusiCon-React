@@ -177,7 +177,7 @@ export const logout = (dispatch) => (
             })
         )
 );
-export const selectedItem = (dispatch, artist, item, type) => {
+export const selectedItem = (dispatch, artist, item, type, id) => {
     let getDetailsServiceClient = GetDetailsServiceClient.instance;
     if (type === 'track') {
         getDetailsServiceClient
@@ -188,7 +188,8 @@ export const selectedItem = (dispatch, artist, item, type) => {
                     dispatch({
                         type: constants.SET_DETAILS,
                         flag: 'track',
-                        result: res
+                        result: res,
+                        id: id
                     })
                 })
             })
@@ -201,7 +202,8 @@ export const selectedItem = (dispatch, artist, item, type) => {
                     dispatch({
                         type: constants.SET_DETAILS,
                         flag: 'album',
-                        result: res
+                        result: res,
+                        id: id
                     })
                 })
             })
@@ -214,36 +216,44 @@ export const selectedItem = (dispatch, artist, item, type) => {
                     dispatch({
                         type: constants.SET_DETAILS,
                         flag: 'artist',
-                        result: res
+                        result: res,
+                        id: id
                     })
                 })
             })
     }
 };
 
-export const toggleDetails = (dispatch, toggleType) => {
-    if (toggleType === 'details'){
-        dispatch({
-            type: constants.TOGGLE,
-            toggleType: 'details'
-        })
-    } else if (toggleType === 'playlist') {
-        dispatch({
-            type: constants.TOGGLE,
-            toggleType: 'playlist'
-        })
-    }
+export const toggleDetails = (dispatch, id) => {
+    dispatch({
+        type: constants.TOGGLE,
+        id: id
+    })
 };
 
-export const itemLiked = (dispatch, item ,type) => {
+export const togglePlaylist = (dispatch, id) => (
+    dispatch({
+        type: constants.TOGGLE_PLAYLIST,
+        id: id
+    })
+);
+
+export const toggleEvent = (dispatch, id) => (
+    dispatch({
+        type: constants.TOGGLE_EVENT,
+        id: id
+    })
+);
+
+export const itemLiked = (dispatch, item, type) => {
     if (type === 'album') {
         AlbumServiceClient.instance
             .saveLike(item)
-            .then(response =>{
-                if(response.status===501){
+            .then(response => {
+                if (response.status === 501) {
                     alert("Already liked");
                 }
-                else if(response.status===500){
+                else if (response.status === 500) {
                     alert("Try Logging in");
                 }
                 else {
@@ -255,10 +265,10 @@ export const itemLiked = (dispatch, item ,type) => {
         TrackServiceClient.instance
             .saveLike(item)
             .then(response => {
-                if(response.status===501){
+                if (response.status === 501) {
                     alert("Already liked");
                 }
-                else if(response.status===500){
+                else if (response.status === 500) {
                     alert("Try Logging in");
                 }
                 else {
@@ -266,14 +276,14 @@ export const itemLiked = (dispatch, item ,type) => {
                 }
             })
     }
-    else if(type === 'artist'){
+    else if (type === 'artist') {
         ArtistServiceClient.instance
             .follow(item)
             .then(response => {
-                if(response.status===501){
+                if (response.status === 501) {
                     alert("Already liked");
                 }
-                else if(response.status===500){
+                else if (response.status === 500) {
                     alert("Try Logging in");
                 }
                 else {
@@ -377,7 +387,7 @@ export const deleteEventForConcertManager = (dispatch, event) => {
         })
 };
 
-export const getUsers= (dispatch) => {
+export const getUsers = (dispatch) => {
     AdminServiceClient.instance
         .getUsers()
         .then(response => response.json()
@@ -442,7 +452,7 @@ export const deletePlaylist = (dispatch, playlist) => {
         })
 };
 
-export const getTracksInPlaylist = (dispatch, playlist) => {
+export const getTracksInPlaylist = (dispatch, playlist, id) => {
     let playlistServiceClient = PlaylistServiceClient.instance;
     playlistServiceClient
         .getTracksInPlaylist(playlist._id)
@@ -451,10 +461,11 @@ export const getTracksInPlaylist = (dispatch, playlist) => {
                 .then(results =>
                     dispatch({
                         type: constants.TRACKS_IN_PLAYLIST,
-                        tracks: results.track
+                        tracks: results.track,
+                        id: id
                     }))
         })
-}
+};
 
 export const fetchLikedAlbums = (dispatch) => {
     let albumServiceClient = AlbumServiceClient.instance;
@@ -488,10 +499,10 @@ export const fetchLikedTracks = (dispatch) => {
         });
 };
 
-export const updateUserAdmin = (dispatch,user) => {
+export const updateUserAdmin = (dispatch, user) => {
     AdminServiceClient.instance
         .updateUser(user)
-        .then(()=> AdminServiceClient.instance
+        .then(() => AdminServiceClient.instance
             .getUsers()
             .then(response => response.json()
                 .then(users => {
@@ -501,10 +512,11 @@ export const updateUserAdmin = (dispatch,user) => {
                     })
                 })));
 };
-export const deleteUserAdmin = (dispatch,id) => {
+
+export const deleteUserAdmin = (dispatch, id) => {
     AdminServiceClient.instance
         .deleteUser(id)
-        .then(()=> AdminServiceClient.instance
+        .then(() => AdminServiceClient.instance
             .getUsers()
             .then(response => response.json()
                 .then(users => {
@@ -514,37 +526,106 @@ export const deleteUserAdmin = (dispatch,id) => {
                     })
                 })));
 };
-export const getArtistsInEvent = (dispatch, event) => {
+
+export const getArtistsInEvent = (dispatch, event, id) => {
     let eventServiceClient = EventServiceClient.instance;
     eventServiceClient
         .getArtistsInEvent(event._id)
         .then(response => {
             response.json()
                 .then(results =>
-                dispatch({
-                    type: constants.ARTISTS_IN_EVENT,
-                    artists: results.artist
-                }))
+                    dispatch({
+                        type: constants.ARTISTS_IN_EVENT,
+                        artists: results.artist,
+                        id: id
+                    }))
         })
-}
+};
 
 export const addTrackToPlaylist = (dispatch, track, playlist) => {
-    // to be done
-};
-export const recommend = (dispatch, item, type) =>{
-    AudiophileServiceClient.instance
-        .recommend(item,type)
+    let playlistServiceClient = PlaylistServiceClient.instance;
+    playlistServiceClient
+        .addTrackToPlaylist(playlist, track)
         .then(response => {
             if(response.status===501){
-                alert("Already Recommended");
+                alert("Already Added");
             }
             else if(response.status===500){
+                alert("Try Logging in");
+            }
+            else {
+                alert('Track Added to Playlist');
+            }
+        })
+};
+
+export const recommend = (dispatch, item, type) => {
+    AudiophileServiceClient.instance
+        .recommend(item, type)
+        .then(response => {
+            if (response.status === 501) {
+                alert("Already Recommended");
+            }
+            else if (response.status === 500) {
                 alert("Try Logging in");
             }
             else {
                 alert("Recommended Album " + item.name);
             }
         })
+};
+
+export const deleteTrackFromPlaylist = (dispatch, track, playlist) => {
+    let playlistServiceClient = PlaylistServiceClient.instance;
+    playlistServiceClient
+        .deleteTrackFromPlaylist(playlist, track)
+        .then(() => {
+            alert('track removed');
+            playlistServiceClient
+                .getTracksInPlaylist(playlist._id)
+                .then(response => {
+                    response.json()
+                        .then(results =>
+                            dispatch({
+                                type: constants.TRACKS_IN_PLAYLIST,
+                                tracks: results.track
+                            }))
+                })
+        })
+};
+
+export const addArtistToEvent = (dispatch, artist, event) => {
+    let eventServiceClient = EventServiceClient.instance;
+    eventServiceClient
+        .addArtistToEvent(event, artist)
+        .then(response => {
+            if (response.status === 501)
+                alert('Already Added')
+            else if (response.status === 500)
+                alert('try logging again')
+            else
+                alert('Artist Added to Event')
+        })
+};
+
+export const deleteArtistFromEvent = (dispatch, artist, event) => {
+    let eventServiceClient = EventServiceClient.instance;
+    eventServiceClient
+        .deleteArtistFromEvent(event, artist)
+        .then(() => {
+            alert('artist removed from event');
+            eventServiceClient
+                .getArtistsInEvent(event._id)
+                .then(response => {
+                    response.json()
+                        .then(results =>
+                            dispatch({
+                                type: constants.ARTISTS_IN_EVENT,
+                                artists: results.artist
+                            }))
+                })
+        })
+};
 }
 export const findAllAudiophile =(dispatch) => {
     AudiophileServiceClient.instance
