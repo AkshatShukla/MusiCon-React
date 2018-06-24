@@ -9,7 +9,7 @@ const ResultList = ({
                         toggleDetails, modalToggle, playlistModalToggle, details, flag,
                         selectedItem, like, type, playlistsForListener,
                         addTrackToPlaylist, recommend, eventsForConcertManager, addArtistToEvent,
-                        togglePlaylist
+                        togglePlaylist, eventModalToggle, toggleEvent
                     }) => {
     const renderListOfResults = (results, f) => {
         if (results !== undefined) {
@@ -67,7 +67,9 @@ const ResultList = ({
                                           eventsForConcertManager={eventsForConcertManager}
                                           addArtistToEvent={addArtistToEvent}
                                           like={like}
-                                          type={type}/>
+                                          type={type}
+                                          toggleEvent={toggleEvent}
+                                          eventModalToggle={eventModalToggle}/>
                     </div>
                 ))
             }

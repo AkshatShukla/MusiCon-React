@@ -34,11 +34,12 @@ export const Reducer = (state = {
         wiki: '',
         tracks: []
     },
-    admin:{
-        users:[]
+    admin: {
+        users: []
     },
-    modalToggle: false,
-    playlistModalToggle: ''
+    modalToggle: '',
+    playlistModalToggle: '',
+    eventModalToggle: ''
 }, action) => {
     let newState;
     switch (action.type) {
@@ -167,7 +168,7 @@ export const Reducer = (state = {
                     newState.details.artist = action.result.album.artist;
                     newState.details.wiki = action.result.album.wiki;
                     newState.details.tracks = action.result.album.tracks.track;
-                    newState.modalToggle = !newState.modalToggle;
+                    newState.modalToggle = action.id;
                     return newState;
                 case 'track':
                     newState.details.name = action.result.track.name;
@@ -179,7 +180,7 @@ export const Reducer = (state = {
                     newState.details.artist = action.result.track.artist;
                     newState.details.wiki = action.result.track.wiki;
                     newState.details.tracks = [];
-                    newState.modalToggle = !newState.modalToggle;
+                    newState.modalToggle = action.id;
                     return newState;
                 case 'artist':
                     newState.details.name = action.result.artist.name;
@@ -192,7 +193,7 @@ export const Reducer = (state = {
                     newState.details.artist = '';
                     newState.details.wiki = action.result.artist.bio;
                     newState.details.tracks = [];
-                    newState.modalToggle = !newState.modalToggle;
+                    newState.modalToggle = action.id;
                     return newState;
                 default:
                     return newState;
@@ -200,20 +201,19 @@ export const Reducer = (state = {
 
         case constants.TOGGLE:
             newState = Object.assign({}, state);
-            if (action.toggleType === 'details') {
-                newState.modalToggle = !newState.modalToggle;
-                console.log(newState);
-                return newState;
-            } else if (action.toggleType === 'playlist') {
-                //newState.playlistModalToggle = !newState.playlistModalToggle;
-                console.log(newState);
-                return newState;
-            } else
-                return newState;
+            newState.modalToggle = action.id;
+            return newState;
+
 
         case constants.TOGGLE_PLAYLIST:
             newState = Object.assign({}, state);
             newState.playlistModalToggle = action.id;
+            return newState;
+
+        case constants.TOGGLE_EVENT:
+            newState = Object.assign({}, state);
+            console.log(action.id);
+            newState.eventModalToggle = action.id;
             return newState;
 
         case constants.ALL_EVENTS_FOR_USER:
@@ -236,7 +236,7 @@ export const Reducer = (state = {
 
         case constants.ADMIN_SAVE_USERS:
             newState = Object.assign({}, state);
-            newState.admin.users=action.users;
+            newState.admin.users = action.users;
             return newState;
 
         case constants.ALL_PLAYLIST_FOR_USER:
@@ -247,11 +247,13 @@ export const Reducer = (state = {
         case constants.TRACKS_IN_PLAYLIST:
             newState = Object.assign({}, state);
             newState.tracksInPlaylist = action.tracks;
+            newState.modalToggle = action.id;
             return newState;
 
         case constants.ARTISTS_IN_EVENT:
             newState = Object.assign({}, state);
             newState.artistsInEvent = action.artists;
+            newState.eventModalToggle = action.id;
             return newState;
 
         default:

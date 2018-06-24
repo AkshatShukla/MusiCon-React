@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 const TrackResultItem = ({result, selectedItem, toggleDetails, modalToggle, playlistModalToggle,
-                             details, like, type, playlistsForListener, addTrackToPlaylist, recommend,togglePlaylist}) => {
+                             details, like, type, playlistsForListener, addTrackToPlaylist, recommend, togglePlaylist}) => {
     function millisToMinutesAndSeconds(millis) {
         const minutes = Math.floor(millis / 60000);
         const seconds = ((millis % 60000) / 1000).toFixed(0);
@@ -32,7 +32,7 @@ const TrackResultItem = ({result, selectedItem, toggleDetails, modalToggle, play
                 {/*<a href={result.preview_url !== null ? result.preview_url : ''}>Preview Track</a>*/}
                 <button className="btn btn-outline-dark"
                         onClick={() => {
-                            selectedItem(result.artists[0].name, result.name, result.type);
+                            selectedItem(result.artists[0].name, result.name, result.type, result.id);
                             //toggleDetails();
                         }}>Get More Details
                 </button>
@@ -41,13 +41,13 @@ const TrackResultItem = ({result, selectedItem, toggleDetails, modalToggle, play
                             style={{marginRight: '40px'}}/>
                 </audio>
                 <br/>
-                <Modal isOpen={modalToggle} toggle={() => toggleDetails('details')} backdrop={false} centered={true}>
-                    <ModalHeader toggle={() => toggleDetails('details')}>{details.name}</ModalHeader>
+                <Modal isOpen={modalToggle === result.id} toggle={() => toggleDetails('')} backdrop={true} centered={true}>
+                    <ModalHeader toggle={() => toggleDetails('')}>{details.name}</ModalHeader>
                     <ModalBody>
                         {details.wiki !== undefined ? details.wiki.summary : 'No Summary Available'}
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="secondary" onClick={() => toggleDetails('details')}>Cancel</Button>
+                        <Button color="secondary" onClick={() => toggleDetails('')}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
             </div>
@@ -70,7 +70,7 @@ const TrackResultItem = ({result, selectedItem, toggleDetails, modalToggle, play
                     <span><i className="fa fa-thumbs-up"/>&nbsp;</span>Recommend
                 </button>
             </div>
-            <Modal isOpen={playlistModalToggle === result.id} toggle={() => togglePlaylist('')} backdrop={false} centered={true}>
+            <Modal isOpen={playlistModalToggle === result.id} toggle={() => togglePlaylist('')} backdrop={true} centered={true}>
                 <ModalHeader toggle={() => togglePlaylist('')}>Your Playlist</ModalHeader>
                 <ModalBody>
                     <ul className="list-group">

@@ -19,6 +19,7 @@ export default class PlaylistOfListener extends React.Component {
                     deletePlaylist = {this.props.deletePlaylist}
                     getTracksInPlaylist = {this.props.getTracksInPlaylist}
                     toggleDetails={this.props.toggleDetails}
+                    modalToggle={this.props.modalToggle}
                     deleteTrackFromPlaylist={this.props.deleteTrackFromPlaylist}/>
             </div>
         )

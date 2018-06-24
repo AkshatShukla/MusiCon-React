@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 const ArtistResultItem = ({result, selectedItem, toggleDetails, modalToggle, playlistModalToggle, details, like, type,
-                              eventsForConcertManager, addArtistToEvent}) => {
+                              eventsForConcertManager, addArtistToEvent, toggleEvent, eventModalToggle}) => {
 
     function renderEventsOfUser() {
         return eventsForConcertManager.map((event) => (
@@ -31,18 +31,18 @@ const ArtistResultItem = ({result, selectedItem, toggleDetails, modalToggle, pla
                 </form>
                 <button className="btn btn-outline-dark"
                         onClick={() => {
-                            selectedItem(result.name, '', result.type);
+                            selectedItem(result.name, '', result.type, result.id);
                             //toggleDetails();
                         }}>Get More Details
                 </button>
                 <br/>
-                <Modal isOpen={modalToggle} toggle={toggleDetails('details')} backdrop={false} centered={true}>
-                    <ModalHeader toggle={toggleDetails('details')}>{details.name}</ModalHeader>
+                <Modal isOpen={modalToggle === result.id} toggle={() => toggleDetails('')} backdrop={true} centered={true}>
+                    <ModalHeader toggle={() => toggleDetails('')}>{details.name}</ModalHeader>
                     <ModalBody>
                         {details.wiki !== undefined ? details.wiki.summary : 'No Summary Available'}
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="secondary" onClick={() => toggleDetails('details')}>Cancel</Button>
+                        <Button color="secondary" onClick={() => toggleDetails('')}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
             </div>
@@ -55,17 +55,17 @@ const ArtistResultItem = ({result, selectedItem, toggleDetails, modalToggle, pla
                         onClick={() => like(result,'artist')}>Follow</button>
                 <button className="btn btn-dark"
                         hidden={type !== 'Concert Manager'}
-                        onClick={() => console.log('wait')}>Add to Event</button>
+                        onClick={() => toggleEvent(result.id)}>Add to Event</button>
             </div>
-            <Modal isOpen={playlistModalToggle} toggle={() => toggleDetails('playlist')} backdrop={false} centered={true}>
-                <ModalHeader toggle={() => toggleDetails('playlist')}>Your Events</ModalHeader>
+            <Modal isOpen={eventModalToggle === result.id} toggle={() => toggleEvent('')} backdrop={true} centered={true}>
+                <ModalHeader toggle={() => toggleEvent('')}>Your Events</ModalHeader>
                 <ModalBody>
                     <ul className="list-group">
                         {renderEventsOfUser()}
                     </ul>
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="secondary" onClick={() => toggleDetails('playlist')}>Cancel</Button>
+                    <Button color="secondary" onClick={() => toggleEvent('')}>Cancel</Button>
                 </ModalFooter>
             </Modal>
         </div>
