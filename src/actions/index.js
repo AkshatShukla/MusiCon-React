@@ -626,7 +626,7 @@ export const deleteArtistFromEvent = (dispatch, artist, event) => {
                 })
         })
 };
-}
+
 export const findAllAudiophile =(dispatch) => {
     AudiophileServiceClient.instance
         .getAllAudiophile()
