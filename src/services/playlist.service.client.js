@@ -46,6 +46,18 @@ class PlaylistServiceClient {
     getTracksInPlaylist(playlistId){
         return fetch(constants.BASE_URL + 'playlist/' + playlistId + '/tracks')
     }
+
+    addTrackToPlaylist(playlist, track){
+        console.log('here in client')
+        return fetch(constants.BASE_URL + 'playlist/' + playlist._id + '/addtrack', {
+            method: 'post',
+            credentials: "include",
+            body: JSON.stringify(track),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    }
 }
 
 export default PlaylistServiceClient;
