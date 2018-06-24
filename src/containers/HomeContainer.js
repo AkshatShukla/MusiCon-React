@@ -12,7 +12,6 @@ import OrganizeEventContainer from "./OrganizeEventContainer";
 import LikedAlbumsContainer from "./LikedAlbumsContainer";
 import LikedTrackContainer from "./LikedTracksContainer";
 import CreatePlaylistContainer from "./CreatePlaylistContainer";
-// import EventsNearUserContainer from "../containers/EventsNearUserContainer";
 import ExploreAudiophileContainer from '../containers/ExploreAudiophileContainer'
 import AllLikedAlbumContainer from "./AllLikedAlbumContainer";
 import AllLikedTrackContainer from "./AllLikedTrackContainer";
@@ -24,6 +23,9 @@ import RecommendedAlbumsContainer from "./RecommendedAlbumsContainer";
 import RecommendedTracksContainer from "./RecommendedTracksContainer";
 import ConcertManagerStatsContainer from "./ConcertManagerStatsContainer";
 import FollowedAudiophilesContainer from "./FollowedAudiophilesContainer";
+import EventsNearUserContainer from "./EventsNearUserContainer";
+
+
 class HomeComponent
     extends React.Component {
     render() {
@@ -55,6 +57,8 @@ class HomeComponent
                                component={FollowedArtistsContainer}/>
                         <Route path='/my-page/followed-audiophiles'
                                component={FollowedAudiophilesContainer}/>
+                        <Route path='/my-page/events-nearby'
+                               component={EventsNearUserContainer}/>
                         <Route path='/my-page-audiophile/recommended-albums'
                                component={RecommendedAlbumsContainer}/>
                         <Route path='/my-page-audiophile/recommended-tracks'

@@ -53,7 +53,10 @@ export const Reducer = (state = {
     audiophileItemType :'',
     audiophileItems: [],
     audiophileDetailsId:'',
-    eventsNearUser:[]
+    eventsNearUser: {
+        'tn':[],
+        'lr':[]
+    }
 }, action) => {
     let newState;
     switch (action.type) {

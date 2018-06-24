@@ -1,17 +1,59 @@
-import React from 'react'
-import SearchServiceClient from "../services/search.service.client";
+import React from 'react';
+import {Link} from 'react-router-dom';
 import * as actions from '../actions';
+import {Button, Jumbotron} from 'reactstrap';
+import LocalEventItem from "./LocalEventItem";
+import TicketMasterEventItem from "./TicketMasterEventItem";
 
-export default class EventsNearUser extends React.Component{
-    constructor(props){
+export default class EventsNearUser extends React.Component {
+
+    constructor(props) {
         super(props);
         this.props.searchEventsForUser();
     }
+
+    showLocalConcerts() {
+        return this.props.events.lr.map((event) => (
+            <div className="col-sm-3"
+                 key={event._id}>
+                <LocalEventItem event={event}/>
+            </div>
+        ))
+    }
+
+    showTicketMasterConcerts() {
+        return this.props.events.tn.map((event) => (
+            <div className="col-sm-3"
+                 key={event._id}>
+                <TicketMasterEventItem event={event}/>
+            </div>
+        ))
+    }
+
     render() {
         return (
             <div>
-                <h1>Events Near User</h1>
-                {console.log(this.props.events)}
+                <Jumbotron>
+                    <h1 className="display-3">Concerts Near You</h1>
+                    <hr className="my-2"/>
+                    <Link style={{display: 'block', height: '100%'}}
+                          to="/my-page">
+                        <Button>
+                            <span><i className="fa fa-arrow-left">&nbsp;</i></span>
+                            My Page
+                        </Button>
+                    </Link>
+                    <hr className="my-2"/>
+                    <h3 className="lead">Ticket Master Concerts</h3>
+                    <div className="card-deck row">
+                        {this.showTicketMasterConcerts()}
+                    </div>
+                    <hr className="my-2"/>
+                    <h3 className="lead">Local Concerts</h3>
+                    <div className="card-deck row">
+                        {this.showLocalConcerts()}
+                    </div>
+                </Jumbotron>
             </div>
         )
     }
