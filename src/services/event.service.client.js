@@ -43,6 +43,10 @@ class EventServiceClient {
             credentials: "include"
         })
     }
+
+    getArtistsInEvent(eventId) {
+        return fetch(constants.BASE_URL + 'event/' + eventId + '/artists')
+    }
 }
 
 export default EventServiceClient;
