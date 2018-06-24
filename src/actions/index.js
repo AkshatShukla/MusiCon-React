@@ -131,7 +131,14 @@ export const registerUser = (dispatch, username, password, verifyPassword, userT
 export const updateUser = (user) => (
     UserServiceClient.instance
         .updateUser(user)
+        .then(res => {
+            if (res.status === 200)
+                alert('User Updated Successfully');
+            else if (res.status === 500)
+                alert('username already taken');
+        })
 );
+
 export const updateStateWithUserNameAndType = (dispatch, username, type) => (
     dispatch({
         type: constants.SAVE_USERNAME_AND_USERTYPE,
@@ -547,10 +554,10 @@ export const addTrackToPlaylist = (dispatch, track, playlist) => {
     playlistServiceClient
         .addTrackToPlaylist(playlist, track)
         .then(response => {
-            if(response.status===501){
+            if (response.status === 501) {
                 alert("Already Added");
             }
-            else if(response.status===500){
+            else if (response.status === 500) {
                 alert("Try Logging in");
             }
             else {
@@ -627,10 +634,134 @@ export const deleteArtistFromEvent = (dispatch, artist, event) => {
         })
 };
 
-export const findAllAudiophile =(dispatch) => {
+export const findAllAudiophile = (dispatch) => {
     AudiophileServiceClient.instance
         .getAllAudiophile()
         .then(response => response.json()
             .then(result => console.log(result)))
-}
+};
+
+export const allLikedAlbum = (dispatch) => {
+    AdminServiceClient.instance
+        .findAllLikedAlbum()
+        .then(response => {
+            response.json()
+                .then(res => dispatch({
+                    type: constants.ALL_LIKED_ALBUM,
+                    data: res
+                }))
+        })
+};
+
+export const deleteLikedAlbum = (dispatch, likedAlbumId) => {
+    let adminServiceClient = AdminServiceClient.instance;
+
+    adminServiceClient
+        .deleteLikedAlbum(likedAlbumId)
+        .then(() => {
+            alert('liked album removed');
+            adminServiceClient
+                .findAllLikedAlbum()
+                .then(response => {
+                    response.json()
+                        .then(res => dispatch({
+                            type: constants.ALL_LIKED_ALBUM,
+                            data: res
+                        }))
+                })
+        })
+};
+
+export const allLikedTrack = (dispatch) => {
+    AdminServiceClient.instance
+        .findAllLikedTrack()
+        .then(response => {
+            response.json()
+                .then(res => dispatch({
+                    type: constants.ALL_LIKED_TRACK,
+                    data: res
+                }))
+        })
+};
+
+export const deleteLikedTrack = (dispatch, likedTrackId) => {
+    let adminServiceClient = AdminServiceClient.instance;
+
+    adminServiceClient
+        .deleteLikedTrack(likedTrackId)
+        .then(() => {
+            alert('liked track removed');
+            adminServiceClient
+                .findAllLikedTrack()
+                .then(response => {
+                    response.json()
+                        .then(res => dispatch({
+                            type: constants.ALL_LIKED_TRACK,
+                            data: res
+                        }))
+                })
+        })
+};
+
+export const allRecommendedAlbum = (dispatch) => {
+    AdminServiceClient.instance
+        .findAllRecommendedAlbum()
+        .then(response => {
+            response.json()
+                .then(res => dispatch({
+                    type: constants.ALL_RECOMMENDED_ALBUM,
+                    data: res
+                }))
+        })
+};
+
+export const deleteRecommendedAlbum = (dispatch, recommendedAlbumId) => {
+    let adminServiceClient = AdminServiceClient.instance;
+
+    adminServiceClient
+        .deleteRecommendedAlbum(recommendedAlbumId)
+        .then(() => {
+            alert('recommended album removed');
+            adminServiceClient
+                .findAllRecommendedAlbum()
+                .then(response => {
+                    response.json()
+                        .then(res => dispatch({
+                            type: constants.ALL_RECOMMENDED_ALBUM,
+                            data: res
+                        }))
+                })
+        })
+};
+
+export const allRecommendedTrack = (dispatch) => {
+    AdminServiceClient.instance
+        .findAllRecommendedTrack()
+        .then(response => {
+            response.json()
+                .then(res => dispatch({
+                    type: constants.ALL_RECOMMENDED_TRACK,
+                    data: res
+                }))
+        })
+};
+
+export const deleteRecommendedTrack = (dispatch, recommendedTrackId) => {
+    let adminServiceClient = AdminServiceClient.instance
+
+    adminServiceClient
+        .deleteRecommendedTrack(recommendedTrackId)
+        .then(() => {
+            alert('recommended track removed');
+            adminServiceClient
+                .findAllRecommendedTrack()
+                .then(response => {
+                    response.json()
+                        .then(res => dispatch({
+                            type: constants.ALL_RECOMMENDED_TRACK,
+                            data: res
+                        }))
+                })
+        })
+};
 

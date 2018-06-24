@@ -4,6 +4,7 @@ export const Reducer = (state = {
     username: '',
     password: '',
     verifyPassword: '',
+    description: '',
     userType: undefined,
     eventLocation: '',
     query: '',
@@ -35,7 +36,11 @@ export const Reducer = (state = {
         tracks: []
     },
     admin: {
-        users: []
+        users: [],
+        allLikedAlbum: [],
+        allLikedTrack: [],
+        allRecommendedAlbum: [],
+        allRecommendedTrack: []
     },
     modalToggle: '',
     playlistModalToggle: '',
@@ -78,8 +83,10 @@ export const Reducer = (state = {
                 newState.eventDate = action.text;
             } else if (action.fieldType === 'playlistName') {
                 newState.playlistName = action.text;
-            } else if (action.playlistDescription === 'playlistDescription') {
+            } else if (action.fieldType === 'playlistDescription') {
                 newState.playlistDescription = action.text
+            } else if (action.fieldType === 'description') {
+                newState.description = action.text
             }
 
             return newState;
@@ -96,8 +103,8 @@ export const Reducer = (state = {
             newState.phone = action.data.phone;
             newState.userType = action.data.type;
             newState.city = action.data.city;
+            newState.description = action.data.description;
             newState.eventLocation = action.data.eventLocation;
-            console.log(newState);
             return newState;
 
 
@@ -254,6 +261,26 @@ export const Reducer = (state = {
             newState = Object.assign({}, state);
             newState.artistsInEvent = action.artists;
             newState.eventModalToggle = action.id;
+            return newState;
+
+        case constants.ALL_LIKED_ALBUM:
+            newState = Object.assign({}, state);
+            newState.admin.allLikedAlbum = action.data;
+            return newState;
+
+        case constants.ALL_LIKED_TRACK:
+            newState = Object.assign({}, state);
+            newState.admin.allLikedTrack = action.data;
+            return newState;
+
+        case constants.ALL_RECOMMENDED_ALBUM:
+            newState = Object.assign({}, state);
+            newState.admin.allRecommendedAlbum = action.data;
+            return newState;
+
+        case constants.ALL_RECOMMENDED_TRACK:
+            newState = Object.assign({}, state);
+            newState.admin.allRecommendedTrack = action.data;
             return newState;
 
         default:
