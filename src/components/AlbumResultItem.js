@@ -1,7 +1,7 @@
 import React from 'react'
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 
-const AlbumResultItem = ({result, selectedItem, toggleDetails, modalToggle, details, like,type}) => {
+const AlbumResultItem = ({result, selectedItem, toggleDetails, modalToggle, details, like,type, recommend}) => {
 
     function renderListOfTracks() {
         if (details.tracks.length !== 0) {
@@ -51,7 +51,12 @@ const AlbumResultItem = ({result, selectedItem, toggleDetails, modalToggle, deta
             </div>
             <div className="card-footer " hidden={type !== 'Listener'}>
                 <button className="btn btn-outline-secondary" onClick={() =>like(result,'album')}>
-                    <span><i className="fa fa-thumbs-up"></i>&nbsp;</span>Like
+                    <span><i className="fa fa-thumbs-up"/>&nbsp;</span>Like
+                </button>
+            </div>
+            <div className="card-footer " hidden={type !== 'Audiophile'}>
+                <button className="btn btn-outline-secondary" onClick={() =>recommend(result,'album')}>
+                    <span><i className="fa fa-thumbs-up"/>&nbsp;</span>Recommend
                 </button>
             </div>
         </div>

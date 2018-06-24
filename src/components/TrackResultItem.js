@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-const TrackResultItem = ({result, selectedItem, toggleDetails, modalToggle, playlistModalToggle, details, like, type, playlistsForListener, addTrackToPlaylist}) => {
+const TrackResultItem = ({result, selectedItem, toggleDetails, modalToggle, playlistModalToggle,
+                             details, like, type, playlistsForListener, addTrackToPlaylist,recommend}) => {
     function millisToMinutesAndSeconds(millis) {
         const minutes = Math.floor(millis / 60000);
         const seconds = ((millis % 60000) / 1000).toFixed(0);
@@ -63,6 +64,11 @@ const TrackResultItem = ({result, selectedItem, toggleDetails, modalToggle, play
                         <span><i className="fa fa-plus"></i>&nbsp;</span>Add to Playlist
                     </button>
                 </div>
+            </div>
+            <div className="card-footer " hidden={type !== 'Audiophile'}>
+                <button className="btn btn-outline-secondary" onClick={() =>recommend(result,'track')}>
+                    <span><i className="fa fa-thumbs-up"/>&nbsp;</span>Recommend
+                </button>
             </div>
             <Modal isOpen={playlistModalToggle} toggle={() => toggleDetails('playlist')} backdrop={false} centered={true}>
                 <ModalHeader toggle={() => toggleDetails('playlist')}>Your Playlist</ModalHeader>
