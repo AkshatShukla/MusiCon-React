@@ -205,7 +205,7 @@ export const Reducer = (state = {
                 console.log(newState);
                 return newState;
             } else if (action.toggleType === 'playlist') {
-                //newState.playlistModalToggle = !newState.playlistModalToggle;
+                newState.playlistModalToggle = !newState.playlistModalToggle;
                 console.log(newState);
                 return newState;
             } else
