@@ -543,13 +543,13 @@ export const addTrackToPlaylist = (dispatch, track, playlist) => {
         .addTrackToPlaylist(playlist, track)
         .then(response => {
             if(response.status===501){
-                alert("Already liked");
+                alert("Already Added");
             }
             else if(response.status===500){
                 alert("Try Logging in");
             }
             else {
-                alert('Liked Track ');
+                alert('Track Added to Playlist');
             }
         })
 };
@@ -570,7 +570,23 @@ export const recommend = (dispatch, item, type) =>{
 };
 
 export const deleteTrackFromPlaylist = (dispatch, track, playlist) => {
-    // to be done
+    console.log(track)
+    console.log(playlist)
+    let playlistServiceClient = PlaylistServiceClient.instance;
+    playlistServiceClient
+        .deleteTrackFromPlaylist(playlist, track)
+        .then(() => {
+            playlistServiceClient
+                .getTracksInPlaylist(playlist._id)
+                .then(response => {
+                    response.json()
+                        .then(results =>
+                            dispatch({
+                                type: constants.TRACKS_IN_PLAYLIST,
+                                tracks: results.track
+                            }))
+                })
+        })
 };
 
 export const addArtistToEvent = (dispatch, artist, event) => {

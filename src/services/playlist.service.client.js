@@ -48,7 +48,6 @@ class PlaylistServiceClient {
     }
 
     addTrackToPlaylist(playlist, track){
-        console.log('here in client')
         return fetch(constants.BASE_URL + 'playlist/' + playlist._id + '/addtrack', {
             method: 'post',
             credentials: "include",
@@ -56,6 +55,12 @@ class PlaylistServiceClient {
             headers: {
                 'Content-Type': 'application/json'
             }
+        })
+    }
+
+    deleteTrackFromPlaylist(playlist, track){
+        return fetch(constants.BASE_URL + 'playlist/' + playlist._id + /track/ + track._id, {
+            method: 'delete'
         })
     }
 }
