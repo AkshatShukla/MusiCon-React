@@ -171,8 +171,6 @@ export const searchEventsForUser = (dispatch) => {
             else{
             response.json()
             .then(result => {
-
-
                 dispatch({
                     type: constants.EVENTS_NEAR_USER,
                     events: result
