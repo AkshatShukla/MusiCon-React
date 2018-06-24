@@ -26,13 +26,13 @@ const AlbumResultItem = ({result, selectedItem, toggleDetails, modalToggle, deta
                 </form>
                 <button className="btn btn-outline-dark"
                         onClick={() => {
-                            selectedItem(result.artists[0].name, result.name, result.type);
+                            selectedItem(result.artists[0].name, result.name, result.type, result.id);
                             //toggleDetails();
                         }}>Get More Details
                 </button>
                 <br/>
-                <Modal isOpen={modalToggle} toggle={toggleDetails} backdrop={false} centered={true}>
-                    <ModalHeader toggle={toggleDetails}>{details.name}</ModalHeader>
+                <Modal isOpen={modalToggle === result.id} toggle={() => toggleDetails('')} backdrop={true} centered={true}>
+                    <ModalHeader toggle={() => toggleDetails('')}>{details.name}</ModalHeader>
                     <ModalBody>
                         <h4>About Album</h4>
                         {details.wiki !== undefined ? details.wiki.summary : 'No Summary Available'}
@@ -42,7 +42,7 @@ const AlbumResultItem = ({result, selectedItem, toggleDetails, modalToggle, deta
                         </ul>
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="secondary" onClick={() => toggleDetails}>Cancel</Button>
+                        <Button color="secondary" onClick={() => toggleDetails('')}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
             </div>

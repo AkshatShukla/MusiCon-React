@@ -3,12 +3,14 @@ import {connect} from "react-redux";
 import * as actions from "../actions";
 
 const dispatchToPropsMapper = dispatch => ({
-    selectedItem: (artist, track, type) =>
-        actions.selectedItem(dispatch, artist, track, type),
-    toggleDetails: (toggleType) =>
-        actions.toggleDetails(dispatch, toggleType),
+    selectedItem: (artist, track, type, id) =>
+        actions.selectedItem(dispatch, artist, track, type, id),
+    toggleDetails: (id) =>
+        actions.toggleDetails(dispatch, id),
     togglePlaylist: (id) =>
-        actions.togglePlaylist(dispatch,id),
+        actions.togglePlaylist(dispatch, id),
+    toggleEvent: (id) =>
+        actions.toggleEvent(dispatch, id),
     like : (result,type)  => actions.itemLiked(dispatch,result,type),
     addTrackToPlaylist: (track, playlist) =>
         actions.addTrackToPlaylist(dispatch, track, playlist),
@@ -28,6 +30,7 @@ const stateToPropsMapper = state => ({
     flag: state.searchFlag,
     type: state.userType,
     playlistsForListener: state.playlistsForListener,
+    eventModalToggle: state.eventModalToggle,
     eventsForConcertManager: state.eventsForConcertManager
 });
 const ResultListContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(ResultList);
