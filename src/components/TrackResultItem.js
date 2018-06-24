@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-const TrackResultItem = ({result, selectedItem, toggleDetails, modalToggle, playlistModalToggle, details, like, type, playlistsForListener, addTrackToPlaylist}) => {
+const TrackResultItem = ({result, selectedItem, toggleDetails, modalToggle, playlistModalToggle,
+                             details, like, type, playlistsForListener, addTrackToPlaylist, recommend,togglePlaylist}) => {
     function millisToMinutesAndSeconds(millis) {
         const minutes = Math.floor(millis / 60000);
         const seconds = ((millis % 60000) / 1000).toFixed(0);
@@ -56,23 +57,28 @@ const TrackResultItem = ({result, selectedItem, toggleDetails, modalToggle, play
             </div>
             <div className="card-footer " hidden={type !== 'Listener'}>
                 <div className="btn-group" style={{display: 'inline'}}>
-                    <button className="btn btn-outline-secondary" onClick={() =>like(result,'track')}>
-                        <span><i className="fa fa-thumbs-up"></i>&nbsp;</span>Like
+                    <button className="btn btn-outline-secondary" onClick={() => like(result,'track')}>
+                        <span><i className="fa fa-thumbs-up"/>&nbsp;</span>Like
                     </button>
-                    <button className="btn btn-outline-secondary" onClick={() => toggleDetails('playlist')}>
-                        <span><i className="fa fa-plus"></i>&nbsp;</span>Add to Playlist
+                    <button className="btn btn-outline-secondary" onClick={() => togglePlaylist(result.id)}>
+                        <span><i className="fa fa-plus"/>&nbsp;</span>Add to Playlist
                     </button>
                 </div>
             </div>
-            <Modal isOpen={playlistModalToggle} toggle={() => toggleDetails('playlist')} backdrop={false} centered={true}>
-                <ModalHeader toggle={() => toggleDetails('playlist')}>Your Playlist</ModalHeader>
+            <div className="card-footer " hidden={type !== 'Audiophile'}>
+                <button className="btn btn-outline-secondary" onClick={() => recommend(result,'track')}>
+                    <span><i className="fa fa-thumbs-up"/>&nbsp;</span>Recommend
+                </button>
+            </div>
+            <Modal isOpen={playlistModalToggle === result.id} toggle={() => togglePlaylist('')} backdrop={false} centered={true}>
+                <ModalHeader toggle={() => togglePlaylist('')}>Your Playlist</ModalHeader>
                 <ModalBody>
                     <ul className="list-group">
                         {renderPlaylistOfUser()}
                     </ul>
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="secondary" onClick={() => toggleDetails('playlist')}>Cancel</Button>
+                    <Button color="secondary" onClick={() => togglePlaylist('')}>Cancel</Button>
                 </ModalFooter>
             </Modal>
         </div>

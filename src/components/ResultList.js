@@ -6,8 +6,10 @@ import EventResultItem from './EventResultItem'
 
 const ResultList = ({
                         albumResults, trackResults, artistResults, eventResults,
-                        toggleDetails, modalToggle, playlistModalToggle, details, flag, selectedItem, like, type, playlistsForListener,
-                        addTrackToPlaylist
+                        toggleDetails, modalToggle, playlistModalToggle, details, flag,
+                        selectedItem, like, type, playlistsForListener,
+                        addTrackToPlaylist, recommend, eventsForConcertManager, addArtistToEvent,
+                        togglePlaylist
                     }) => {
     const renderListOfResults = (results, f) => {
         if (results !== undefined) {
@@ -21,6 +23,7 @@ const ResultList = ({
                                          modalToggle={modalToggle}
                                          toggleDetails={toggleDetails}
                                          type={type}
+                                         recommend={recommend}
                                          like={like}/>
                     </div>
                 ))
@@ -38,7 +41,9 @@ const ResultList = ({
                                          toggleDetails={toggleDetails}
                                          addTrackToPlaylist={addTrackToPlaylist}
                                          type={type}
-                                         like={like}/>
+                                         recommend={recommend}
+                                         like={like}
+                                         togglePlaylist={togglePlaylist}/>
                     </div>
                 ))
             }
@@ -59,6 +64,8 @@ const ResultList = ({
                                           details={details}
                                           modalToggle={modalToggle}
                                           toggleDetails={toggleDetails}
+                                          eventsForConcertManager={eventsForConcertManager}
+                                          addArtistToEvent={addArtistToEvent}
                                           like={like}
                                           type={type}/>
                     </div>
@@ -67,7 +74,7 @@ const ResultList = ({
         }
     };
     return (
-        <div className="container-fluid bg-white">
+        <div>
             <br/>
             <br/>
             <div className="card-deck row">

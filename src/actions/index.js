@@ -8,6 +8,7 @@ import TrackServiceClient from '../services/track.service.client';
 import ArtistServiceClient from "../services/artist.service.client";
 import AdminServiceClient from "../services/admin.service.client";
 import PlaylistServiceClient from "../services/playlist.service.client";
+import AudiophileServiceClient from "../services/audiophile.service.client";
 
 export const queryChanged = (dispatch, newQuery) => (
     dispatch({
@@ -234,6 +235,13 @@ export const toggleDetails = (dispatch, toggleType) => {
     }
 };
 
+export const togglePlaylist = (dispatch,id) => (
+    dispatch({
+        type: constants.TOGGLE_PLAYLIST,
+        id: id
+    })
+);
+
 export const itemLiked = (dispatch, item ,type) => {
     if (type === 'album') {
         AlbumServiceClient.instance
@@ -268,7 +276,17 @@ export const itemLiked = (dispatch, item ,type) => {
     else if(type === 'artist'){
         ArtistServiceClient.instance
             .follow(item)
-            .then(response => console.log(response));
+            .then(response => {
+                if(response.status===501){
+                    alert("Already liked");
+                }
+                else if(response.status===500){
+                    alert("Try Logging in");
+                }
+                else {
+                    alert("Liked Album " + item.name);
+                }
+            })
     }
 };
 
@@ -490,6 +508,7 @@ export const updateUserAdmin = (dispatch,user) => {
                     })
                 })));
 };
+
 export const deleteUserAdmin = (dispatch,id) => {
     AdminServiceClient.instance
         .deleteUser(id)
@@ -503,6 +522,7 @@ export const deleteUserAdmin = (dispatch,id) => {
                     })
                 })));
 };
+
 export const getArtistsInEvent = (dispatch, event) => {
     let eventServiceClient = EventServiceClient.instance;
     eventServiceClient
@@ -515,7 +535,7 @@ export const getArtistsInEvent = (dispatch, event) => {
                     artists: results.artist
                 }))
         })
-}
+};
 
 export const addTrackToPlaylist = (dispatch, track, playlist) => {
     let playlistServiceClient = PlaylistServiceClient.instance;
@@ -532,5 +552,28 @@ export const addTrackToPlaylist = (dispatch, track, playlist) => {
                 alert('Liked Track ');
             }
         })
+};
+export const recommend = (dispatch, item, type) =>{
+    AudiophileServiceClient.instance
+        .recommend(item,type)
+        .then(response => {
+            if(response.status===501){
+                alert("Already Recommended");
+            }
+            else if(response.status===500){
+                alert("Try Logging in");
+            }
+            else {
+                alert("Recommended Album " + item.name);
+            }
+        })
+};
+
+export const deleteTrackFromPlaylist = (dispatch, track, playlist) => {
+    // to be done
+};
+
+export const addArtistToEvent = (dispatch, artist, event) => {
+    // to be done
 };
 
