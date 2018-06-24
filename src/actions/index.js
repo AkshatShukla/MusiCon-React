@@ -631,6 +631,41 @@ export const findAllAudiophile =(dispatch) => {
     AudiophileServiceClient.instance
         .getAllAudiophile()
         .then(response => response.json()
-            .then(result => console.log(result)))
+            .then(result =>
+                dispatch({
+                    type: constants.AUDIOPHILE_RESULTS,
+                    audiophiles: result
+                })))
 }
-
+export const followAudiophile = (dispatch,id,username) => {
+    AudiophileServiceClient.instance
+        .followAudiophile(id)
+        .then(response => {
+            if(response.status===501){
+                alert('Already Followed '+username);
+            }
+            else{
+                alert('Followed Audiophile '+username);
+            }
+        })
+}
+export const getAudiophileContent = (dispatch,id,type) => {
+    AudiophileServiceClient.instance
+        .getAudiophileContent(id,type)
+        .then(response => response.json()
+            .then(result => dispatch({
+                type: constants.AUDIOPHILE_RECOMMEND_RESULTS,
+                items: result,
+                audiophileResultType: type
+            }))
+        )
+    dispatch({
+        type: constants.OPEN_AUDIOPHILE_DETAILS,
+        id: id
+    })
+}
+export const closeContentPane = (dispatch) => {
+    dispatch({
+        type: constants.CLOSE_AUDIOPHILE_DETAILS,
+    })
+}

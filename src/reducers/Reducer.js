@@ -22,6 +22,7 @@ export const Reducer = (state = {
     albumResults: [],
     trackResults: [],
     artistResults: [],
+    audiophileResults: [],
     searchFlag: '',
     details: {
         name: '',
@@ -39,7 +40,10 @@ export const Reducer = (state = {
     },
     modalToggle: '',
     playlistModalToggle: '',
-    eventModalToggle: ''
+    eventModalToggle: '',
+    audiophileItemType :'',
+    audiophileItems: [],
+    audiophileDetailsId:''
 }, action) => {
     let newState;
     switch (action.type) {
@@ -254,6 +258,24 @@ export const Reducer = (state = {
             newState = Object.assign({}, state);
             newState.artistsInEvent = action.artists;
             newState.eventModalToggle = action.id;
+            return newState;
+
+        case constants.AUDIOPHILE_RESULTS:
+            newState = Object.assign({}, state);
+            newState.audiophileResults = action.audiophiles;
+            return newState;
+        case constants.AUDIOPHILE_RECOMMEND_RESULTS:
+            newState = Object.assign({}, state);
+            newState.audiophileItemType = action.audiophileResultType;
+            newState.audiophileItems = action.items;
+            return newState;
+        case constants.OPEN_AUDIOPHILE_DETAILS:
+            newState = Object.assign({}, state);
+            newState.audiophileDetailsId = action.id;
+            return newState;
+        case constants.CLOSE_AUDIOPHILE_DETAILS:
+            newState = Object.assign({}, state);
+            newState.audiophileDetailsId = '';
             return newState;
 
         default:
