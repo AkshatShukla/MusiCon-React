@@ -536,13 +536,13 @@ export const recommend = (dispatch, item, type) =>{
         .recommend(item,type)
         .then(response => {
             if(response.status===501){
-                alert("Already liked");
+                alert("Already Recommended");
             }
             else if(response.status===500){
                 alert("Try Logging in");
             }
             else {
-                alert("Liked Album " + item.name);
+                alert("Recommended Album " + item.name);
             }
         })
 }
