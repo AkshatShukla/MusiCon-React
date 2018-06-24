@@ -37,7 +37,6 @@ export default class EventOfManager extends React.Component {
 
     }
     updateEvent(id){
-        console.log('update event ',id)
         this.props.updateEvent({name:this.state.title,location:this.state.location,_id:this.state.id});
         this.setState({id:''})
     }

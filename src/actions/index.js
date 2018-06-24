@@ -716,3 +716,8 @@ export const updateEvent = (dispatch,event) => {
         .updateEvent(event)
         .then(response =>findAllEventOfUser(dispatch) )
 }
+export const updatePlaylist = (dispatch,playlist) => {
+    PlaylistServiceClient.instance
+        .updatePlaylist(playlist)
+        .then(response => findAllPlaylistOfUser(dispatch))
+}
