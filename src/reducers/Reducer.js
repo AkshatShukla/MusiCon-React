@@ -17,6 +17,8 @@ export const Reducer = (state = {
     likedAlbums: [],
     likedTracks: [],
     followedArtists: [],
+    recommendedAlbums: [],
+    recommendedTracks: [],
     playlistsForListener: [],
     tracksInPlaylist: [],
     artistsInEvent: [],
@@ -233,6 +235,19 @@ export const Reducer = (state = {
                     return newState;
                 case 'artist':
                     newState.followedArtists = action.followedArtists;
+                    return newState;
+                default:
+                    return newState;
+            }
+
+        case constants.FETCH_RECOMMENDED_ITEMS:
+            newState = Object.assign({}, state);
+            switch (action.itemType) {
+                case 'album':
+                    newState.recommendedAlbums = action.recommendedAlbums;
+                    return newState;
+                case 'track':
+                    newState.recommendedTracks = action.recommendedTracks;
                     return newState;
                 default:
                     return newState;

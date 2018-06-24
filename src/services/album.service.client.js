@@ -36,8 +36,25 @@ class AlbumServiceClient {
         });
     }
 
+    unrecommendAlbum(item) {
+        return fetch(constants.BASE_URL + 'unrecommendAlbum',{
+            method: 'delete',
+            credentials: "include",
+            body: JSON.stringify(item),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+
     getLikedAlbums() {
         return fetch(constants.BASE_URL + 'likedAlbums', {
+            credentials: 'include'
+        })
+    }
+
+    getRecommendedAlbums() {
+        return fetch(constants.BASE_URL + 'recommendedAlbums', {
             credentials: 'include'
         })
     }

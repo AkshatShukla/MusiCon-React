@@ -14,6 +14,7 @@ const dispatchToPropsMapper = dispatch => ({
 });
 
 const stateToPropsMapper = state => ({
+    userType: state.userType
 });
 
 const LoginContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Login)

@@ -42,7 +42,7 @@ const NavigationBarComponent = ({type, logout}) => {
                 </div>
                 <div hidden={type !== 'Audiophile'}>
                     <Link style={{display: 'block', height: '100%'}}
-                          className="navbar-nav" to="/my-page">
+                          className="navbar-nav" to="/my-page-audiophile">
                         <button className="btn btn-dark">Audiophile Page</button>
                     </Link>
                 </div>

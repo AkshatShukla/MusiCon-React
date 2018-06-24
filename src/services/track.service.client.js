@@ -36,8 +36,25 @@ class TrackServiceClient {
         });
     }
 
+    unrecommendTrack(item) {
+        return fetch(constants.BASE_URL + 'unrecommendTrack',{
+            method: 'delete',
+            credentials: "include",
+            body: JSON.stringify(item),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+
     getLikedTracks() {
         return fetch(constants.BASE_URL + 'likedTracks', {
+            credentials: 'include'
+        })
+    }
+
+    getRecommendedTracks() {
+        return fetch(constants.BASE_URL + 'recommendedTracks', {
             credentials: 'include'
         })
     }

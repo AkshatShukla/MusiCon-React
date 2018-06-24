@@ -15,6 +15,9 @@ import CreatePlaylistContainer from "./CreatePlaylistContainer";
 // import EventsNearUserContainer from "../containers/EventsNearUserContainer";
 import ExploreAudiophileContainer from '../containers/ExploreAudiophileContainer'
 import FollowedArtistsContainer from "./FollowedArtistsContainer";
+import AudiophileStatsContainer from "./AudiophileStatsContainer";
+import RecommendedAlbumsContainer from "./RecommendedAlbumsContainer";
+import RecommendedTracksContainer from "./RecommendedTracksContainer";
 class HomeComponent
     extends React.Component {
     render() {
@@ -34,12 +37,18 @@ class HomeComponent
                                component={ProfileContainer}/>
                         <Route exact path='/my-page'
                                component={UserStatsContainer}/>
+                        <Route exact path='/my-page-audiophile'
+                               component={AudiophileStatsContainer}/>
                         <Route path='/my-page/liked-albums'
                                component={LikedAlbumsContainer}/>
                         <Route path='/my-page/liked-tracks'
                                component={LikedTrackContainer}/>
                         <Route path='/my-page/followed-artists'
                                component={FollowedArtistsContainer}/>
+                        <Route path='/my-page-audiophile/recommended-albums'
+                               component={RecommendedAlbumsContainer}/>
+                        <Route path='/my-page-audiophile/recommended-tracks'
+                               component={RecommendedTracksContainer}/>
                         <Route path='/manager'
                                component={OrganizeEventContainer}/>
                         <Route path='/playlist'

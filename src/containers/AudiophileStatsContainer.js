@@ -1,4 +1,4 @@
-import UserStats from "../components/UserStats";
+import AudiophileStats from "../components/AudiophileStats";
 import {connect} from "react-redux";
 import * as actions from "../actions";
 
@@ -8,5 +8,5 @@ const dispatchToPropsMapper = dispatch => ({
 const stateToPropsMapper = state => ({
     username: state.username
 });
-const UserStatsContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(UserStats);
-export default UserStatsContainer;
+const AudiophileStatsContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(AudiophileStats);
+export default AudiophileStatsContainer;

@@ -669,3 +669,74 @@ export const findAllAudiophile =(dispatch) => {
             .then(result => console.log(result)))
 };
 
+export const fetchRecommended = (dispatch, type) => {
+    if (type === 'album') {
+        AlbumServiceClient.instance
+            .getRecommendedAlbums()
+            .then(response => {
+                response.json()
+                    .then((result) => {
+                        dispatch({
+                            type: constants.FETCH_RECOMMENDED_ITEMS,
+                            itemType: 'album',
+                            recommendedAlbums: result
+                        })
+                    });
+            });
+    } else if (type === 'track') {
+        TrackServiceClient.instance
+            .getRecommendedTracks()
+            .then(response => {
+                response.json()
+                    .then((result) => {
+                        dispatch({
+                            type: constants.FETCH_RECOMMENDED_ITEMS,
+                            itemType: 'track',
+                            recommendedTracks: result
+                        })
+                    });
+            });
+    }
+};
+
+export const itemUnrecommended = (dispatch, item, type) => {
+    if (type === 'album') {
+        AlbumServiceClient.instance
+            .unrecommendAlbum(item)
+            .then(response => {
+                alert('Removed Album ' + item.name + ' from your Recommended Albums');
+                AlbumServiceClient.instance
+                    .getRecommendedAlbums()
+                    .then(response => {
+                        response.json()
+                            .then((result) => {
+                                dispatch({
+                                    type: constants.FETCH_RECOMMENDED_ITEMS,
+                                    itemType: 'album',
+                                    recommendedAlbums: result
+                                })
+                            });
+                    });
+            })
+
+    } else if (type === 'track') {
+        TrackServiceClient.instance
+            .unrecommendTrack(item)
+            .then(response => {
+                alert('Removed Track ' + item.name + ' from your Recommended Tracks');
+                TrackServiceClient.instance
+                    .getRecommendedTracks()
+                    .then(response => {
+                        response.json()
+                            .then((result) => {
+                                dispatch({
+                                    type: constants.FETCH_RECOMMENDED_ITEMS,
+                                    itemType: 'track',
+                                    recommendedTracks: result
+                                })
+                            });
+                    });
+            })
+    }
+};
+

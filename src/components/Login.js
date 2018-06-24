@@ -16,7 +16,15 @@ export default class Login extends React.Component {
                         this.props.updateStateWithUserNameAndType(username, r2.type);
                         this.props.getPlaylist();
                         this.props.getEvents();
-                        this.props.history.push('/my-page');
+                    })
+                    .then(() => {
+                        if (this.props.userType === 'Audiophile')
+                            this.props.history.push('/my-page-audiophile');
+                        else if (this.props.userType === 'Listener') {
+                            this.props.history.push('/my-page');
+                        } else if (this.props.userType === 'Admin') {
+                            this.props.history.push('/admin-page')
+                        }
                     });
 
             }
