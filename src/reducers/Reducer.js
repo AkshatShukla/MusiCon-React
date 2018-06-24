@@ -4,6 +4,7 @@ export const Reducer = (state = {
     username: '',
     password: '',
     verifyPassword: '',
+    description: '',
     userType: undefined,
     eventLocation: '',
     query: '',
@@ -26,6 +27,7 @@ export const Reducer = (state = {
     albumResults: [],
     trackResults: [],
     artistResults: [],
+    audiophileResults: [],
     searchFlag: '',
     details: {
         name: '',
@@ -39,11 +41,19 @@ export const Reducer = (state = {
         tracks: []
     },
     admin: {
-        users: []
+        users: [],
+        allLikedAlbum: [],
+        allLikedTrack: [],
+        allRecommendedAlbum: [],
+        allRecommendedTrack: []
     },
     modalToggle: '',
     playlistModalToggle: '',
-    eventModalToggle: ''
+    eventModalToggle: '',
+    audiophileItemType :'',
+    audiophileItems: [],
+    audiophileDetailsId:'',
+    eventsNearUser:[]
 }, action) => {
     let newState;
     switch (action.type) {
@@ -82,8 +92,10 @@ export const Reducer = (state = {
                 newState.eventDate = action.text;
             } else if (action.fieldType === 'playlistName') {
                 newState.playlistName = action.text;
-            } else if (action.playlistDescription === 'playlistDescription') {
+            } else if (action.fieldType === 'playlistDescription') {
                 newState.playlistDescription = action.text
+            } else if (action.fieldType === 'description') {
+                newState.description = action.text
             }
 
             return newState;
@@ -100,8 +112,8 @@ export const Reducer = (state = {
             newState.phone = action.data.phone;
             newState.userType = action.data.type;
             newState.city = action.data.city;
+            newState.description = action.data.description;
             newState.eventLocation = action.data.eventLocation;
-            console.log(newState);
             return newState;
 
 
@@ -277,6 +289,48 @@ export const Reducer = (state = {
             newState = Object.assign({}, state);
             newState.artistsInEvent = action.artists;
             newState.eventModalToggle = action.id;
+            return newState;
+
+        case constants.AUDIOPHILE_RESULTS:
+            newState = Object.assign({}, state);
+            newState.audiophileResults = action.audiophiles;
+            return newState;
+        case constants.AUDIOPHILE_RECOMMEND_RESULTS:
+            newState = Object.assign({}, state);
+            newState.audiophileItemType = action.audiophileResultType;
+            newState.audiophileItems = action.items;
+            return newState;
+        case constants.OPEN_AUDIOPHILE_DETAILS:
+            newState = Object.assign({}, state);
+            newState.audiophileDetailsId = action.id;
+            return newState;
+        case constants.CLOSE_AUDIOPHILE_DETAILS:
+            newState = Object.assign({}, state);
+            newState.audiophileDetailsId = '';
+            return newState;
+        case constants.EVENTS_NEAR_USER:
+            newState = Object.assign({}, state);
+            newState.eventsNearUser = action.events;
+            return newState;
+
+        case constants.ALL_LIKED_ALBUM:
+            newState = Object.assign({}, state);
+            newState.admin.allLikedAlbum = action.data;
+            return newState;
+
+        case constants.ALL_LIKED_TRACK:
+            newState = Object.assign({}, state);
+            newState.admin.allLikedTrack = action.data;
+            return newState;
+
+        case constants.ALL_RECOMMENDED_ALBUM:
+            newState = Object.assign({}, state);
+            newState.admin.allRecommendedAlbum = action.data;
+            return newState;
+
+        case constants.ALL_RECOMMENDED_TRACK:
+            newState = Object.assign({}, state);
+            newState.admin.allRecommendedTrack = action.data;
             return newState;
 
         default:

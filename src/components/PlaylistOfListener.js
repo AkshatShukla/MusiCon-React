@@ -5,8 +5,13 @@ import PlaylistListItem from "./PlaylistListItem";
 export default class PlaylistOfListener extends React.Component {
 
     constructor(props) {
-        super(props)
+        super(props);
+        this.state={id:''};
         this.props.findAllPlaylistOFUser();
+
+        this.editEvent =this.editEvent.bind(this);
+        this.updateEvent =this.updateEvent.bind(this);
+        this.textChanged =this.textChanged.bind(this);
     }
 
     renderList(playlists){
@@ -20,11 +25,26 @@ export default class PlaylistOfListener extends React.Component {
                     getTracksInPlaylist = {this.props.getTracksInPlaylist}
                     toggleDetails={this.props.toggleDetails}
                     modalToggle={this.props.modalToggle}
-                    deleteTrackFromPlaylist={this.props.deleteTrackFromPlaylist}/>
+                    deleteTrackFromPlaylist={this.props.deleteTrackFromPlaylist}
+                    id={this.state.id}
+                    editEvent={this.editEvent}
+                    updateEvent={this.updateEvent}
+                    textChanged={this.textChanged}/>
             </div>
         )
     }
+    textChanged(text,type){
+        if(type==='name'){this.setState({name:text});}
+        else if(type==='description'){this.setState({description:text});}
 
+    }
+    updateEvent(){
+        this.props.updatePlaylist({name:this.state.name,description:this.state.description,_id:this.state.id});
+        this.setState({id:''})
+    }
+    editEvent(id){
+        this.setState({id:id});
+    }
     render () {
         return (
             <div className="card-deck row">

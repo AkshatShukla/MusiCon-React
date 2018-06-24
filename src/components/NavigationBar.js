@@ -48,6 +48,30 @@ const NavigationBarComponent = ({type, logout}) => {
                 </div>
                 <div hidden={type !== 'Admin'}>
                     <Link style={{display: 'block', height: '100%'}}
+                          className="navbar-nav" to="/all-liked-album">
+                        <button className="btn btn-dark">All Liked Album</button>
+                    </Link>
+                </div>
+                <div hidden={type !== 'Admin'}>
+                    <Link style={{display: 'block', height: '100%'}}
+                          className="navbar-nav" to="/all-recommended-album">
+                        <button className="btn btn-dark">All Recommended Album</button>
+                    </Link>
+                </div>
+                <div hidden={type !== 'Admin'}>
+                    <Link style={{display: 'block', height: '100%'}}
+                          className="navbar-nav" to="/all-recommended-track">
+                        <button className="btn btn-dark">All Recommended Track</button>
+                    </Link>
+                </div>
+                <div hidden={type !== 'Admin'}>
+                    <Link style={{display: 'block', height: '100%'}}
+                          className="navbar-nav" to="/all-liked-track">
+                        <button className="btn btn-dark">All Liked Track</button>
+                    </Link>
+                </div>
+                <div hidden={type !== 'Admin'}>
+                    <Link style={{display: 'block', height: '100%'}}
                           className="navbar-nav" to="/admin-page">
                         <button className="btn btn-dark">Admin Page</button>
                     </Link>

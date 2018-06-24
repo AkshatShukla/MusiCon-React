@@ -7,11 +7,13 @@ class UserServiceClient {
         if (_singleton !== singletonToken)
             throw new Error('Cannot instantiate directly.');
     }
+
     static get instance() {
         if(!this[_singleton])
             this[_singleton] = new UserServiceClient(_singleton);
         return this[_singleton]
     }
+
     updateUser(user){
         return fetch(constants.BASE_URL+'profile',{
             method: 'put',
@@ -22,13 +24,14 @@ class UserServiceClient {
             }
         })
     }
+
     profile() {
-        return fetch(constants.BASE_URL+'profile',
-            {
+        return fetch(constants.BASE_URL+'profile',{
                 credentials: 'include', // include, same-origin, *omit
             })
             .then(response => response.json());
     }
+
     login(username, password) {
         var user = {
             username: username,
@@ -76,6 +79,7 @@ class UserServiceClient {
             }
         });
     }
+
     logout(){
         return fetch(constants.BASE_URL+'logout',{
             method: 'post'})

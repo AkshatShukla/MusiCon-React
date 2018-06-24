@@ -61,7 +61,25 @@ class EventServiceClient {
 
     deleteArtistFromEvent(event, artist) {
         return fetch(constants.BASE_URL + 'event/' + event._id + '/artist/' + artist._id, {
-            method: 'delete'
+            method: 'delete',
+            credentials: "include",
+        })
+    }
+    findEventsForUser(){
+        return fetch(constants.BASE_URL + 'events/nearby' , {
+            method: 'get',
+            credentials: "include",
+        })
+
+    }
+    updateEvent(event){
+        return fetch(constants.BASE_URL + 'event' , {
+            method: 'put',
+            body:JSON.stringify(event),
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
     }
 }

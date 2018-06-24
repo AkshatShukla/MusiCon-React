@@ -7,7 +7,8 @@ const dispatchToPropsMapper = dispatch => ({
     deleteEvent: (event) => actions.deleteEventForConcertManager(dispatch, event),
     getArtistsInEvent: (event, id) => actions.getArtistsInEvent(dispatch, event, id),
     toggleEvent: (id) => actions.toggleEvent(dispatch, id),
-    deleteArtistFromEvent: (artist, event) => actions.deleteArtistFromEvent(dispatch, artist, event)
+    deleteArtistFromEvent: (artist, event) => actions.deleteArtistFromEvent(dispatch, artist, event),
+    updateEvent: (event) => actions.updateEvent(dispatch,event)
 });
 
 const stateToPropsMapper = state => ({

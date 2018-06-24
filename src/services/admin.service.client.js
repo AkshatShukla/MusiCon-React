@@ -40,6 +40,46 @@ class AdminServiceClient {
                 'Content-Type': 'application/json'
             }})
     }
+
+    findAllLikedAlbum() {
+        return fetch(constants.BASE_URL + 'admin/all-liked-album')
+    }
+
+    deleteLikedAlbum(likeAlbumId) {
+        return fetch(constants.BASE_URL + 'admin/likedAlbum/' + likeAlbumId, {
+            method: 'delete'
+        })
+    }
+
+    findAllLikedTrack() {
+        return fetch(constants.BASE_URL + 'admin/all-liked-track')
+    }
+
+    deleteLikedTrack(likeTrackId) {
+        return fetch(constants.BASE_URL + 'admin/likedTrack/' + likeTrackId, {
+            method: 'delete'
+        })
+    }
+
+    findAllRecommendedAlbum() {
+        return fetch(constants.BASE_URL + 'admin/all-recommended-album')
+    }
+
+    deleteRecommendedAlbum(recommendedAlbumId) {
+        return fetch(constants.BASE_URL + 'admin/recommendedAlbum/' + recommendedAlbumId, {
+            method: 'delete'
+        })
+    }
+
+    findAllRecommendedTrack() {
+        return fetch(constants.BASE_URL + 'admin/all-recommended-track')
+    }
+
+    deleteRecommendedTrack(recommendedTrackId) {
+        return fetch(constants.BASE_URL + 'admin/recommendedTrack/' + recommendedTrackId, {
+            method: 'delete'
+        })
+    }
 }
 
 export default AdminServiceClient;

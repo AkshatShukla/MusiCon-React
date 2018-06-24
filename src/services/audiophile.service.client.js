@@ -67,6 +67,35 @@ class AudiophileServiceClient {
             }
         })
     }
+    followAudiophile(id){
+        return fetch(constants.BASE_URL + 'audiophile/'+id,{
+            method: 'post',
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    }
+    getAudiophileContent(id,type){
+        if(type==='track'){
+            return fetch(constants.BASE_URL + 'audiophile/track/' + id, {
+                method: 'get',
+                credentials: "include",
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+        }
+        else {
+            return fetch(constants.BASE_URL + 'audiophile/album/' + id, {
+                method: 'get',
+                credentials: "include",
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+        }
+    }
 }
 
 export default AudiophileServiceClient;

@@ -2,7 +2,7 @@ import React from 'react'
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 
 const PlaylistListItem = ({playlist, modalToggle, tracksInPlaylist, deletePlaylist, getTracksInPlaylist,
-                              toggleDetails, deleteTrackFromPlaylist}) => {
+                              toggleDetails, deleteTrackFromPlaylist,editEvent,id,updateEvent,textChanged}) => {
 
     function renderTracksInPlaylist() {
         return tracksInPlaylist.map((track) => (
@@ -20,15 +20,23 @@ const PlaylistListItem = ({playlist, modalToggle, tracksInPlaylist, deletePlayli
     return (
         <div className="card shadow p-3 mb-5 bg-white rounded" style={{width: '16rem'}}>
             <div className="card-body">
-                <h5 className="card-title">{playlist.name}</h5>
-                <h6>{playlist.description}</h6>
-                <button className='btn btn-dark'
+                { id!==playlist._id &&<h5 className="card-title">{playlist.name}</h5>}
+                { id!==playlist._id &&<h6>{playlist.description}</h6>}
+                { id===playlist._id && <input placeholder={playlist.name}
+                                              onChange={(e) => textChanged(e.target.value,'name')}
+                                              className="card-title"/>}
+                { id===playlist._id && <input placeholder={playlist.description}
+                                              onChange={(e) => textChanged(e.target.value,'description')}
+                                              className="card-title"/>}
+                { id!==playlist._id &&<button className='btn btn-dark'
                         onClick={() => getTracksInPlaylist(playlist, playlist._id)}
                         style={{marginBottom: '10px'}}>Show Tracks
-                </button>
-                <button className='btn btn-outline-danger'
+                </button>}
+                { id!==playlist._id && <button className='btn btn-outline-danger'
                         onClick={() => deletePlaylist(playlist)}>Delete
-                </button>
+                </button>}
+                { id!==playlist._id &&<button className='btn' onClick={() => editEvent(playlist._id)}>Edit</button>}
+                { id===playlist._id &&<button className='btn' onClick={() => updateEvent(playlist._id)}>Update</button>}
             </div>
             <Modal isOpen={modalToggle === playlist._id} toggle={() => toggleDetails('')} backdrop={true}
                    centered={true}>
