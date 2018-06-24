@@ -269,7 +269,17 @@ export const itemLiked = (dispatch, item ,type) => {
     else if(type === 'artist'){
         ArtistServiceClient.instance
             .follow(item)
-            .then(response => console.log(response));
+            .then(response => {
+                if(response.status===501){
+                    alert("Already liked");
+                }
+                else if(response.status===500){
+                    alert("Try Logging in");
+                }
+                else {
+                    alert("Liked Album " + item.name);
+                }
+            })
     }
 };
 
@@ -524,5 +534,16 @@ export const addTrackToPlaylist = (dispatch, track, playlist) => {
 export const recommend = (dispatch, item, type) =>{
     AudiophileServiceClient.instance
         .recommend(item,type)
+        .then(response => {
+            if(response.status===501){
+                alert("Already liked");
+            }
+            else if(response.status===500){
+                alert("Try Logging in");
+            }
+            else {
+                alert("Liked Album " + item.name);
+            }
+        })
 }
 
