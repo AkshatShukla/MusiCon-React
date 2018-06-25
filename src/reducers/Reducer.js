@@ -174,11 +174,7 @@ export const Reducer = (state = {
             newState.verifyPassword = '';
             newState.userType = undefined;
             newState.loggedIn = false;
-            newState.username = '';
-            newState.password = '';
-            newState.verifyPassword = '';
             newState.description = '';
-            newState.userType = undefined;
             newState.eventLocation = '';
             newState.query = '';
             newState.eventName = '';

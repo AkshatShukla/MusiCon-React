@@ -9,7 +9,6 @@ const dispatchToPropsMapper = dispatch => ({
 });
 
 const stateToPropsMapper = state => ({
-    // preview: state.preview
     username: state.username,
     firstName: state.firstName,
     lastName: state.lastName,

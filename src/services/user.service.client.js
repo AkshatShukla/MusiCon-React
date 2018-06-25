@@ -82,7 +82,8 @@ class UserServiceClient {
 
     logout(){
         return fetch(constants.BASE_URL+'logout',{
-            method: 'post'})
+            method: 'post',
+            credentials: "include",})
     }
 
 }
