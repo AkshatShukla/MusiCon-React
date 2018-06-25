@@ -96,13 +96,6 @@ export const registerManager = (dispatch, username, password, verifyPassword, us
                 if (response.status === 500) {
                     alert('username already exist')
                 }
-                else {
-                    dispatch({
-                        type: constants.SAVE_USERNAME_AND_USERTYPE,
-                        username: username,
-                        userType: userType
-                    })
-                }
             })
     }
 };
@@ -116,13 +109,6 @@ export const registerUser = (dispatch, username, password, verifyPassword, userT
             .then(response => {
                 if (response.status === 500) {
                     alert('username already exist')
-                }
-                else {
-                    dispatch({
-                        type: constants.SAVE_USERNAME_AND_USERTYPE,
-                        username: username,
-                        userType: userType
-                    })
                 }
             })
     }
