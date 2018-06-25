@@ -19,7 +19,7 @@ class AllRecommendedAlbum extends React.Component {
     render() {
         return (
             <div className='container-fluid'>
-                <h3>All albums Recommended by all Audiophile</h3>
+                <h3>All albums Recommended by all Audiophiles</h3>
                 <table className='table table-hover'>
                     <thead>
                     <tr>

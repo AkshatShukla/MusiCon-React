@@ -19,7 +19,7 @@ class AllLikedAlbum extends React.Component {
     render() {
         return (
             <div className='container-fluid'>
-                <h3>All albums liked by all users</h3>
+                <h3>All albums liked by all Listeners</h3>
                 <table className='table table-hover'>
                     <thead>
                         <tr>
