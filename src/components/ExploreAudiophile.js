@@ -1,5 +1,4 @@
 import React from 'react'
-import AudiophileServiceClient from "../services/audiophile.service.client";
 import {Jumbotron} from 'reactstrap';
 
 export default class ExploreAudiophile extends React.Component {

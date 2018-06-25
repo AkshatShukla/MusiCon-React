@@ -14,7 +14,7 @@ const OrganizeEvent = ({username, textChanged, createEvent}) => {
                 <p className="lead">All your concert management in one place!</p>
                 <hr className="my-2"/>
                 <div className="col-12 bg-dark text-white rounded">
-                <p className="lead"><h3>Create New Event</h3></p>
+                    <p className="lead">Create New Event</p>
                 </div>
                 <div className="cardRegistration card-container container-fluid rounded">
                     <form className="form-inline m-2">
@@ -47,13 +47,13 @@ const OrganizeEvent = ({username, textChanged, createEvent}) => {
                                ref={node => inputElem2 = node}/>
                     </form>
                     <button onClick={() => createEvent(inputElem.value, inputElem1.value, inputElem2.value)}
-                            className='btn btn-primary btn-block'>
+                            className='btn btn-dark justify-content-center'>
                         Create Event
                     </button>
                 </div>
                 <hr className="my-2"/>
                 <div className="col-12 bg-dark text-white rounded">
-                <p className="lead"><h3>Your Concerts</h3></p>
+                    <p className="lead">Your Concerts</p>
                 </div>
                 <EventContainer/>
             </Jumbotron>

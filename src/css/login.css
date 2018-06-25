@@ -1,5 +1,5 @@
 .loginBg{
-    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+    background-image: linear-gradient(rgb(8, 12, 16), rgb(3, 11, 4));
 }
 .card-container.card {
     max-width: 350px;
@@ -94,5 +94,5 @@
 .btn.btn-signin:hover,
 .btn.btn-signin:active,
 .btn.btn-signin:focus {
-    background-color: rgb(12, 97, 33);
+    background-color: rgb(3, 10, 4);
 }
