@@ -1,15 +1,18 @@
 import React from 'react'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 
-const ArtistResultItem = ({result, selectedItem, toggleDetails, modalToggle, playlistModalToggle, details, like, type,
-                              eventsForConcertManager, addArtistToEvent, toggleEvent, eventModalToggle}) => {
+const ArtistResultItem = ({
+                              result, selectedItem, toggleDetails, modalToggle, playlistModalToggle, details, like, type,
+                              eventsForConcertManager, addArtistToEvent, toggleEvent, eventModalToggle
+                          }) => {
 
     function renderEventsOfUser() {
         return eventsForConcertManager.map((event) => (
             <li key="index" className="list-group-item">
                 {event.name}
                 <button className="btn btn-primary float-right"
-                        onClick={() => addArtistToEvent(result, event)}>Add</button>
+                        onClick={() => addArtistToEvent(result, event)}>Add
+                </button>
             </li>
         ))
     }
@@ -20,11 +23,13 @@ const ArtistResultItem = ({result, selectedItem, toggleDetails, modalToggle, pla
             <div className="card-body">
                 <h5 className="card-title">{result.name}</h5>
                 <p>Genres:</p>
-                <ul className="list-group">
-                    {result.genres.map(genre => (
-                        <li key={result.id}>{genre}</li>
-                    ))}
-                </ul>
+                {result.genres.length !== 0
+                    ? <ul className="list-group">
+                        {result.genres.map(genre => (
+                            <li key={result.id}>{genre}</li>
+                        ))}
+                    </ul>
+                    : <span>Not Available</span>}
                 <br/>
                 <form action={result['external_urls'].spotify}>
                     <button className="btn btn-outline-dark" style={{marginBottom: '10px'}}>Show on Spotify</button>
@@ -36,7 +41,8 @@ const ArtistResultItem = ({result, selectedItem, toggleDetails, modalToggle, pla
                         }}>Get More Details
                 </button>
                 <br/>
-                <Modal isOpen={modalToggle === result.id} toggle={() => toggleDetails('')} backdrop={true} centered={true}>
+                <Modal isOpen={modalToggle === result.id} toggle={() => toggleDetails('')} backdrop={true}
+                       centered={true}>
                     <ModalHeader toggle={() => toggleDetails('')}>{details.name}</ModalHeader>
                     <ModalBody>
                         {details.wiki !== undefined ? details.wiki.summary : 'No Summary Available'}
@@ -52,12 +58,15 @@ const ArtistResultItem = ({result, selectedItem, toggleDetails, modalToggle, pla
             <div className="card-footer ">
                 <button className="btn btn-dark"
                         hidden={type !== 'Listener'}
-                        onClick={() => like(result,'artist')}>Follow</button>
+                        onClick={() => like(result, 'artist')}>Follow
+                </button>
                 <button className="btn btn-dark"
                         hidden={type !== 'Concert Manager'}
-                        onClick={() => toggleEvent(result.id)}>Add to Event</button>
+                        onClick={() => toggleEvent(result.id)}>Add to Event
+                </button>
             </div>
-            <Modal isOpen={eventModalToggle === result.id} toggle={() => toggleEvent('')} backdrop={true} centered={true}>
+            <Modal isOpen={eventModalToggle === result.id} toggle={() => toggleEvent('')} backdrop={true}
+                   centered={true}>
                 <ModalHeader toggle={() => toggleEvent('')}>Your Events</ModalHeader>
                 <ModalBody>
                     <ul className="list-group">

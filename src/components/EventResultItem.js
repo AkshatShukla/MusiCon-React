@@ -8,20 +8,29 @@ const EventResultItem = ({result}) => {
                 <h5 className="card-title">{result.name}</h5>
                 <p>at {result._embedded.venues[0].name}</p>
                 <form action={result.url}>
-                    <button className="btn btn-outline-dark" style={{marginBottom: '10px'}}>Show on Ticket Master</button>
+                    <button className="btn btn-outline-dark" style={{marginBottom: '10px'}}>Show on Ticket Master
+                    </button>
                 </form>
-                <form action={result.seatmap.staticUrl}>
-                    <button className="btn btn-outline-dark" style={{marginBottom: '10px'}}>Show on Seat Map</button>
-                </form>
+                {result.seatmap !== undefined
+                    ? <form action={result.seatmap.staticUrl}>
+                        <button className="btn btn-outline-dark" style={{marginBottom: '10px'}}>Show on Seat Map
+                        </button>
+                    </form>
+                    : <span>&nbsp;</span>}
+
             </div>
             <div className="card-footer">
                 <small className="text-muted">Concert Date: {result.dates.start.localDate}</small>
                 <br/>
-                <small className="text-muted">Concert Time: {result.dates.start.localTime.substr(0,5)}</small>
+                <small className="text-muted">Concert Time: {result.dates.start.localTime.substr(0, 5)}</small>
             </div>
-            <div className="card-footer">
-                <small className="text-muted">Price Range: USD {result.priceRanges[0].min} - {result.priceRanges[0].max}</small>
-            </div>
+            {result.priceRanges !== undefined
+                ? <div className="card-footer">
+                    <small className="text-muted">Price Range:
+                        USD {result.priceRanges[0].min} - {result.priceRanges[0].max}</small>
+                </div>
+                : <span>&nbsp;</span>}
+
         </div>
     )
 };
