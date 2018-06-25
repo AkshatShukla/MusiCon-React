@@ -2,13 +2,9 @@ import React from 'react'
 import ResultListContainer from "../containers/ResultListContainer";
 import {Jumbotron, Container} from 'reactstrap'
 
-export default class SearchBar extends React.Component {//} = ({queryChanged, searchTypeChanged, searchQuery}) => {
+export default class SearchBar extends React.Component {
     selectElem;
     inputElem;
-
-    constructor(props) {
-        super(props)
-    }
 
     componentDidMount(){
         this.props.dropSearchResults();

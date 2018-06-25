@@ -9,6 +9,7 @@ export const Reducer = (state = {
     eventLocation: '',
     query: '',
     eventName: '',
+    dob: '',
     venueName: '',
     eventDate: '',
     playlistName: '',
@@ -53,7 +54,10 @@ export const Reducer = (state = {
     audiophileItemType :'',
     audiophileItems: [],
     audiophileDetailsId:'',
-    eventsNearUser:[],
+    eventsNearUser: {
+        'tn':[],
+        'lr':[]
+    },
     loggedIn:false
 }, action) => {
     let newState;

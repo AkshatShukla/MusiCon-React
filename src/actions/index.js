@@ -296,13 +296,13 @@ export const itemLiked = (dispatch, item, type) => {
             .follow(item)
             .then(response => {
                 if (response.status === 501) {
-                    alert("Already liked");
+                    alert("Already followed");
                 }
                 else if (response.status === 500) {
                     alert("Try Logging in");
                 }
                 else {
-                    alert("Liked Album " + item.name);
+                    alert('Follow artist ' + item.name);
                 }
             })
     }
@@ -656,7 +656,7 @@ export const recommend = (dispatch, item, type) => {
                 alert("Try Logging in");
             }
             else {
-                alert("Recommended Album " + item.name);
+                alert("Recommended "+type+" " + item.name);
             }
         })
 };

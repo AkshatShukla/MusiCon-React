@@ -58,7 +58,8 @@ export default class Profile extends React.Component {
                         <label htmlFor="dob" className="form-label col-2">Date of Birth:</label>
                         <input className="col-9 form-control"
                                id="dob"
-                               value={this.props.dob}
+                               type='date'
+                               value={this.props.dob.substr(0,10)}
                                onChange={(Event) => this.props.TextChanged('dob', Event.target.value)}/>
                     </form>
                     <form className="form-signin form-inline m-2">

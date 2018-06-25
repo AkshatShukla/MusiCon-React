@@ -1,5 +1,4 @@
 import React from 'react'
-import * as actions from '../actions'
 
 export default class AdminPage extends React.Component {
 
