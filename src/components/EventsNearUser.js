@@ -43,14 +43,14 @@ export default class EventsNearUser extends React.Component {
                         </Button>
                     </Link>
                     <hr className="my-2"/>
-                    <h3 className="lead">Ticket Master Concerts</h3>
-                    <div className="card-deck row">
-                        {this.showTicketMasterConcerts()}
-                    </div>
-                    <hr className="my-2"/>
                     <h3 className="lead">Local Concerts</h3>
                     <div className="card-deck row">
                         {this.showLocalConcerts()}
+                    </div>
+                    <hr className="my-2"/>
+                    <h3 className="lead">Ticket Master Concerts</h3>
+                    <div className="card-deck row">
+                        {this.showTicketMasterConcerts()}
                     </div>
                 </Jumbotron>
             </div>
