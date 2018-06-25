@@ -12,21 +12,25 @@ export default class EventsNearUser extends React.Component {
     }
 
     showLocalConcerts() {
-        return this.props.events.lr.map((event) => (
-            <div className="col-sm-3"
-                 key={event._id}>
-                <LocalEventItem event={event}/>
-            </div>
-        ))
+        if (this.props.events.lr !== undefined) {
+            return this.props.events.lr.map((event) => (
+                <div className="col-sm-3"
+                     key={event._id}>
+                    <LocalEventItem event={event}/>
+                </div>
+            ))
+        }
     }
 
     showTicketMasterConcerts() {
-        return this.props.events.tn.map((event) => (
-            <div className="col-sm-3"
-                 key={event._id}>
-                <TicketMasterEventItem event={event}/>
-            </div>
-        ))
+        if (this.props.events.tn !== undefined) {
+            return this.props.events.tn.map((event) => (
+                <div className="col-sm-3"
+                     key={event._id}>
+                    <TicketMasterEventItem event={event}/>
+                </div>
+            ))
+        }
     }
 
     render() {
