@@ -11,7 +11,7 @@ const EventListItem = ({
         return artistsInEvent.map((artist) => (
             <li key={artist._id} className="list-group-item">
                 <h4>{artist.name}</h4>
-                <button className="btn btn-outline-danger float-right"
+                <button type='btn' className="btn btn-outline-danger float-right"
                         onClick={() => deleteArtistFromEvent(artist, event)}>
                     <span><i className="fa fa-trash">&nbsp;</i></span>
                     Remove
@@ -35,17 +35,17 @@ const EventListItem = ({
                 {id === event._id && <input type='date'
                                             style={{marginBottom: '10px'}}
                                             onChange={(e) => textChanged(e.target.value, 'date')}/>}
-                {id !== event._id && <button className='btn btn-outline-dark'
+                {id !== event._id && <button type='btn' className='btn btn-outline-dark'
                                              onClick={() => getArtistsInEvent(event, event._id)}
                                              style={{marginBottom: '10px'}}>Artists In Event</button>}
                  &nbsp;
-                {id !== event._id && <button className='btn btn-outline-dark'
+                {id !== event._id && <button type='btn' className='btn btn-outline-dark'
                                              style={{marginBottom: '10px'}}
                                              onClick={() => editEvent(event._id)}>Edit</button>}
-                {id === event._id && <button className='btn btn-outline-success'
+                {id === event._id && <button type='btn' className='btn btn-outline-success'
                                              style={{marginBottom: '10px'}}
                                              onClick={() => updateEvent(event._id)}>Update</button>}
-                {id !== event._id && <button className='btn btn-outline-danger'
+                {id !== event._id && <button type='btn' className='btn btn-outline-danger'
                                              onClick={() => deleteEvent(event)}>Delete</button>}
             </div>
             {id !== event._id && <div className="card-footer">

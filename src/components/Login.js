@@ -46,7 +46,7 @@ export default class Login extends React.Component {
                                required
                                onChange={(e) => this.password = e.target.value}/>
                     </form>
-                        <button className="btn btn-lg btn-primary btn-block btn-signin"
+                        <button type='btn' className="btn btn-lg btn-primary btn-block btn-signin"
                                 onClick={() => this.login(this.username, this.password)}>
                             Sign in
                         </button>

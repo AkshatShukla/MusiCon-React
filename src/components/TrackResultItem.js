@@ -13,7 +13,7 @@ const TrackResultItem = ({result, selectedItem, toggleDetails, modalToggle, play
         return playlistsForListener.map((playlist) => (
             <li key="index" className="list-group-item">
                 {playlist.name}
-                <button className="btn btn-primary float-right"
+                <button type='btn' className="btn btn-primary float-right"
                     onClick={() => addTrackToPlaylist(result, playlist)}>Add</button>
             </li>
         ))
@@ -27,10 +27,10 @@ const TrackResultItem = ({result, selectedItem, toggleDetails, modalToggle, play
                 <p>By {result.artists[0].name}</p>
                 <p>Duration: {millisToMinutesAndSeconds(result.duration_ms)}</p>
                 <form action={result['external_urls'].spotify}>
-                    <button className="btn btn-outline-dark" style={{marginBottom : '10px'}}>Show on Spotify</button>
+                    <button type='btn' className="btn btn-outline-dark" style={{marginBottom : '10px'}}>Show on Spotify</button>
                 </form>
                 {/*<a href={result.preview_url !== null ? result.preview_url : ''}>Preview Track</a>*/}
-                <button className="btn btn-outline-dark"
+                <button type='btn' className="btn btn-outline-dark"
                         onClick={() => {
                             selectedItem(result.artists[0].name, result.name, result.type, result.id);
                             //toggleDetails();
@@ -57,16 +57,16 @@ const TrackResultItem = ({result, selectedItem, toggleDetails, modalToggle, play
             </div>
             <div className="card-footer " hidden={type !== 'Listener'}>
                 <div className="btn-group" style={{display: 'inline'}}>
-                    <button className="btn btn-outline-secondary" onClick={() => like(result,'track')}>
+                    <button type='btn' className="btn btn-outline-secondary" onClick={() => like(result,'track')}>
                         <span><i className="fa fa-thumbs-up"/>&nbsp;</span>Like
                     </button>
-                    <button className="btn btn-outline-secondary" onClick={() => togglePlaylist(result.id)}>
+                    <button type='btn' className="btn btn-outline-secondary" onClick={() => togglePlaylist(result.id)}>
                         <span><i className="fa fa-plus"/>&nbsp;</span>Add to Playlist
                     </button>
                 </div>
             </div>
             <div className="card-footer " hidden={type !== 'Audiophile'}>
-                <button className="btn btn-outline-secondary" onClick={() => recommend(result,'track')}>
+                <button type='btn' className="btn btn-outline-secondary" onClick={() => recommend(result,'track')}>
                     <span><i className="fa fa-thumbs-up"/>&nbsp;</span>Recommend
                 </button>
             </div>

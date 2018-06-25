@@ -12,7 +12,7 @@ class AllLikedAlbum extends React.Component {
             <tr>
                 <td>{album.Album.name}</td>
                 <td>{album.user.username}</td>
-                <td><button className='btn' onClick={() => this.props.deleteLikedAlbum(album._id)}>Delete</button></td>
+                <td><button type='btn' className='btn' onClick={() => this.props.deleteLikedAlbum(album._id)}>Delete</button></td>
             </tr>)
     }
 

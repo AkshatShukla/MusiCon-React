@@ -8,12 +8,12 @@ const EventResultItem = ({result}) => {
                 <h5 className="card-title">{result.name}</h5>
                 <p>at {result._embedded.venues[0].name}</p>
                 <form action={result.url}>
-                    <button className="btn btn-outline-dark" style={{marginBottom: '10px'}}>Show on Ticket Master
+                    <button type='btn' className="btn btn-outline-dark" style={{marginBottom: '10px'}}>Show on Ticket Master
                     </button>
                 </form>
                 {result.seatmap !== undefined
                     ? <form action={result.seatmap.staticUrl}>
-                        <button className="btn btn-outline-dark" style={{marginBottom: '10px'}}>Show on Seat Map
+                        <button type='btn' className="btn btn-outline-dark" style={{marginBottom: '10px'}}>Show on Seat Map
                         </button>
                     </form>
                     : <span>&nbsp;</span>}

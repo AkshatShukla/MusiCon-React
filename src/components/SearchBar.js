@@ -38,7 +38,7 @@ export default class SearchBar extends React.Component {
                                 </select>
                             </div>
                             <div className=" form-group col-1 container-fluid">
-                                <button className="btn btn-sm btn-primary"
+                                <button type='btn' className="btn btn-sm btn-primary"
                                         style={{width: '100%', height: '100%'}}
                                         onClick={e => this.props.searchQuery(this.inputElem, this.selectElem)}>
                                     <i className="fa fa-search" aria-hidden="true">

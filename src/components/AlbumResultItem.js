@@ -22,9 +22,9 @@ const AlbumResultItem = ({result, selectedItem, toggleDetails, modalToggle, deta
                 <h5 className="card-title">{result.name}</h5>
                 <p>By {result.artists[0].name}</p>
                 <form action={result['external_urls'].spotify}>
-                    <button className="btn btn-outline-dark" style={{marginBottom: '10px'}}>Show on Spotify</button>
+                    <button type='btn' className="btn btn-outline-dark" style={{marginBottom: '10px'}}>Show on Spotify</button>
                 </form>
-                <button className="btn btn-outline-dark"
+                <button type='btn' className="btn btn-outline-dark"
                         onClick={() => {
                             selectedItem(result.artists[0].name, result.name, result.type, result.id);
                             //toggleDetails();
@@ -50,12 +50,12 @@ const AlbumResultItem = ({result, selectedItem, toggleDetails, modalToggle, deta
                 <small className="text-muted">Release Date: {result.release_date}</small>
             </div>
             <div className="card-footer " hidden={type !== 'Listener'}>
-                <button className="btn btn-outline-secondary" onClick={() =>like(result,'album')}>
+                <button type='btn' className="btn btn-outline-secondary" onClick={() =>like(result,'album')}>
                     <span><i className="fa fa-thumbs-up"/>&nbsp;</span>Like
                 </button>
             </div>
             <div className="card-footer " hidden={type !== 'Audiophile'}>
-                <button className="btn btn-outline-secondary" onClick={() =>recommend(result,'album')}>
+                <button type='btn' className="btn btn-outline-secondary" onClick={() =>recommend(result,'album')}>
                     <span><i className="fa fa-thumbs-up"/>&nbsp;</span>Recommend
                 </button>
             </div>

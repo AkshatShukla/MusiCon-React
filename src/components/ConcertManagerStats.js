@@ -25,7 +25,7 @@ const ConcertManagerStats = ({username, description}) => {
                                 <CardText>Click on the button below to create new concert/event.</CardText>
                                 <Link style={{display: 'block', height: '100%'}}
                                       to="/my-page-manager/create-event">
-                                    <Button>Create</Button>
+                                    <Button >Create</Button>
                                 </Link>
                             </CardBody>
                         </Card>
