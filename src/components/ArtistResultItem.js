@@ -10,7 +10,7 @@ const ArtistResultItem = ({
         return eventsForConcertManager.map((event) => (
             <li key="index" className="list-group-item">
                 {event.name}
-                <button className="btn btn-primary float-right"
+                <button type='btn' className="btn btn-primary float-right"
                         onClick={() => addArtistToEvent(result, event)}>Add
                 </button>
             </li>
@@ -32,9 +32,9 @@ const ArtistResultItem = ({
                     : <span>Not Available</span>}
                 <br/>
                 <form action={result['external_urls'].spotify}>
-                    <button className="btn btn-outline-dark" style={{marginBottom: '10px'}}>Show on Spotify</button>
+                    <button type='btn' className="btn btn-outline-dark" style={{marginBottom: '10px'}}>Show on Spotify</button>
                 </form>
-                <button className="btn btn-outline-dark"
+                <button type='btn' className="btn btn-outline-dark"
                         onClick={() => {
                             selectedItem(result.name, '', result.type, result.id);
                             //toggleDetails();
@@ -56,11 +56,11 @@ const ArtistResultItem = ({
                 <small className="text-muted">Followers: {result.followers.total}</small>
             </div>
             <div className="card-footer ">
-                <button className="btn btn-dark"
+                <button type='btn' className="btn btn-dark"
                         hidden={type !== 'Listener'}
                         onClick={() => like(result, 'artist')}>Follow
                 </button>
-                <button className="btn btn-dark"
+                <button type='btn' className="btn btn-dark"
                         hidden={type !== 'Concert Manager'}
                         onClick={() => toggleEvent(result.id)}>Add to Event
                 </button>

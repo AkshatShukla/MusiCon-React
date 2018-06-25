@@ -408,7 +408,7 @@ import Button from './Button'; // Import a component from another file
 
 class DangerButton extends Component {
   render() {
-    return <Button color="red" />;
+    return <button type='btn' color="red" />;
   }
 }
 
@@ -461,7 +461,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleClick}>Load</button>
+        <button type='btn' onClick={this.handleClick}>Load</button>
       </div>
     );
   }

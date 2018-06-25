@@ -30,7 +30,7 @@ class FollowedAudiophiles extends React.Component {
                     <hr className="my-2"/>
                     <Link style={{display: 'block', height: '100%'}}
                           to="/my-page">
-                        <Button><span>
+                        <Button ><span>
                     <i className="fa fa-arrow-left">&nbsp;</i>
                 </span>My Page</Button>
                     </Link>

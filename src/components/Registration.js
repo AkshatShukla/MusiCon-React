@@ -70,7 +70,7 @@ export default class Registration extends React.Component {
                     </div>}
 
                     <form className="form-signin form-inline m-2">
-                        <button onClick={() => {this.register()}}
+                        <button type='btn' onClick={() => {this.register()}}
                                 className='btn btn-dark'>Register
                         </button>
                     </form>

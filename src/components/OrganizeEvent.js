@@ -46,7 +46,7 @@ const OrganizeEvent = ({username, textChanged, createEvent}) => {
                                onChange={() => textChanged('eventDate', inputElem2.value)}
                                ref={node => inputElem2 = node}/>
                     </form>
-                    <button onClick={() => createEvent(inputElem.value, inputElem1.value, inputElem2.value)}
+                    <button type='btn' onClick={() => createEvent(inputElem.value, inputElem1.value, inputElem2.value)}
                             className='btn btn-dark justify-content-center'>
                         Create Event
                     </button>

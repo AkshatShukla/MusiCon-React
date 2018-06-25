@@ -8,14 +8,14 @@ const LikedTrackItem = ({track, dislikeTrack}) => {
                 <h5 className="card-title">{track.name}</h5>
                 <p>By {track.artist}</p>
                 <form action={track.externalUrl}>
-                    <button className="btn btn-outline-dark" style={{marginBottom: '10px'}}>Show on Spotify</button>
+                    <button type='btn' className="btn btn-outline-dark" style={{marginBottom: '10px'}}>Show on Spotify</button>
                 </form>
             </div>
             <div className="card-footer">
                 <small className="text-muted">Release Date: {track.releaseDate}</small>
             </div>
             <div className="card-footer ">
-                <button className="btn btn-outline-danger" onClick={() =>dislikeTrack(track, 'track')}>
+                <button type='btn' className="btn btn-outline-danger" onClick={() =>dislikeTrack(track, 'track')}>
                     <span><i className="fa fa-thumbs-down"></i>&nbsp;</span>Dislike
                 </button>
             </div>

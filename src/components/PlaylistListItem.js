@@ -10,7 +10,7 @@ const PlaylistListItem = ({
         return tracksInPlaylist.map((track) => (
             <li key={track._id} className="list-group-item">
                 <h4>{track.name}</h4>
-                <button className="btn btn-outline-danger float-right"
+                <button type='btn' className="btn btn-outline-danger float-right"
                         onClick={() => deleteTrackFromPlaylist(track, playlist)}>
                     <span><i className="fa fa-trash">&nbsp;</i></span>
                     Remove
@@ -31,18 +31,18 @@ const PlaylistListItem = ({
                                                onChange={(e) => textChanged(e.target.value, 'description')}
                                                className="card-title"/>}
                 <div className='btn-group-vertical w-100 mt-2'>
-                    {id !== playlist._id && <button className='btn btn-dark'
+                    {id !== playlist._id && <button type='btn' className='btn btn-dark'
                                                     onClick={() => getTracksInPlaylist(playlist, playlist._id)}
                                                     style={{marginBottom: '10px'}}>Show Tracks
                     </button>}
-                    {id !== playlist._id && <button className='btn btn-outline-danger'
+                    {id !== playlist._id && <button type='btn' className='btn btn-outline-danger'
                                                     style={{marginBottom: '10px'}}
                                                     onClick={() => deletePlaylist(playlist)}>Delete
                     </button>}
-                    {id !== playlist._id && <button className='btn btn-outline-dark '
+                    {id !== playlist._id && <button type='btn' className='btn btn-outline-dark '
                                                     style={{marginBottom: '10px'}}
                                                     onClick={() => editEvent(playlist._id)}>Edit</button>}
-                    {id === playlist._id && <button className='btn btn-outline-success '
+                    {id === playlist._id && <button type='btn' className='btn btn-outline-success '
                                                     style={{marginBottom: '10px'}}
                                                     onClick={() => updateEvent(playlist._id)}>Update</button>}
                 </div>

@@ -12,7 +12,7 @@ class AllRecommendedAlbum extends React.Component {
             <tr>
                 <td>{album.album.name}</td>
                 <td>{album.user.username}</td>
-                <td><button className='btn' onClick={() => this.props.deleteRecommendedAlbum(album._id)}>Delete</button></td>
+                <td><button type='btn' className='btn' onClick={() => this.props.deleteRecommendedAlbum(album._id)}>Delete</button></td>
             </tr>)
     }
 

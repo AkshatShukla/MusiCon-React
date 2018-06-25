@@ -31,7 +31,7 @@ const CreatePlaylist = ({textChanged, createPlaylist}) => {
                 </form>
                 <br/>
                 <form className="form-inline m-2">
-                    <button onClick={() => createPlaylist(inputElem.value, inputElem1.value)}
+                    <button type='btn' onClick={() => createPlaylist(inputElem.value, inputElem1.value)}
                             className='btn btn-dark'
                             type="button">
                         Create Playlist

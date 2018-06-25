@@ -12,7 +12,7 @@ class AllRecommendedTrack extends React.Component {
             <tr>
                 <td>{track.track.name}</td>
                 <td>{track.user.username}</td>
-                <td><button className='btn' onClick={() => this.props.deleteRecommendedTrack(track._id)}>Delete</button></td>
+                <td><button type='btn' className='btn' onClick={() => this.props.deleteRecommendedTrack(track._id)}>Delete</button></td>
             </tr>)
     }
 

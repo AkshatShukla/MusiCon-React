@@ -15,15 +15,15 @@ export default class ExploreAudiophile extends React.Component {
                     <p className="col-4">{audiophile.description}</p>
                     <div className="col-5 btn-group p-2">
 
-                        <button className="btn btn-outline-dark m-1"
+                        <button type='btn' className="btn btn-outline-dark m-1"
                                 onClick={() => this.showContent(audiophile._id, 'album')}>
                             Recommended Albums
                         </button>
-                        <button className="btn btn-outline-dark m-1"
+                        <button type='btn' className="btn btn-outline-dark m-1"
                                 onClick={() => this.showContent(audiophile._id, 'track')}>
                             Recommended Tracks
                         </button>
-                        <button className="btn btn-success m-1"
+                        <button type='btn' className="btn btn-success m-1"
                                 onClick={() => this.followAudiophile(audiophile._id, audiophile.username)}>
                             Follow
                         </button>
@@ -33,7 +33,7 @@ export default class ExploreAudiophile extends React.Component {
                         <ul className="list-group border">
                             {this.renderDetails()}
                         </ul>
-                        <button className="btn btn-dark m-1"
+                        <button type='btn' className="btn btn-dark m-1"
                                 onClick={() => this.props.closeContentPane()}>Close
                         </button>
                     </div>

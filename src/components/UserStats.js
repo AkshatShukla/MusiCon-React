@@ -63,7 +63,7 @@ const UserStats = ({username, description}) => {
                                 <CardText>Click on the button below to show all the tracks you love.</CardText>
                                 <Link style={{display: 'block', height: '100%'}}
                                       to="/my-page/liked-tracks">
-                                    <button className="btn btn-dark">Show</button>
+                                    <button type='btn' className="btn btn-dark">Show</button>
                                 </Link>
                             </CardBody>
                         </Card>

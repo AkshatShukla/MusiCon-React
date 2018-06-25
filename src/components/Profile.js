@@ -83,7 +83,7 @@ export default class Profile extends React.Component {
                                value={this.props.description}
                                onChange={(Event) => this.props.TextChanged('description', Event.target.value)}/>
                     </form>
-                    <button onClick={() => this.update()}
+                    <button type='btn' onClick={() => this.update()}
                             className='btn btn-success'>Update</button>
                 </div>
             </div>

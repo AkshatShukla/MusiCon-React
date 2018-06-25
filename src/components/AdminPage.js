@@ -62,7 +62,7 @@ export default class AdminPage extends React.Component {
                         <td><input placeholder='phone' style={{width: '100%'}}
                                    onChange={(Event) => this.phone = Event.target.value}/></td>
                         <td>
-                            <button className="btn btn-dark" onClick={() => this.UpdateUser()}>Create</button>
+                            <button type='btn' className="btn btn-dark" type='btn' onClick={() => this.UpdateUser()}>Create</button>
                         </td>
                     </tr>
                 </table>
@@ -100,7 +100,7 @@ export default class AdminPage extends React.Component {
                     <td><input placeholder={this.phone} style={{width: '100%'}}
                                onChange={(Event) => this.phone = Event.target.value}/>{user.phone}</td>
                     <td>
-                        <button className="btn btn-dark" onClick={() => this.UpdateUser(user._id)}>Update</button>
+                        <button type='btn' className="btn btn-dark" type='btn' onClick={() => this.UpdateUser(user._id)}>Update</button>
                     </td>
                 </tr>)
             }
@@ -115,8 +115,8 @@ export default class AdminPage extends React.Component {
                     <td>{user.city}</td>
                     <td>{user.phone}</td>
                     <td>
-                        <button className="btn btn-dark" onClick={() => this.SelectUser(user._id)}>Edit</button>
-                        <button className="btn btn-danger" onClick={() => this.props.deleteUser(user._id)}>Delete</button>
+                        <button type='btn' className="btn btn-dark" type='btn' onClick={() => this.SelectUser(user._id)}>Edit</button>
+                        <button type='btn' className="btn btn-danger" type='btn' onClick={() => this.props.deleteUser(user._id)}>Delete</button>
                     </td>
                 </tr>)
             }
