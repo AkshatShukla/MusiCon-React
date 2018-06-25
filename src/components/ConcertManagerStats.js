@@ -6,19 +6,21 @@ import {
 } from 'reactstrap';
 import createEvent from '../images/create-event.jpg';
 
-const ConcertManagerStats = ({username}) => {
+const ConcertManagerStats = ({username, description}) => {
     return (
         <div>
             <Jumbotron>
                 <h1 className="display-3">{username}'s Page</h1>
-                <p className="lead">All the good stuff you've been upto on MusiCon.</p>
+                {description !== undefined
+                    ? <p className="lead">{description}</p>
+                    : <p className="lead">All the good stuff you've been upto on MusiCon.</p>}
                 <hr className="my-2"/>
                 <p>
                     <CardColumns>
                         <Card body inverse style={{backgroundColor: '#505050', borderColor: '#575757'}}>
                             <CardImg top width="100%" src={createEvent} alt="Card image cap"/>
                             <CardBody>
-                                <CardTitle><h2>Create Concert</h2></CardTitle>
+                                <CardTitle className="h2">Create Concert</CardTitle>
                                 <CardSubtitle>Make new events and reach your audience!</CardSubtitle>
                                 <CardText>Click on the button below to create new concert/event.</CardText>
                                 <Link style={{display: 'block', height: '100%'}}

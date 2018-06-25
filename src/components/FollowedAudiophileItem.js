@@ -9,7 +9,7 @@ const FollowedAudiophileItem = ({audiophile, unfollowAudiophile}) => {
             </div>
             <div className="card-footer ">
                 <button className="btn btn-outline-danger" onClick={() => unfollowAudiophile(audiophile, 'audiophile')}>
-                    <span><i className="fa fa-trash"></i>&nbsp;</span>Un-Follow
+                    <span><i className="fa fa-trash">&nbsp;</i></span>Un-Follow
                 </button>
             </div>
         </div>

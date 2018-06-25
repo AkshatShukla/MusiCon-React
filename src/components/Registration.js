@@ -1,77 +1,80 @@
 import React from 'react'
 
-const Registration = ({userType, textChanged, selectUserType, registerManager, registerUser}) => {
-    let inputElem;
-    let inputElem1;
-    let inputElem2;
-    let inputElem3;
-    let selectElement;
+export default class Registration extends React.Component{
+    inputElem;
+    inputElem1;
+    inputElem2;
+    inputElem3;
+    selectElement;
 
-    const register = () => {
-        if (userType === 'Concert Manager') {
-            registerManager(inputElem.value, inputElem1.value, inputElem2.value, selectElement.value, inputElem3.value)
+    register = () => {
+        if (this.props.userType === 'Concert Manager') {
+            this.props.registerManager(this.inputElem.value, this.inputElem1.value, this.inputElem2.value,
+                this.selectElement.value, this.inputElem3.value);
+            this.props.history.push('/login');
         }
         else
-            registerUser(inputElem.value, inputElem1.value, inputElem2.value, selectElement.value);
+            this.props.registerUser(this.inputElem.value, this.inputElem1.value, this.inputElem2.value, this.selectElement.value);
+        this.props.history.push('/login')
     };
 
-    return (
-        <div className="container">
-            <div className="cardRegistration card-container">
-                <form className="form-signin form-inline row m-2">
-                    <label htmlFor="username form-label"  className="col-3 ">Enter Username:</label>
-                    <input className="col-8"
-                           id="username"
-                           onChange={() => textChanged('username', inputElem.value)}
-                           ref={node => inputElem = node}/>
-                </form>
-                <form className="form-signin form-inline m-2">
-                    <label htmlFor="password"  className="col-3 ">Enter Password:</label>
-
-                    <input className="col-8"
-                           id="password"
-                           onChange={() => textChanged('password', inputElem1.value)}
-                           ref={node => inputElem1 = node}/>
-                </form>
-                <form className="form-signin form-inline m-2">
-                    <label htmlFor="verifyPassword"  className="col-3 ">Verify Password:</label>
-
-                    <input className="col-8"
-                           id="verifyPassword"
-                           onChange={() => textChanged('verifyPassword', inputElem2.value)}
-                           ref={node => inputElem2 = node}/>
-                </form>
-                <form className="form-signin form-inline m-2">
-                    <label className="col-3 ">Enter User Type:</label>
-
-                    <select onChange={() => selectUserType(selectElement.value)}
-                            ref={node => selectElement = node}>
-                        <option>Listener</option>
-                        <option>Audiophile</option>
-                        <option>Concert Manager</option>
-                    </select>
-                </form>
-
-                {userType === 'Concert Manager' && <div>
-                    <form className="form-signin form-inline m-2">
-                        <label htmlFor="eventLocation" className='col-3'>Enter Event Location:</label>
-                        &nbsp;
+    render() {
+        return (
+            <div className="container">
+                <div className="cardRegistration card-container">
+                    <form className="form-signin form-inline row m-2">
+                        <label htmlFor="username form-label" className="col-3 ">Enter Username:</label>
                         <input className="col-8"
-                               id="eventLocation"
-                               onChange={() => textChanged('eventLocation', inputElem3.value)}
-                               ref={node => inputElem3 = node}/>
+                               id="username"
+                               onChange={() => this.props.textChanged('username', this.inputElem.value)}
+                               ref={node => this.inputElem = node}/>
                     </form>
-                </div>}
+                    <form className="form-signin form-inline m-2">
+                        <label htmlFor="password" className="col-3 ">Enter Password:</label>
 
-                <form className="form-signin form-inline m-2">
+                        <input className="col-8"
+                               id="password"
+                               onChange={() => this.props.textChanged('password', this.inputElem1.value)}
+                               ref={node => this.inputElem1 = node}/>
+                    </form>
+                    <form className="form-signin form-inline m-2">
+                        <label htmlFor="verifyPassword" className="col-3 ">Verify Password:</label>
 
-                    <button onClick={() => {register()}} className='btn btn-primary btn-block col-12'>
-                        Register
-                    </button>
-                </form>
+                        <input className="col-8"
+                               id="verifyPassword"
+                               onChange={() => this.props.textChanged('verifyPassword', this.inputElem2.value)}
+                               ref={node => this.inputElem2 = node}/>
+                    </form>
+                    <form className="form-signin form-inline m-2">
+                        <label className="col-3 ">Enter User Type:</label>
+
+                        <select
+                            ref={node => this.selectElement = node}>
+                            <option>Listener</option>
+                            <option>Audiophile</option>
+                            <option>Concert Manager</option>
+                        </select>
+                        <br/>
+
+                        {this.props.userType === 'Concert Manager' && <div>
+                            <form className="form-signin form-inline m-2">
+                                <label htmlFor="eventLocation" className="col-3">Enter Event Location:</label>
+                                &nbsp;
+                                <input className="col-8"
+                                       id="eventLocation"
+                                       onChange={() => this.props.textChanged('eventLocation', this.inputElem3.value)}
+                                       ref={node => this.inputElem3 = node}/>
+                            </form>
+                        </div>}
+
+                        <form className="form-signin form-inline m-2">
+
+                            <button onClick={() => {
+                                this.register()
+                            }}>Register
+                            </button>
+                        </form>
+                </div>
             </div>
-        </div>
-    )
-}
-
-export default Registration;
+    )}
+    }

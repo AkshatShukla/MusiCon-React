@@ -8,7 +8,8 @@ const dispatchToPropsMapper = dispatch => ({
 
 const stateToPropsMapper = state => ({
     city:state.city,
-    events:state.eventsNearUser});
+    events:state.eventsNearUser
+});
 
-const EventsNearUserContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(EventsNearUser)
+const EventsNearUserContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(EventsNearUser);
 export default EventsNearUserContainer;

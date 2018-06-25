@@ -8,7 +8,9 @@ const dispatchToPropsMapper = dispatch => ({
     searchTypeChanged: (newType) =>
         actions.searchTypeChanged(dispatch, newType),
     searchQuery: (query, queryType) =>
-        actions.searchQuery(dispatch, query, queryType)
+        actions.searchQuery(dispatch, query, queryType),
+    dropSearchResults: () =>
+        actions.dropSearchResults(dispatch),
 });
 const stateToPropsMapper = state => ({
     // flag: state.searchFlag

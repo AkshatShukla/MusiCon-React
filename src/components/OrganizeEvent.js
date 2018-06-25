@@ -1,9 +1,6 @@
 import React from 'react'
 import EventContainer from '../containers/EventContainer';
-import {
-    Jumbotron, Card, Button, CardImg, CardTitle, CardText, CardColumns,
-    CardSubtitle, CardBody
-} from 'reactstrap';
+import {Jumbotron} from 'reactstrap';
 
 const OrganizeEvent = ({username, textChanged, createEvent}) => {
     let inputElem;

@@ -54,7 +54,10 @@ export const Reducer = (state = {
     audiophileItemType :'',
     audiophileItems: [],
     audiophileDetailsId:'',
-    eventsNearUser:[]
+    eventsNearUser: {
+        'tn':[],
+        'lr':[]
+    }
 }, action) => {
     let newState;
     switch (action.type) {
@@ -334,6 +337,15 @@ export const Reducer = (state = {
             newState.admin.allRecommendedTrack = action.data;
             return newState;
 
+        case constants.DROP_SEARCH_RESULT:
+            newState = Object.assign({}, state);
+            newState.albumResults = [];
+            newState.searchFlag = '';
+            newState.trackResults = [];
+            newState.artistResults = [];
+            newState.eventResults = [];
+            newState.eventsNearUser = [];
+            return newState;
         default:
             return state
     }
