@@ -45,7 +45,7 @@ export default class Registration extends React.Component{
                            ref={node => this.inputElem2 = node}/>
                 </form>
 
-                <select
+                <select onChange={() => this.props.selectUserType(this.selectElement.value)}
                         ref={node =>this.selectElement = node}>
                     <option>Listener</option>
                     <option>Audiophile</option>

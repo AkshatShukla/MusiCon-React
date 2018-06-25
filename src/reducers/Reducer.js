@@ -53,7 +53,8 @@ export const Reducer = (state = {
     audiophileItemType :'',
     audiophileItems: [],
     audiophileDetailsId:'',
-    eventsNearUser:[]
+    eventsNearUser:[],
+    loggedIn:false
 }, action) => {
     let newState;
     switch (action.type) {
@@ -127,6 +128,7 @@ export const Reducer = (state = {
             newState = Object.assign({}, state);
             newState.username = action.username;
             newState.userType = action.userType;
+            newState.loggedIn = true;
             return newState;
 
         case constants.TYPE_CHANGED:
@@ -167,6 +169,7 @@ export const Reducer = (state = {
             newState.password = '';
             newState.verifyPassword = '';
             newState.userType = undefined;
+            newState.loggedIn = false;
             console.log(newState);
             return newState;
 

@@ -148,6 +148,7 @@ export default class AdminPage extends React.Component {
             password: this.password
         };
         this.props.updateUser(user);
+        this.SelectUser('');
     }
 
     SelectUser(id) {
