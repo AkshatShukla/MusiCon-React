@@ -51,14 +51,14 @@ export const Reducer = (state = {
     modalToggle: '',
     playlistModalToggle: '',
     eventModalToggle: '',
-    audiophileItemType :'',
+    audiophileItemType: '',
     audiophileItems: [],
-    audiophileDetailsId:'',
+    audiophileDetailsId: '',
     eventsNearUser: {
-        'tn':[],
-        'lr':[]
+        'tn': [],
+        'lr': []
     },
-    loggedIn:false
+    loggedIn: false
 }, action) => {
     let newState;
     switch (action.type) {
@@ -174,7 +174,64 @@ export const Reducer = (state = {
             newState.verifyPassword = '';
             newState.userType = undefined;
             newState.loggedIn = false;
-            console.log(newState);
+            newState.username = '';
+            newState.password = '';
+            newState.verifyPassword = '';
+            newState.description = '';
+            newState.userType = undefined;
+            newState.eventLocation = '';
+            newState.query = '';
+            newState.eventName = '';
+            newState.dob = '';
+            newState.venueName = '';
+            newState.eventDate = '';
+            newState.playlistName = '';
+            newState.playlistDescription = '';
+            newState.queryType = 'Album';
+            newState.eventsForConcertManager = [];
+            newState.likedAlbums = [];
+            newState.likedTracks = [];
+            newState.followedArtists = [];
+            newState.followedAudiophiles = [];
+            newState.recommendedAlbums = [];
+            newState.recommendedTracks = [];
+            newState.playlistsForListener = [];
+            newState.tracksInPlaylist = [];
+            newState.artistsInEvent = [];
+            newState.albumResults = [];
+            newState.trackResults = [];
+            newState.artistResults = [];
+            newState.audiophileResults = [];
+            newState.searchFlag = '';
+            newState.details = {
+                name: '',
+                duration: '',
+                listeners: '',
+                lastFmUrl: '',
+                image: '',
+                album: '',
+                artist: '',
+                wiki: '',
+                tracks: []
+            };
+            newState.dmin = {
+                users: [],
+                allLikedAlbum: [],
+                allLikedTrack: [],
+                allRecommendedAlbum: [],
+                allRecommendedTrack: []
+            };
+            newState.modalToggle = '';
+            newState.playlistModalToggle = '';
+            newState.eventModalToggle = '';
+            newState.audiophileItemType = '';
+            newState.audiophileItems = [];
+            newState.audiophileDetailsId = '';
+            newState.eventsNearUser = {
+                'tn': [],
+                'lr': []
+            };
+            newState.loggedIn = false;
             return newState;
 
         case constants.SET_DETAILS:
