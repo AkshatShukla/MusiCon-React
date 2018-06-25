@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default class Registration extends React.Component{
+export default class Registration extends React.Component {
     inputElem;
     inputElem1;
     inputElem2;
@@ -54,27 +54,27 @@ export default class Registration extends React.Component{
                             <option>Audiophile</option>
                             <option>Concert Manager</option>
                         </select>
-                        <br/>
+                    </form>
+                    <br/>
 
-                        {this.props.userType === 'Concert Manager' && <div>
-                            <form className="form-signin form-inline m-2">
-                                <label htmlFor="eventLocation" className="col-3">Enter Event Location:</label>
-                                &nbsp;
-                                <input className="col-8"
-                                       id="eventLocation"
-                                       onChange={() => this.props.textChanged('eventLocation', this.inputElem3.value)}
-                                       ref={node => this.inputElem3 = node}/>
-                            </form>
-                        </div>}
-
+                    {this.props.userType === 'Concert Manager' && <div>
                         <form className="form-signin form-inline m-2">
-
-                            <button onClick={() => {
-                                this.register()
-                            }}>Register
-                            </button>
+                            <label htmlFor="eventLocation" className="col-3">Enter Event Location:</label>
+                            &nbsp;
+                            <input className="col-8"
+                                   id="eventLocation"
+                                   onChange={() => this.props.textChanged('eventLocation', this.inputElem3.value)}
+                                   ref={node => this.inputElem3 = node}/>
                         </form>
+                    </div>}
+
+                    <form className="form-signin form-inline m-2">
+                        <button onClick={() => {this.register()}}
+                                className='btn btn-dark'>Register
+                        </button>
+                    </form>
                 </div>
             </div>
-    )}
+        )
     }
+}
