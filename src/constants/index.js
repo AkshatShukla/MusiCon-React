@@ -10,9 +10,9 @@ export const LOGOUT ='LOGOUT';
 export const FETCH_PROFILE ='FETCH_PROFILE';
 export const BASE_URL = 'https://webdev-summer1-project-nodejs.herokuapp.com/api/';//later change this to heroku url
 export const LAST_FM_API_KEY = '936c99c515a1eeafd21e0ca253de20d8';
-export const LAST_FM_TRACK_INFO_URL = 'http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=API_KEY';
-export const LAST_FM_ALBUM_INFO_URL = 'http://ws.audioscrobbler.com/2.0/?method=album.getInfo&api_key=API_KEY';
-export const LAST_FM_ARTIST_INFO_URL = 'http://ws.audioscrobbler.com/2.0/?method=artist.getInfo&api_key=API_KEY';
+export const LAST_FM_TRACK_INFO_URL = 'https://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=API_KEY';
+export const LAST_FM_ALBUM_INFO_URL = 'https://ws.audioscrobbler.com/2.0/?method=album.getInfo&api_key=API_KEY';
+export const LAST_FM_ARTIST_INFO_URL = 'https://ws.audioscrobbler.com/2.0/?method=artist.getInfo&api_key=API_KEY';
 export const SET_DETAILS = 'SET_DETAILS';
 export const TOGGLE = 'TOGGLE';
 export const ALL_EVENTS_FOR_USER = 'ALL_EVENTS_FOR_USER';
